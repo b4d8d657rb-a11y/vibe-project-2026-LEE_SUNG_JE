@@ -1,0 +1,154 @@
+:root {
+  --greyscale-white: 255 255 255;
+  --greyscale-100: 244 244 244;
+  --greyscale-200: 216 217 217;
+  --greyscale-300: 203 204 204;
+  --greyscale-400: 190 192 192;
+  --greyscale-default: 177 179 179;
+  --greyscale-600: 155 157 157;
+  --greyscale-700: 133 135 135;
+  --greyscale-800: 111 112 112;
+  --greyscale-900: 89 90 90;
+  --greyscale-1000: 60 60 60;
+  --greyscale-black: 4 4 4;
+  --greyscale-dm-light: 24 24 24;
+  --greyscale-dm-dark: 4 4 4;
+  --accent-red: 200 16 46;
+  --accent-yellow: 255 199 0;
+  --accent-blue: 0 47 108;
+
+  --color-border: 229 231 235;
+  --color-bg: rgb(var(--greyscale-white));
+  --color-surface: rgb(var(--greyscale-100));
+  --color-text: rgb(var(--greyscale-black));
+  --color-text-muted: rgb(var(--greyscale-900));
+  --color-on-media: rgb(var(--greyscale-white));
+  --color-focus: rgb(var(--greyscale-black));
+
+  --font-ndot: "Ndot-Regular", "Silkscreen", ui-monospace, monospace;
+  --font-ndot-bold: "Ndot-Bold", "Ndot-Regular", ui-monospace, monospace;
+  --font-ntype: "NType82-Regular", "Helvetica Neue", "Pretendard", "Noto Sans KR", sans-serif;
+  --font-ntype-headline: "NType82-Headline", "NType82-Regular", "Pretendard", "Noto Sans KR", sans-serif;
+  --font-mono: "LatteraMonoLL", "IBM Plex Mono", ui-monospace, monospace;
+
+  --type-size-ndot-display-xxxl: 3.75rem;
+  --type-size-ndot-display-xxl: 2.5rem;
+  --type-size-ndot-display-xl: 1.875rem;
+  --type-size-ndot-heading-lg: 1.25rem;
+  --type-size-ndot-heading-md: 1.125rem;
+  --type-size-ndot-heading-sm: 1rem;
+  --type-size-ndot-heading-xs: 0.875rem;
+  --type-size-ntype-display-xxl: 3.75rem;
+  --type-size-ntype-display-xl: 3rem;
+  --type-size-ntype-display-lg: 2.5rem;
+  --type-size-ntype-heading-xl: 2rem;
+  --type-size-ntype-heading-lg: 1.5rem;
+  --type-size-ntype-heading-md: 1.25rem;
+  --type-size-ntype-subheading-lg: 1.125rem;
+  --type-size-ntype-subheading-md: 1rem;
+  --type-size-body: 1rem;
+  --type-size-body-sm: 0.875rem;
+  --type-size-mono-lg: 1rem;
+  --type-size-mono-md: 0.875rem;
+  --type-size-mono-sm: 0.75rem;
+  --type-size-mono-xs: 0.6875rem;
+
+  --space-2: 2px;
+  --space-4: 4px;
+  --space-6: 6px;
+  --space-8: 8px;
+  --space-10: 10px;
+  --space-12: 12px;
+  --space-14: 14px;
+  --space-16: 16px;
+  --space-20: 20px;
+  --space-24: 24px;
+  --space-28: 28px;
+  --space-32: 32px;
+  --space-36: 36px;
+  --space-40: 40px;
+  --space-44: 44px;
+  --space-48: 48px;
+  --space-56: 56px;
+  --space-64: 64px;
+  --space-80: 80px;
+  --space-96: 96px;
+  --space-112: 112px;
+  --space-120: 120px;
+  --space-128: 128px;
+  --space-144: 144px;
+  --space-160: 160px;
+  --space-192: 192px;
+  --space-208: 208px;
+  --space-240: 240px;
+  --space-256: 256px;
+
+  --radius-none: 0;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-full: 9999px;
+  --border-default: 1px solid rgb(var(--color-border));
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-float: 0 0 25px -5px rgb(0 0 0 / 0.3), 0 0 10px -6px rgb(0 0 0 / 0.3);
+  --frost-blur: blur(45px);
+
+  --inner-max-width: 1792px;
+  --header-height: var(--control-sm);
+  --header-content-width: 420px;
+  --control-sm: 40px;
+  --control-md: 44px;
+  --control-lg: 56px;
+  --icon-size-sm: 16px;
+  --icon-size-md: 20px;
+  --icon-size-lg: 24px;
+  --icon-size-xl: 32px;
+  --measure-sm: 50ch;
+  --measure-md: 65ch;
+  --measure-lg: 85ch;
+  --hero-copy-width: 420px;
+
+  --z-base: 0;
+  --z-raised: 10;
+  --z-dropdown: 20;
+  --z-sticky: 30;
+  --z-overlay: 40;
+  --z-modal: 50;
+  --z-toast: 60;
+
+  --inner-padding-inline: var(--space-16);
+}
+
+.light {
+  --color-bg: rgb(var(--greyscale-white));
+  --color-surface: rgb(var(--greyscale-100));
+  --color-text: rgb(var(--greyscale-black));
+  --color-text-muted: rgb(var(--greyscale-900));
+  --color-on-media: rgb(var(--greyscale-white));
+  --color-focus: rgb(var(--greyscale-black));
+}
+
+.dark {
+  --color-bg: rgb(var(--greyscale-dm-dark));
+  --color-surface: rgb(var(--greyscale-dm-light));
+  --color-text: rgb(var(--greyscale-white));
+  --color-text-muted: rgb(var(--greyscale-200));
+  --color-focus: rgb(var(--accent-yellow));
+}
+
+@media (min-width: 400px) {
+  :root {
+    --inner-padding-inline: var(--space-24);
+  }
+}
+
+@media (min-width: 768px) {
+  :root {
+    --inner-padding-inline: var(--space-40);
+  }
+}
+
+@media (min-width: 1280px) {
+  :root {
+    --inner-padding-inline: var(--space-64);
+  }
+}

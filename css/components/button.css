@@ -1,0 +1,39 @@
+.button {
+  display: inline-flex;
+  min-height: var(--control-sm);
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-8);
+  padding-inline: var(--space-16);
+  border: var(--border-default);
+  border-radius: var(--radius-sm);
+  background-color: rgb(var(--greyscale-white));
+  color: rgb(var(--greyscale-black));
+  font-family: var(--font-mono);
+  font-size: var(--type-size-mono-sm);
+  line-height: 1.25;
+  transition: background-color 0.15s cubic-bezier(0.4, 0, 0.2, 1), color 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.button:focus-visible {
+  outline: 2px solid rgb(var(--greyscale-black));
+  outline-offset: var(--space-2);
+}
+
+.button__arrow {
+  font-family: var(--font-ntype);
+  font-size: var(--type-size-body);
+  line-height: 1;
+}
+
+@media (hover: hover) {
+  .button:hover {
+    background-color: rgb(var(--greyscale-100));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .button {
+    transition-duration: 0.01ms;
+  }
+}

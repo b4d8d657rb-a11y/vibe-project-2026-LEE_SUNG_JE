@@ -1,0 +1,14 @@
+html {
+  font-family: var(--font-ntype);
+  color: var(--color-text);
+}
+
+body {
+  word-break: keep-all;
+  overflow-wrap: break-word;
+}
+
+button,
+a {
+  font-family: inherit;
+}

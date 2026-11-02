@@ -1,0 +1,26 @@
+.visually-hidden {
+  position: absolute;
+  width: var(--space-2);
+  height: var(--space-2);
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  clip-path: inset(50%);
+}
+
+.visually-hidden:focus-visible {
+  position: fixed;
+  z-index: var(--z-toast);
+  inset-block-start: var(--space-8);
+  inset-inline-start: var(--space-8);
+  width: auto;
+  height: auto;
+  padding: var(--space-8) var(--space-16);
+  clip: auto;
+  clip-path: none;
+  border-radius: var(--radius-sm);
+  background-color: rgb(var(--greyscale-white));
+  color: rgb(var(--greyscale-black));
+  outline: 2px solid rgb(var(--accent-yellow));
+  outline-offset: var(--space-2);
+}

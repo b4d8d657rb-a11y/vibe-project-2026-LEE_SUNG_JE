@@ -1,0 +1,11 @@
+.site-footer {
+  padding-block: var(--space-16);
+  background-color: var(--color-bg);
+  color: var(--color-text-muted);
+}
+
+.footer__brand {
+  font-family: var(--font-ndot);
+  font-size: var(--type-size-mono-sm);
+  line-height: 1.25;
+}
