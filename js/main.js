@@ -6,7 +6,6 @@ const menuFocusableElements = menu?.querySelectorAll('button:not([disabled]), a[
 const backgroundElements = [
   document.querySelector('main'),
   document.querySelector('.site-footer'),
-  document.querySelector('.hero-indicator'),
 ];
 
 if (

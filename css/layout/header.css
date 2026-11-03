@@ -70,46 +70,13 @@
   flex: 0 0 var(--icon-size-md);
 }
 
-.hero-indicator {
-  position: fixed;
-  z-index: var(--z-sticky);
-  inset-inline-start: var(--space-16);
-  inset-block-end: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: var(--icon-size-md);
-  height: var(--icon-size-md);
-  transform: translateY(50%);
-}
-
-.hero-indicator__link {
-  display: grid;
-  width: var(--icon-size-md);
-  height: var(--icon-size-md);
-  place-items: center;
-}
-
-.hero-indicator__dot {
-  width: var(--space-4);
-  aspect-ratio: 1 / 1;
-  border-radius: var(--radius-full);
-  background-color: rgb(var(--greyscale-white));
-  box-shadow: 0 0 0 var(--space-4) rgb(var(--greyscale-white) / 0.2);
-}
-
-.hero-indicator__link:focus-visible {
-  outline: 2px solid var(--color-on-media);
-  outline-offset: var(--space-2);
-}
-
 .site-menu {
   position: fixed;
   z-index: var(--z-modal);
   inset: 0;
   display: grid;
   overflow: auto;
-  padding: var(--space-4);
+  padding: var(--space-4) var(--inner-padding-inline);
   background-color: rgb(var(--greyscale-black) / 0.72);
   color: rgb(var(--greyscale-white));
   -webkit-backdrop-filter: var(--frost-blur);
@@ -126,7 +93,8 @@
 
 .site-menu__panel {
   display: flex;
-  width: min(100%, var(--menu-panel-width));
+  width: 100%;
+  max-width: var(--header-content-width);
   height: calc(100svh - var(--space-8));
   min-height: var(--control-lg);
   flex-direction: column;
@@ -297,10 +265,10 @@ body.menu-open .site-header {
 }
 
 @media (max-width: 1024px) {
-  .header__content {
+  .header__content,
+  .site-menu__panel {
     max-width: var(--space-512, 512px);
   }
-
 }
 
 @media (max-width: 767px) {
@@ -308,12 +276,13 @@ body.menu-open .site-header {
     padding-inline: var(--space-10);
   }
 
-  .header__content {
+  .header__content,
+  .site-menu__panel {
     max-width: none;
   }
 
-  .hero-indicator {
-    inset-inline-start: var(--space-8);
+  .site-menu {
+    padding-inline: calc(var(--inner-padding-inline) + var(--space-10));
   }
 
   .site-menu__header {
@@ -322,7 +291,6 @@ body.menu-open .site-header {
   }
 
   .site-menu__panel {
-    width: 100%;
     height: calc(100svh - var(--space-8));
   }
 
@@ -361,4 +329,3 @@ body.menu-open .site-header {
     gap: var(--space-12);
   }
 }
-
