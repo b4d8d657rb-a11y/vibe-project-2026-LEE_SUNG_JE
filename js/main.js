@@ -2,6 +2,7 @@ const menuToggle = document.querySelector('[data-menu-toggle]');
 const menu = document.querySelector('#site-menu');
 const menuClose = document.querySelector('[data-menu-close]');
 const menuPanel = menu?.querySelector('.site-menu__panel');
+const menuCloseMark = menuClose?.querySelector('.site-menu__close-mark');
 const menuFocusableElements = menu?.querySelectorAll('button:not([disabled]), a[href]');
 const backgroundElements = [
   document.querySelector('main'),
@@ -13,6 +14,7 @@ if (
   !(menu instanceof HTMLElement) ||
   !(menuClose instanceof HTMLButtonElement) ||
   !(menuPanel instanceof HTMLElement) ||
+  !(menuCloseMark instanceof HTMLImageElement) ||
   !(menuFocusableElements instanceof NodeList) ||
   backgroundElements.some((element) => !(element instanceof HTMLElement))
 ) {
@@ -20,6 +22,7 @@ if (
 }
 
 const finishMenuClose = () => {
+  menuCloseMark.src = 'images/d/hbg.svg';
   menu.classList.remove('is-visible');
   menu.setAttribute('aria-hidden', 'true');
   menu.inert = true;
@@ -33,6 +36,7 @@ const setMenuOpen = (isOpen) => {
   menuToggle.setAttribute('aria-expanded', String(isOpen));
 
   if (isOpen) {
+    menuCloseMark.src = 'images/d/menu_1.svg';
     document.body.classList.add('menu-open');
     backgroundElements.forEach((element) => {
       element.inert = true;
@@ -51,6 +55,7 @@ const setMenuOpen = (isOpen) => {
 
   const wasOpen = menu.classList.contains('is-open');
   menu.classList.remove('is-open');
+  menuCloseMark.src = 'images/d/hbg.svg';
   menuToggle.focus();
   if (!wasOpen) {
     finishMenuClose();
