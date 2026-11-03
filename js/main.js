@@ -4,6 +4,8 @@ const menuClose = document.querySelector('[data-menu-close]');
 const menuPanel = menu?.querySelector('.site-menu__panel');
 const menuCloseMark = menuClose?.querySelector('.site-menu__close-mark');
 const menuFocusableElements = menu?.querySelectorAll('button:not([disabled]), a[href]');
+const mainVideo = document.querySelector('[data-main-video]');
+const mainVideoToggle = document.querySelector('[data-main-video-toggle]');
 const backgroundElements = [
   document.querySelector('main'),
   document.querySelector('.site-footer'),
@@ -16,10 +18,54 @@ if (
   !(menuPanel instanceof HTMLElement) ||
   !(menuCloseMark instanceof HTMLImageElement) ||
   !(menuFocusableElements instanceof NodeList) ||
+  !(mainVideo instanceof HTMLVideoElement) ||
+  !(mainVideoToggle instanceof HTMLButtonElement) ||
   backgroundElements.some((element) => !(element instanceof HTMLElement))
 ) {
   throw new Error('The full-screen menu could not be initialized.');
 }
+
+const reducedMotionPreference = window.matchMedia('(prefers-reduced-motion: reduce)');
+let isVideoPlaying = false;
+
+const updateVideoToggle = () => {
+  const label = isVideoPlaying ? '영상 일시정지' : '영상 재생';
+  mainVideoToggle.textContent = label;
+  mainVideoToggle.setAttribute('aria-label', label);
+};
+
+mainVideo.addEventListener('play', () => {
+  isVideoPlaying = true;
+  updateVideoToggle();
+});
+
+mainVideo.addEventListener('pause', () => {
+  isVideoPlaying = false;
+  updateVideoToggle();
+});
+
+mainVideoToggle.addEventListener('click', () => {
+  if (mainVideo.paused) {
+    mainVideo.play().catch((error) => {
+      console.error('The hero video could not be played.', error);
+    });
+  } else {
+    mainVideo.pause();
+  }
+});
+
+reducedMotionPreference.addEventListener('change', (event) => {
+  if (event.matches) {
+    mainVideo.pause();
+  }
+});
+
+if (!reducedMotionPreference.matches) {
+  mainVideo.play().catch((error) => {
+    console.error('The hero video could not autoplay.', error);
+  });
+}
+updateVideoToggle();
 
 const finishMenuClose = () => {
   menuCloseMark.src = 'images/d/hbg.svg';

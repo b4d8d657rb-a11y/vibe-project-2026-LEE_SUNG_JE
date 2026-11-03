@@ -3,18 +3,42 @@
   display: flex;
   min-height: 100svh;
   overflow: hidden;
+  isolation: isolate;
   --hero-dot-pattern: radial-gradient(circle, rgb(var(--greyscale-800) / 0.45) var(--decoration-dot-size), transparent var(--decoration-dot-size));
   --hero-dot-position: var(--space-28) var(--space-28);
   --hero-dot-grid: var(--space-112) var(--space-80);
   background-color: var(--color-bg);
+  color: var(--color-on-media);
+}
+
+.section--hero::before {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
   background-image: var(--hero-dot-pattern);
   background-position: var(--hero-dot-position);
   background-size: var(--hero-dot-grid);
-  color: var(--color-on-media);
+  content: "";
+  pointer-events: none;
+}
+
+.main-video {
+  position: absolute;
+  z-index: 0;
+  inset-block-start: 50%;
+  inset-inline-start: 50%;
+  width: max(100vw, calc(100svh * 2.489));
+  height: max(100svh, calc(100vw * 0.402));
+  max-width: none;
+  border: 0;
+  object-fit: cover;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
 }
 
 .hero__content {
   position: relative;
+  z-index: 2;
   width: 100%;
   min-height: 100svh;
 }

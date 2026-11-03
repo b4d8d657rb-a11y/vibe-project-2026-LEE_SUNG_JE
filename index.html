@@ -81,9 +81,28 @@
 
     <main id="main-content">
       <section class="section section--hero" id="hero" aria-labelledby="hero-title">
+        <video
+          class="main-video"
+          poster="images/d/nothing-dt-4.jpg"
+          width="1725"
+          height="693"
+          src="images/d/main_video.mp4"
+          muted
+          playsinline
+          loop
+          preload="metadata"
+          data-main-video
+          aria-hidden="true"
+          tabindex="-1"></video>
         <div class="inner-box inner-box--fill">
           <div class="partition-box partition-box--center partition-box--fill">
             <div class="content-box content-box--fill hero__content">
+              <button
+                class="main-video__toggle visually-hidden"
+                type="button"
+                data-main-video-toggle>
+                영상 일시정지
+              </button>
               <div class="hero__copy">
                 <p class="hero__label">HEADPHONE (1) PRO</p>
                 <h1 class="hero__title" id="hero-title">스튜디오급 정밀함을 담은, 역대 가장 진보한 헤드폰.</h1>
