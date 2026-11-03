@@ -93,8 +93,8 @@
   --frost-blur: blur(45px);
 
   --inner-max-width: 1792px;
-  --header-height: var(--control-sm);
-  --header-content-width: 420px;
+  --header-height: var(--control-md);
+  --header-content-width: 530px;
   --control-sm: 40px;
   --control-md: 44px;
   --control-lg: 56px;
@@ -105,7 +105,8 @@
   --measure-sm: 50ch;
   --measure-md: 65ch;
   --measure-lg: 85ch;
-  --hero-copy-width: 420px;
+  --hero-copy-width: var(--measure-md);
+  --decoration-dot-size: 1px;
 
   --z-base: 0;
   --z-raised: 10;
