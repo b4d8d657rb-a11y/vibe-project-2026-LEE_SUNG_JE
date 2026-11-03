@@ -15,9 +15,55 @@
         <div class="partition-box partition-box--center">
           <div class="content-box header__content">
             <a class="visually-hidden" href="#main-content">본문 바로가기</a>
-            <span class="header__menu-mark" aria-hidden="true"></span>
+            <button
+              class="header__menu-button"
+              type="button"
+              aria-label="전체 메뉴 열기"
+              aria-controls="site-menu"
+              aria-expanded="false"
+              data-menu-toggle>
+              <span class="header__menu-mark" aria-hidden="true"></span>
+            </button>
             <a class="header__brand" href="#main-content" aria-label="NOTHING 홈">NOTHING ®</a>
             <span class="header__balance" aria-hidden="true"></span>
+
+            <nav class="site-menu" id="site-menu" aria-label="전체 메뉴" aria-hidden="true" inert>
+              <div class="site-menu__panel">
+                <div class="site-menu__header">
+                  <button
+                    class="site-menu__close"
+                    type="button"
+                    aria-label="전체 메뉴 닫기"
+                    data-menu-close>
+                    <span class="site-menu__close-mark" aria-hidden="true"></span>
+                  </button>
+                  <a class="site-menu__brand" href="#main-content">NOTHING ®</a>
+                </div>
+
+                <div class="site-menu__content">
+                  <ul class="site-menu__categories">
+                    <li><a class="site-menu__category" href="#hero" data-menu-link>모든 제품</a></li>
+                    <li><a class="site-menu__category" href="#hero" data-menu-link>휴대전화</a></li>
+                    <li><a class="site-menu__category" href="#hero" data-menu-link>오디오</a></li>
+                    <li><a class="site-menu__category" href="#hero" data-menu-link>시계</a></li>
+                    <li><a class="site-menu__category" href="#hero" data-menu-link>액세서리</a></li>
+                  </ul>
+                  <div class="site-menu__signature" aria-label="CMF, NOTHING OS 5.0">
+                    <span class="site-menu__cmf" aria-hidden="true">CMF</span>
+                    <span class="site-menu__slogan" aria-hidden="true">NOTHING OS 5.0</span>
+                  </div>
+                </div>
+
+                <nav class="site-menu__footer" aria-label="추가 링크">
+                  <ul class="site-menu__links">
+                    <li><a class="site-menu__link" href="#hero" data-menu-link>ACCOUNT</a></li>
+                    <li><a class="site-menu__link" href="#hero" data-menu-link>지원</a></li>
+                    <li><a class="site-menu__link" href="#hero" data-menu-link>COMMUNITY</a></li>
+                    <li><a class="site-menu__link" href="#hero" data-menu-link>회사 소개</a></li>
+                  </ul>
+                </nav>
+              </div>
+            </nav>
           </div>
         </div>
       </div>
@@ -56,5 +102,6 @@
         </div>
       </div>
     </footer>
-  </body>
+    <script type="module" src="js/main.js"></script>
+    </body>
 </html>
