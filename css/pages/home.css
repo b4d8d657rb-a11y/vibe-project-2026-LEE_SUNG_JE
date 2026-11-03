@@ -1,17 +1,12 @@
-.section--hero {
+.main-content {
   position: relative;
-  display: flex;
-  min-height: 100svh;
-  overflow: hidden;
   isolation: isolate;
   --hero-dot-pattern: radial-gradient(circle, rgb(var(--greyscale-800) / 0.45) var(--decoration-dot-size), transparent var(--decoration-dot-size));
   --hero-dot-position: var(--space-28) var(--space-28);
   --hero-dot-grid: var(--space-112) var(--space-80);
-  background-color: var(--color-bg);
-  color: var(--color-on-media);
 }
 
-.section--hero::before {
+.main-content::before {
   position: absolute;
   z-index: 1;
   inset: 0;
@@ -20,6 +15,15 @@
   background-size: var(--hero-dot-grid);
   content: "";
   pointer-events: none;
+}
+
+.section--hero {
+  position: relative;
+  display: flex;
+  min-height: 100svh;
+  overflow: hidden;
+  background-color: var(--color-bg);
+  color: var(--color-on-media);
 }
 
 .main-video {
@@ -92,20 +96,6 @@
   padding-block: var(--space-80);
   background-color: rgb(var(--greyscale-100));
   color: rgb(var(--greyscale-black));
-  --category-dot-pattern: radial-gradient(circle, rgb(var(--greyscale-default) / 0.85) var(--decoration-dot-size), transparent var(--decoration-dot-size));
-  --category-dot-grid: 130px 130px;
-  --category-dot-position: var(--space-32) 73px;
-}
-
-.section--category::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  pointer-events: none;
-  background-image: var(--category-dot-pattern);
-  background-position: var(--category-dot-position);
-  background-size: var(--category-dot-grid);
 }
 
 .inner-box--category {
@@ -165,10 +155,13 @@
     font-size: var(--type-size-ntype-heading-xl);
   }
 
+  .main-content {
+    --hero-dot-grid: var(--space-80) var(--space-80);
+    --hero-dot-position: var(--space-24) var(--space-24);
+  }
+
   .section--category {
     padding-block: var(--space-64);
-    --category-dot-grid: var(--space-80) var(--space-80);
-    --category-dot-position: var(--space-24) var(--space-24);
   }
 
   .category__header {
@@ -217,8 +210,8 @@
     gap: var(--space-12);
   }
 
-  .section--hero {
-    --hero-dot-grid: var(--space-80) var(--space-80);
+  .main-content {
+    --hero-dot-position: var(--space-16) var(--space-16);
   }
 
   .hero__label {
@@ -236,8 +229,6 @@
 
   .section--category {
     padding-block: var(--space-48);
-    --category-dot-grid: var(--space-80) var(--space-80);
-    --category-dot-position: var(--space-16) var(--space-16);
   }
 
   .category__header {
