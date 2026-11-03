@@ -21,9 +21,11 @@
 }
 
 .button__arrow {
-  font-family: var(--font-ntype);
-  font-size: var(--type-size-body);
-  line-height: 1;
+  display: inline-block;
+  width: var(--icon-size-sm);
+  height: var(--icon-size-sm);
+  flex-shrink: 0;
+  vertical-align: middle;
 }
 
 @media (hover: hover) {
