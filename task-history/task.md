@@ -1,5 +1,49 @@
 # 작업 이력 및 다음 작업 인계
 
+## 완료된 작업: 카테고리 카드 화살표 아이콘 card.svg 교체
+
+### 요청 사항
+- `.category-card__arrow` 요소를 `images` 폴더의 `card.svg` 이미지로 교체.
+
+### 구현 상태
+- `index.html`: 4개 카테고리 카드(이어폰, 헤드폰, 스마트폰, CMF)의 텍스트 화살표(`<span>&gt;</span>`)를 `<img class="category-card__arrow" src="images/d/card.svg" alt="" aria-hidden="true" width="16" height="16">`로 교체.
+- `css/components/card.css`: `.category-card__arrow`를 16×16px 아이콘 크기(`--icon-size-sm`)와 `flex-shrink: 0`, 세로 정렬(`vertical-align: middle`)로 스타일 최적화.
+
+### 변경 파일
+- `index.html`
+- `css/components/card.css`
+- `task-history/task.md`
+
+## 완료된 작업: 카테고리별 쇼핑 섹션 신규 구현
+
+### 요청 사항
+- 첫 번째 페이지와 동일한 전체 화면(100svh)을 채우는 박스를 만들고, 제공된 데스크톱/태블릿/모바일 스크린샷과 같이 `main > section`을 구성하여 페이지를 생성.
+- 상단 메뉴 등 고정 요소는 그대로 두고 별도의 박스로 구성된 새로운 요소만 구현.
+- 제공된 데스크톱, 태블릿, 모바일 스크린샷 분석을 통한 세부 요구사항 반영.
+
+### 구현 상태
+- `index.html`: `main` 요소의 직계 자식으로 `section.section--category.light`를 추가하고 D4 박스 규약(`section > .inner-box > .partition-box > .content-box`)을 준수하여 마크업 구성.
+- 4대 카테고리 카드(이어폰, 헤드폰, 스마트폰, CMF) 구성 및 저장소 내 정규 1000×1000 제품 이미지 매핑:
+  - 이어폰: `images/d/nothing-dt-1.jpg`
+  - 헤드폰: `images/d/nothing-dt-4.jpg`
+  - 스마트폰: `images/d/nothing-dt-18.jpg`
+  - CMF: `images/d/nothing-dt-17.jpg`
+- `css/components/card.css`: BEM 기반 `category-card` 컴포넌트 신규 작성 (정사각 1:1 미디어, 8px 라운드, 밑줄 링크 및 호버 시 이미지 1.04 확대 인터랙션, reduced-motion 지원).
+- `css/main.css`: 컴포넌트 순서에 맞춰 `@import url("./components/card.css");` 등록.
+- `css/pages/home.css`:
+  - `section--category`: 밝은 그레이 배경(`--greyscale-100`) 및 130px/80px 도트 그리드 오버레이 적용.
+  - 데스크톱(1025px 이상): 제목 중앙 정렬, 4개 카드 균등 4열 배치(갭 8px).
+  - 태블릿(1024px 이하): 제목 좌측 정렬, 가로 스크롤 캐러셀 구성(카드 폭 약 305px, 3.2개 노출, 스크롤바 숨김).
+  - 모바일(767px 이하): 제목 좌측 정렬, 가로 스크롤 캐러셀 구성(카드 폭 clamp(240px, 46vw, 342px), 약 2.2개 노출).
+
+### 변경 파일
+- `index.html`
+- `css/main.css`
+- `css/components/card.css`
+- `css/pages/home.css`
+- `task-history/task.md`
+
+
 ## 완료된 작업: 반응형 전체 메뉴 오버레이
 
 - 스크린샷처럼 데스크톱에서 어두운 블러 배경 위 중앙에 세로형 메뉴 패널을 두고, 작은 화면에서는 화면 너비를 채우도록 반응형 처리했다.

@@ -61,9 +61,10 @@
 
 .category-card__arrow {
   display: inline-block;
-  font-family: var(--font-ntype);
-  font-size: 0.9em;
-  text-decoration: none;
+  width: var(--icon-size-sm);
+  height: var(--icon-size-sm);
+  flex-shrink: 0;
+  vertical-align: middle;
 }
 
 @media (hover: hover) {
