@@ -84,7 +84,7 @@
 }
 
 .collection__controls {
-  display: flex;
+  display: none;
   flex: 0 0 auto;
   gap: var(--space-8);
 }
@@ -199,6 +199,12 @@
     padding: var(--space-16);
   }
 
+}
+
+@media (min-width: 1025px) {
+  .collection__controls {
+    display: flex;
+  }
 }
 
 @media (hover: hover) {
