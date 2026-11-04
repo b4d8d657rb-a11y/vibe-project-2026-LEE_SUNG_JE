@@ -28,9 +28,15 @@
   vertical-align: middle;
 }
 
-@media (hover: hover) {
+@media (hover: hover) and (min-width: 1025px) {
   .button:hover {
     background-color: rgb(var(--greyscale-100));
+  }
+}
+
+@media (max-width: 1024px) {
+  .button:hover {
+    background-color: rgb(var(--greyscale-white));
   }
 }
 

@@ -230,7 +230,7 @@ body.menu-open .site-header {
   z-index: var(--z-modal);
 }
 
-@media (hover: hover) {
+@media (hover: hover) and (min-width: 1025px) {
   .header__menu-button:hover,
   .site-menu__close:hover {
     background-color: rgb(var(--greyscale-900) / 0.1);
@@ -239,6 +239,18 @@ body.menu-open .site-header {
   .site-menu__category:hover,
   .site-menu__link:hover {
     opacity: 0.6;
+  }
+}
+
+@media (max-width: 1024px) {
+  .header__menu-button:hover,
+  .site-menu__close:hover {
+    background-color: transparent;
+  }
+
+  .site-menu__category:hover,
+  .site-menu__link:hover {
+    opacity: 1;
   }
 }
 

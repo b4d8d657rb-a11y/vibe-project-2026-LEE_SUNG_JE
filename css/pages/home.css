@@ -222,6 +222,91 @@
 }
 
 /* ==========================================================================
+   Going Pink Section (Section 4)
+   ========================================================================== */
+
+.section--pink {
+  position: relative;
+  display: flex;
+  min-height: 100svh;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+  padding-block: var(--space-80);
+  background-color: rgb(var(--greyscale-100));
+  color: rgb(var(--greyscale-black));
+  --pink-dot-pattern: radial-gradient(circle, rgb(var(--greyscale-black) / 0.25) var(--decoration-dot-size), transparent var(--decoration-dot-size));
+  --pink-dot-grid: 80px 80px;
+  --pink-dot-position: var(--space-32) var(--space-32);
+}
+
+.section--pink::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background-image: var(--pink-dot-pattern);
+  background-position: var(--pink-dot-position);
+  background-size: var(--pink-dot-grid);
+}
+
+.inner-box--pink {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+}
+
+.partition-box--pink {
+  position: relative;
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+}
+
+.pink__header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+}
+
+.pink__title {
+  color: rgb(var(--greyscale-black));
+  font-family: var(--font-ntype);
+  font-size: var(--type-size-ntype-display-lg);
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  line-height: 1.15;
+}
+
+.pink__grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: var(--space-16);
+  width: 100%;
+  align-items: start;
+}
+
+.pink-card--headphone {
+  grid-column: 1 / span 5;
+  grid-row: 1 / span 2;
+  margin-top: 136px;
+}
+
+.pink-card--phone {
+  grid-column: 8 / span 5;
+  grid-row: 1;
+}
+
+.pink-card--ear {
+  grid-column: 7 / span 4;
+  grid-row: 2;
+  margin-top: var(--space-80);
+}
+
+
+/* ==========================================================================
    Responsive: Tablet (<= 1024px)
    ========================================================================== */
 
@@ -279,6 +364,44 @@
   .campaign__title-line {
     font-size: 1.875rem;
     line-height: 1.3;
+  }
+
+  .section--pink {
+    padding-block: var(--space-64);
+  }
+
+  .partition-box--pink {
+    gap: var(--space-32);
+  }
+
+  .pink__header {
+    position: static;
+    text-align: left;
+  }
+
+  .pink__grid {
+    display: flex;
+    flex-direction: row;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    -webkit-overflow-scrolling: touch;
+    gap: var(--space-8);
+    width: 100%;
+    padding-block-end: var(--space-16);
+  }
+
+  .pink__grid::-webkit-scrollbar {
+    display: none;
+  }
+
+  .pink__grid > .pink-card {
+    flex: 0 0 calc((100% - 16px) / 2.3);
+    min-width: 320px;
+    max-width: 420px;
+    scroll-snap-align: start;
+    margin-top: 0;
   }
 }
 
@@ -349,5 +472,42 @@
   .campaign__title-line {
     font-size: 1.375rem;
     line-height: 1.35;
+  }
+
+  .section--pink {
+    padding-block: var(--space-48);
+    --pink-dot-position: var(--space-16) var(--space-16);
+  }
+
+  .pink__header {
+    margin-block-end: var(--space-24);
+    text-align: left;
+  }
+
+  .pink__title {
+    font-size: var(--type-size-ntype-heading-lg);
+  }
+
+  .pink__grid {
+    display: flex;
+    flex-direction: row;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    -webkit-overflow-scrolling: touch;
+    gap: var(--space-8);
+    width: 100%;
+    padding-block-end: var(--space-16);
+  }
+
+  .pink__grid::-webkit-scrollbar {
+    display: none;
+  }
+
+  .pink__grid > .pink-card {
+    flex: 0 0 clamp(280px, 78vw, 360px);
+    scroll-snap-align: start;
+    margin-top: 0;
   }
 }

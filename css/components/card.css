@@ -67,7 +67,7 @@
   vertical-align: middle;
 }
 
-@media (hover: hover) {
+@media (hover: hover) and (min-width: 1025px) {
   .category-card:hover .category-card__image {
     transform: scale(1.04);
   }
@@ -77,9 +77,128 @@
   }
 }
 
+@media (max-width: 1024px) {
+  .category-card:hover .category-card__image {
+    transform: none;
+  }
+
+  .category-card__link:hover {
+    opacity: 1;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .category-card__image,
   .category-card__link {
     transition-duration: 0.01ms;
   }
 }
+
+/* ==========================================================================
+   Pink Section Product Card Component
+   ========================================================================== */
+
+.pink-card {
+  position: relative;
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+}
+
+.pink-card__media-link {
+  display: block;
+  width: 100%;
+  border-radius: var(--radius-md);
+  outline: none;
+}
+
+.pink-card__media-link:focus-visible {
+  outline: 2px solid rgb(var(--color-focus));
+  outline-offset: var(--space-4);
+}
+
+.pink-card__media {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  border-radius: var(--radius-md);
+  background-color: rgb(var(--greyscale-200));
+}
+
+@media (min-width: 1025px) {
+  .pink-card--phone .pink-card__media,
+  .pink-card--ear .pink-card__media {
+    aspect-ratio: 4 / 3;
+  }
+}
+
+.pink-card__image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.25s cubic-bezier(0, 0, 0.2, 1);
+}
+
+.pink-card__info {
+  margin-block-start: var(--space-16);
+  text-align: left;
+}
+
+.pink-card__link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-6);
+  color: rgb(var(--greyscale-black));
+  font-family: var(--font-mono);
+  font-size: var(--type-size-mono-sm);
+  font-weight: 400;
+  line-height: 1.25;
+  text-transform: uppercase;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+  transition: opacity 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.pink-card__link:focus-visible {
+  outline: 2px solid rgb(var(--color-focus));
+  outline-offset: var(--space-4);
+}
+
+.pink-card__arrow {
+  display: inline-block;
+  width: var(--icon-size-sm);
+  height: var(--icon-size-sm);
+  flex-shrink: 0;
+  vertical-align: middle;
+}
+
+@media (hover: hover) and (min-width: 1025px) {
+  .pink-card:hover .pink-card__image {
+    transform: scale(1.04);
+  }
+
+  .pink-card__link:hover {
+    opacity: 0.65;
+  }
+}
+
+@media (max-width: 1024px) {
+  .pink-card:hover .pink-card__image {
+    transform: none;
+  }
+
+  .pink-card__link:hover {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pink-card__image,
+  .pink-card__link {
+    transition-duration: 0.01ms;
+  }
+}
+
