@@ -1,5 +1,45 @@
 # 작업 이력 및 다음 작업 인계
 
+## 완료된 작업: 캠페인 CTA 버튼 위치 조정 (bottom 20px, right 30px)
+
+### 요청 사항
+- `.campaign__action-box`가 너무 위로 올라와 있어 `bottom: 20px`, `right: 30px`로 위치 조정.
+
+### 구현 상태
+- `css/pages/home.css`:
+  - `.partition-box--campaign`의 `position: relative`를 해제하여 `.campaign__action-box`의 positioned 기준이 풀스크린 높이의 이너 박스 및 섹션 기준으로 확장되도록 처리.
+  - `.campaign__action-box`의 위치를 `bottom: 20px; right: 30px;`로 지정.
+
+### 변경 파일
+- `css/pages/home.css`
+- `task-history/task.md`
+
+## 완료된 작업: 캠페인 앰배서더 V 동영상 배경 섹션 구현
+
+### 요청 사항
+- 첫 번째 페이지와 동일한 전체 화면(100svh)을 채우는 박스를 만들고, 제공된 스크린샷과 같이 `main > section`을 구성하여 페이지를 생성.
+- 상단 메뉴 등 고정 요소는 그대로 두고 별도의 박스로 구성된 새로운 요소만 구현.
+- 배경은 `images`의 `main_2.mp4` 동영상으로 자동 재생 (`autoplay loop muted playsinline`).
+- 제공된 이미지(`m2.png`)를 분석하여 좌측 중앙 헤딩 및 우측 하단 "캠페인 보기 >" CTA 버튼 구현.
+
+### 구현 상태
+- `index.html`: `main` 태그 직계 자식으로 세 번째 섹션 `<section class="section section--campaign dark" id="campaign" aria-labelledby="campaign-title">` 추가.
+  - 자동 재생 비디오: `<video class="campaign__video" autoplay loop muted playsinline ...>`에 `images/d/main_2.mp4` 소스 연결.
+  - D4 규약 박스 구조(`section > .inner-box > .partition-box > .content-box`) 적용.
+  - 3줄 헤딩 텍스트("Headphone (1) Pro의", "새로운 글로벌 브랜드 앰배서더 V와 함께한", "촬영 현장") 배치.
+  - 우측 하단 "캠페인 보기" CTA 버튼(`class="button campaign__action"`) 및 `main.svg` 화살표 아이콘 배치.
+- `css/pages/home.css`:
+  - `.section--campaign`: 풀스크린(`min-height: 100svh`), 120px 점(dot) 패턴 오버레이 및 텍스트 가독성 향상 그라디언트 비네팅 레이어 적용.
+  - `.campaign__title`: 첫 줄 영문 타이틀 폰트(`font-family: var(--font-ntype-headline), serif;`) 및 반응형 타이포그래피(`clamp(2rem, 2.5vw, 2.75rem)` -> 태블릿 `1.875rem` -> 모바일 `1.375rem`) 적용.
+  - `.campaign__action-box`: 스크린샷과 동일하게 우측 하단에 자연스럽게 고정/배치.
+  - 모바일 퍼스트 및 반응형(태블릿, 모바일) 미디어 쿼리 대응.
+- `task-history/task.md`: 작업 내역 갱신.
+
+### 변경 파일
+- `index.html`
+- `css/pages/home.css`
+- `task-history/task.md`
+
 ## 완료된 작업: 헤더 햄버거 메뉴 및 브랜드 로고 SVG 교체
 
 ### 요청 사항
