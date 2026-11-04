@@ -13,7 +13,7 @@ body {
     rgb(var(--greyscale-white)) var(--decoration-dot-size),
     transparent var(--decoration-dot-size)
   );
-  background-size: var(--space-120) var(--space-120);
+  background-size: var(--space-192) var(--space-192);
   mix-blend-mode: difference;
   opacity: 0.3;
 }
