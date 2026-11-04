@@ -317,6 +317,96 @@
           </div>
         </div>
       </section>
+
+      <section class="section section--sound light" id="sound" aria-labelledby="sound-title">
+        <div class="inner-box inner-box--sound">
+          <div class="partition-box partition-box--sound">
+            <header class="sound__header">
+              <h2 class="sound__title" id="sound-title">사운드를 챙기세요</h2>
+              <p class="sound__description">
+                커스텀 EQ, 18시간 재생, 한 차원 높은 방수 성능으로 어디서든 파티를 즐기세요.
+              </p>
+            </header>
+            <div class="sound__grid">
+              <article class="sound-card" id="cmf-speaker-m">
+                <div class="sound-card__media">
+                  <img
+                    class="sound-card__image"
+                    src="images/d/nothing-dt-21.jpg"
+                    alt="청록색, 주황색, 흰색, 검은색 CMF Speaker M"
+                    loading="lazy"
+                    decoding="async"
+                    width="2000"
+                    height="1500">
+                </div>
+                <div class="sound-card__info">
+                  <h3 class="sound-card__title">CMF Speaker M</h3>
+                  <p class="sound-card__copy">듀얼 드라이버 시스템으로 더 깊은 저음과 선명한 보컬을 선사합니다.</p>
+                  <a class="sound-card__link" href="#cmf-speaker-m">
+                    자세히 보기
+                    <img class="sound-card__arrow" src="images/d/card.svg" alt="" aria-hidden="true" width="16" height="16">
+                  </a>
+                </div>
+              </article>
+              <article class="sound-card" id="cmf-speaker-s">
+                <div class="sound-card__media">
+                  <img
+                    class="sound-card__image"
+                    src="images/d/nothing-dt-22.jpg"
+                    alt="네 가지 색상의 CMF Speaker S"
+                    loading="lazy"
+                    decoding="async"
+                    width="1080"
+                    height="810">
+                </div>
+                <div class="sound-card__info">
+                  <h3 class="sound-card__title">CMF Speaker S</h3>
+                  <p class="sound-card__copy">어디든 들고 다닐 수 있는 컴팩트한 디자인.</p>
+                  <a class="sound-card__link" href="#cmf-speaker-s">
+                    자세히 보기
+                    <img class="sound-card__arrow" src="images/d/card.svg" alt="" aria-hidden="true" width="16" height="16">
+                  </a>
+                </div>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section--film dark" id="film" aria-label="Headphone (1) Pro 영상">
+        <video
+          class="film__video"
+          autoplay
+          loop
+          muted
+          playsinline
+          preload="auto"
+          tabindex="0"
+          aria-label="클릭하거나 Enter 또는 Space 키를 눌러 재생 컨트롤 표시"
+          data-film-video>
+          <source src="images/d/main_3.mp4" type="video/mp4">
+        </video>
+        <div class="film__controls" aria-label="영상 재생 컨트롤" data-film-controls hidden>
+          <button class="film__control" type="button" aria-label="영상 일시정지" data-film-toggle>
+            <span aria-hidden="true" data-film-play-icon>Ⅱ</span>
+          </button>
+          <input
+            class="film__seek"
+            type="range"
+            min="0"
+            max="1000"
+            value="0"
+            step="1"
+            aria-label="영상 재생 위치"
+            data-film-seek>
+          <button class="film__control film__mute" type="button" aria-label="음소거 해제" data-film-mute>
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M3 9v6h4l5 4V5L7 9H3z"></path>
+              <path class="film__mute-mark" d="m16 9 5 6m0-6-5 6"></path>
+            </svg>
+          </button>
+        </div>
+      </section>
     </main>
 
     <footer class="site-footer">
