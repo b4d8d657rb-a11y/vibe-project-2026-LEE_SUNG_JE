@@ -1,15 +1,29 @@
+body {
+  position: relative;
+}
+
+.body-pattern {
+  position: fixed;
+  z-index: var(--z-raised);
+  inset: 0 0 auto;
+  height: 100svh;
+  pointer-events: none;
+  background-image: radial-gradient(
+    circle,
+    rgb(var(--greyscale-white)) var(--decoration-dot-size),
+    transparent var(--decoration-dot-size)
+  );
+  background-size: var(--space-120) var(--space-120);
+  mix-blend-mode: difference;
+  opacity: 0.3;
+}
+
 .section--hero {
   position: relative;
   display: flex;
   min-height: 100svh;
   overflow: hidden;
-  --hero-dot-pattern: radial-gradient(circle, rgb(var(--greyscale-800) / 0.45) var(--decoration-dot-size), transparent var(--decoration-dot-size));
-  --hero-dot-position: var(--space-28) var(--space-28);
-  --hero-dot-grid: var(--space-112) var(--space-80);
   background-color: var(--color-bg);
-  background-image: var(--hero-dot-pattern);
-  background-position: var(--hero-dot-position);
-  background-size: var(--hero-dot-grid);
   color: var(--color-on-media);
 }
 
@@ -135,9 +149,6 @@
   overflow: hidden;
   background-color: rgb(var(--greyscale-dm-dark));
   color: rgb(var(--greyscale-white));
-  --campaign-dot-pattern: radial-gradient(circle, rgb(var(--greyscale-white) / 0.35) var(--decoration-dot-size), transparent var(--decoration-dot-size));
-  --campaign-dot-grid: 120px 120px;
-  --campaign-dot-position: var(--space-32) var(--space-32);
 }
 
 .campaign__video {
@@ -157,17 +168,6 @@
   z-index: 1;
   pointer-events: none;
   background: linear-gradient(to right, rgb(var(--greyscale-black) / 0.6) 0%, rgb(var(--greyscale-black) / 0.25) 50%, transparent 100%);
-}
-
-.section--campaign::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: 2;
-  pointer-events: none;
-  background-image: var(--campaign-dot-pattern);
-  background-position: var(--campaign-dot-position);
-  background-size: var(--campaign-dot-grid);
 }
 
 .inner-box--campaign {
@@ -234,20 +234,7 @@
   padding-block-end: var(--space-32);
   background-color: rgb(var(--greyscale-100));
   color: rgb(var(--greyscale-black));
-  --charli-dot-pattern: radial-gradient(circle, rgb(var(--greyscale-black) / 0.25) var(--decoration-dot-size), transparent var(--decoration-dot-size));
-  --charli-dot-grid: 154px 307px;
-  --charli-dot-position: var(--space-32) var(--space-8);
   --charli-padding-top: max(var(--space-32), calc(var(--header-height) + var(--space-24)));
-}
-
-.section--charli::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  background-image: var(--charli-dot-pattern);
-  background-position: var(--charli-dot-position);
-  background-size: var(--charli-dot-grid);
 }
 
 .inner-box--charli {
@@ -315,19 +302,6 @@
   border-radius: var(--radius-md);
   background-color: rgb(var(--greyscale-black));
   color: rgb(var(--greyscale-white));
-  --community-dot-pattern: radial-gradient(circle, rgb(var(--greyscale-white) / 0.3) var(--decoration-dot-size), transparent var(--decoration-dot-size));
-  --community-dot-grid: 154px 154px;
-  --community-dot-position: var(--space-32) var(--space-32);
-}
-
-.section--community::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  background-image: var(--community-dot-pattern);
-  background-position: var(--community-dot-position);
-  background-size: var(--community-dot-grid);
 }
 
 .inner-box--community {
@@ -479,11 +453,6 @@
 }
 
 @media (max-width: 1024px) {
-  .section--charli {
-    --charli-dot-grid: 240px 240px;
-    --charli-dot-position: var(--space-32) var(--space-32);
-  }
-
   .inner-box--charli {
     width: 100%;
     grid-template-columns: minmax(0, 1fr);
@@ -504,8 +473,6 @@
     min-height: 0;
     justify-content: flex-start;
     padding: var(--space-16);
-    --community-dot-grid: 136px 136px;
-    --community-dot-position: var(--space-24) var(--space-24);
   }
 
   .inner-box--community {
@@ -680,20 +647,6 @@
   padding-block: var(--space-80);
   background-color: rgb(var(--greyscale-100));
   color: rgb(var(--greyscale-black));
-  --pink-dot-pattern: radial-gradient(circle, rgb(var(--greyscale-black) / 0.25) var(--decoration-dot-size), transparent var(--decoration-dot-size));
-  --pink-dot-grid: 80px 80px;
-  --pink-dot-position: var(--space-32) var(--space-32);
-}
-
-.section--pink::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  pointer-events: none;
-  background-image: var(--pink-dot-pattern);
-  background-position: var(--pink-dot-position);
-  background-size: var(--pink-dot-grid);
 }
 
 .inner-box--pink {
@@ -764,20 +717,6 @@
   padding-block-end: 100px;
   background-color: rgb(var(--greyscale-100));
   color: rgb(var(--greyscale-black));
-  --sound-dot-pattern: radial-gradient(circle, rgb(var(--greyscale-black) / 0.25) var(--decoration-dot-size), transparent var(--decoration-dot-size));
-  --sound-dot-grid: 130px 130px;
-  --sound-dot-position: var(--space-32) var(--space-32);
-}
-
-.section--sound::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  pointer-events: none;
-  background-image: var(--sound-dot-pattern);
-  background-position: var(--sound-dot-position);
-  background-size: var(--sound-dot-grid);
 }
 
 .inner-box--sound {
@@ -934,11 +873,6 @@
     scroll-snap-align: start;
   }
 
-  .section--campaign {
-    --campaign-dot-grid: var(--space-80) var(--space-80);
-    --campaign-dot-position: var(--space-24) var(--space-24);
-  }
-
   .inner-box--campaign {
     padding-block: var(--space-64);
   }
@@ -1008,8 +942,6 @@
 @media (max-width: 767px) {
   .section--community {
     padding: var(--space-16);
-    --community-dot-grid: 176px 176px;
-    --community-dot-position: var(--space-24) var(--space-24);
   }
 
   .community__title {
@@ -1038,10 +970,6 @@
     width: calc(100% - var(--space-32));
     inset-block-start: 45.5%;
     gap: var(--space-12);
-  }
-
-  .section {
-    --hero-dot-grid: var(--space-80) var(--space-80);
   }
 
   .hero__label {
@@ -1079,11 +1007,6 @@
     scroll-snap-align: start;
   }
 
-  .section--campaign {
-    --campaign-dot-grid: var(--space-80) var(--space-80);
-    --campaign-dot-position: var(--space-16) var(--space-16);
-  }
-
   .inner-box--campaign {
     padding-block: var(--space-48);
   }
@@ -1095,13 +1018,10 @@
 
   .section--pink {
     padding-block: var(--space-48);
-    --pink-dot-position: var(--space-16) var(--space-16);
   }
 
   .section--sound {
     padding-block-start: var(--space-48);
-    --sound-dot-grid: var(--space-80) var(--space-80);
-    --sound-dot-position: var(--space-16) var(--space-16);
   }
 
   .inner-box--sound {

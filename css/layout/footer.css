@@ -8,19 +8,6 @@
   min-height: 100svh;
   overflow: hidden;
   background-color: rgb(var(--greyscale-black));
-  --footer-dot-pattern: radial-gradient(circle, rgb(var(--greyscale-white) / 0.3) var(--decoration-dot-size), transparent var(--decoration-dot-size));
-  --footer-dot-grid: 172px 226px;
-  --footer-dot-position: var(--space-28) var(--space-28);
-}
-
-.footer__section::before {
-  position: absolute;
-  inset: 0;
-  background-image: var(--footer-dot-pattern);
-  background-position: var(--footer-dot-position);
-  background-size: var(--footer-dot-grid);
-  content: "";
-  pointer-events: none;
 }
 
 .footer__main {
@@ -136,11 +123,6 @@
 }
 
 @media (max-width: 1024px) {
-  .footer__section {
-    --footer-dot-grid: 172px 172px;
-    --footer-dot-position: var(--space-28) var(--space-28);
-  }
-
   .footer__main {
     inset-block-start: 17%;
     width: min(100% - var(--space-48), 320px);
