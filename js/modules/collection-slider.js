@@ -19,7 +19,14 @@ export const initializeCollectionSliders = () => {
     throw new Error('The collection sliders could not be initialized.');
   }
 
-  const speed = window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 0 : 450;
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const speed = prefersReducedMotion ? 0 : 450;
+  const autoplay = prefersReducedMotion
+    ? false
+    : {
+        delay: 3000,
+        disableOnInteraction: false,
+      };
   const accessibility = {
     prevSlideMessage: '이전 슬라이드',
     nextSlideMessage: '다음 슬라이드',
@@ -27,6 +34,7 @@ export const initializeCollectionSliders = () => {
 
   new SwiperConstructor(featuredSlider, {
     a11y: accessibility,
+    autoplay,
     grabCursor: true,
     navigation: {
       prevEl: featuredPrevious,
@@ -39,6 +47,7 @@ export const initializeCollectionSliders = () => {
 
   new SwiperConstructor(gallerySlider, {
     a11y: accessibility,
+    autoplay,
     breakpoints: {
       640: {
         slidesPerView: 1.5,

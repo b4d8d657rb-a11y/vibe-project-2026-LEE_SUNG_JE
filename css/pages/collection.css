@@ -111,6 +111,19 @@
     opacity 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+.collection__control-icon {
+  display: block;
+  width: var(--icon-size-sm);
+  height: var(--icon-size-sm);
+  filter: brightness(0);
+  transition: filter 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+[data-collection-featured-prev] .collection__control-icon,
+[data-collection-gallery-prev] .collection__control-icon {
+  transform: scaleX(-1);
+}
+
 .collection__control:focus-visible {
   outline: 2px solid rgb(var(--color-focus));
   outline-offset: var(--space-4);
@@ -193,10 +206,15 @@
     background-color: rgb(var(--greyscale-black));
     color: rgb(var(--greyscale-white));
   }
+
+  .collection__control:not(:disabled):hover .collection__control-icon {
+    filter: brightness(0) invert(1);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .collection__control {
+  .collection__control,
+  .collection__control-icon {
     transition-duration: 0.01ms;
   }
 }
