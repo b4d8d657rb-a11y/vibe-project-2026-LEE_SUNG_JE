@@ -1,3 +1,6 @@
+import { initializeCollectionSliders } from './modules/collection-slider.js';
+import { initializeHeaderScroll } from './modules/header-scroll.js';
+
 const menuToggle = document.querySelector('[data-menu-toggle]');
 const menu = document.querySelector('#site-menu');
 const menuClose = document.querySelector('[data-menu-close]');
@@ -250,3 +253,6 @@ menu.addEventListener('transitionend', (event) => {
 
   finishMenuClose();
 });
+
+initializeCollectionSliders();
+initializeHeaderScroll();

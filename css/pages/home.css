@@ -70,7 +70,6 @@
 .section--category {
   position: relative;
   display: flex;
-  min-height: 100svh;
   flex-direction: column;
   justify-content: center;
   overflow: hidden;
@@ -761,7 +760,8 @@
   min-height: 100svh;
   flex-direction: column;
   justify-content: center;
-  padding-block: var(--space-16);
+  padding-block-start: var(--space-16);
+  padding-block-end: 100px;
   background-color: rgb(var(--greyscale-100));
   color: rgb(var(--greyscale-black));
   --sound-dot-pattern: radial-gradient(circle, rgb(var(--greyscale-black) / 0.25) var(--decoration-dot-size), transparent var(--decoration-dot-size));
@@ -992,6 +992,12 @@
     max-width: 420px;
     scroll-snap-align: start;
     margin-top: 0;
+  }
+}
+
+@media (min-width: 1025px) {
+  .section--pink {
+    padding-block-end: 100px;
   }
 }
 
