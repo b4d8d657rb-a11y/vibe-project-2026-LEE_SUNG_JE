@@ -222,6 +222,109 @@
 }
 
 /* ==========================================================================
+   Charli XCX Section
+   ========================================================================== */
+
+.section--charli {
+  position: relative;
+  display: grid;
+  min-height: clamp(360px, 55svh, 520px);
+  place-items: center;
+  overflow: hidden;
+  padding-block-start: max(var(--space-32), calc(var(--header-height) + var(--space-24)));
+  padding-block-end: var(--space-32);
+  background-color: rgb(var(--greyscale-100));
+  color: rgb(var(--greyscale-black));
+  --charli-dot-pattern: radial-gradient(circle, rgb(var(--greyscale-black) / 0.25) var(--decoration-dot-size), transparent var(--decoration-dot-size));
+  --charli-dot-grid: 154px 307px;
+  --charli-dot-position: var(--space-32) var(--space-8);
+  --charli-padding-top: max(var(--space-32), calc(var(--header-height) + var(--space-24)));
+}
+
+.section--charli::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: var(--charli-dot-pattern);
+  background-position: var(--charli-dot-position);
+  background-size: var(--charli-dot-grid);
+}
+
+.inner-box--charli {
+  position: relative;
+  display: grid;
+  width: 66%;
+  max-width: 1280px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-24);
+  padding-inline: 0;
+}
+
+.charli__brand {
+  color: rgb(var(--greyscale-black));
+  font-family: var(--font-ndot);
+  font-size: var(--type-size-ndot-heading-md);
+  line-height: 1.4;
+  white-space: nowrap;
+}
+
+.charli__content {
+  min-width: 0;
+}
+
+.charli__title {
+  color: rgb(var(--greyscale-black));
+  font-family: var(--font-ntype-headline);
+  font-size: clamp(1.75rem, 2vw, 2rem);
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  line-height: 1.08;
+}
+
+.charli__action {
+  min-height: var(--control-md);
+  margin-block-start: var(--space-40);
+  border-color: rgb(var(--greyscale-black));
+  background-color: rgb(var(--greyscale-black));
+  color: rgb(var(--greyscale-white));
+  transition: none;
+  white-space: nowrap;
+}
+
+.charli__action:hover {
+  background-color: rgb(var(--greyscale-black));
+  color: rgb(var(--greyscale-white));
+}
+
+.charli__arrow {
+  filter: invert(1);
+}
+
+@media (max-width: 1024px) {
+  .section--charli {
+    --charli-dot-grid: 240px 240px;
+    --charli-dot-position: var(--space-32) var(--space-32);
+  }
+
+  .inner-box--charli {
+    width: 100%;
+    grid-template-columns: minmax(0, 1fr);
+    align-content: start;
+    gap: 88px;
+    padding-inline: var(--space-8);
+  }
+
+  .charli__title {
+    max-width: 960px;
+  }
+
+  .charli__action {
+    margin-block-start: var(--space-20);
+  }
+}
+
+/* ==========================================================================
    Film Section (Full-screen Video)
    ========================================================================== */
 
