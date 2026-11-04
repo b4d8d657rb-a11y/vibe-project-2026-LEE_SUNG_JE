@@ -59,8 +59,8 @@
                     <li><a class="site-menu__category" href="#hero" data-menu-link>액세서리</a></li>
                   </ul>
                   <div class="site-menu__signature" aria-label="CMF, NOTHING OS 5.0">
-                    <span class="site-menu__cmf" aria-hidden="true">CMF</span>
-                    <span class="site-menu__slogan" aria-hidden="true">NOTHING OS 5.0</span>
+                    <a class="site-menu__cmf" href="#sound">CMF</a>
+                    <a class="site-menu__slogan" href="#hero">NOTHING OS 5.0</a>
                   </div>
                 </div>
 
@@ -423,14 +423,87 @@
           </div>
         </div>
       </section>
+
+      <section class="section section--community dark" id="community" aria-labelledby="community-title">
+        <div class="inner-box inner-box--community">
+          <div class="community__content">
+            <h2 class="community__title" id="community-title">커뮤니티에 참여하세요</h2>
+            <p class="community__description">제품, 이벤트, 혜택에 대한 새로운 소식을 받아보세요.</p>
+            <div class="community__form" role="group" aria-label="커뮤니티 가입">
+              <label class="visually-hidden" for="community-email">이메일 주소</label>
+              <input
+                class="community__email"
+                id="community-email"
+                name="email"
+                type="email"
+                placeholder="이메일 주소"
+                autocomplete="email">
+              <label class="community__consent">
+                <input class="community__checkbox" type="checkbox" name="consent" data-community-consent>
+                <span>
+                  귀하는 당사의
+                  <span class="community__policy">개인정보 처리방침</span>
+                  및
+                  <span class="community__policy">이용약관</span>에 동의하게 됩니다.
+                </span>
+              </label>
+              <button class="community__submit" type="button" disabled data-community-submit>
+                가입하기
+                <img class="button__arrow community__arrow" src="images/d/main.svg" alt="" aria-hidden="true" width="16" height="16">
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
     </main>
 
     <footer class="site-footer">
-      <div class="inner-box">
-        <div class="partition-box">
-          <div class="content-box footer__brand">NOTHING ®</div>
+      <section class="footer__section" aria-label="사이트 정보">
+        <div class="footer__main">
+          <h2 class="footer__heading">회사 소개</h2>
+          <nav class="footer__platforms" aria-label="Nothing 플랫폼">
+            <a class="footer__platform" href="#hero">NOTHING OS 5.0</a>
+            <a class="footer__platform" href="#community">COMMUNITY</a>
+            <a class="footer__platform" href="#sound">PLAYGROUND</a>
+          </nav>
+          <nav class="footer__settings" aria-label="지원 및 설정">
+            <a class="footer__setting" href="#community">
+              <span>지원</span>
+              <img class="footer__setting-icon" src="images/d/f_m1.svg" alt="" aria-hidden="true" width="16" height="16">
+            </a>
+            <a class="footer__setting" href="#community">
+              <span>뉴스레터</span>
+              <img class="footer__setting-icon" src="images/d/f_m2.svg" alt="" aria-hidden="true" width="16" height="16">
+            </a>
+            <a class="footer__setting" href="#community">
+              <span>매장: &nbsp; SOUTH KOREA</span>
+              <img class="footer__setting-icon" src="images/d/f_m3.svg" alt="" aria-hidden="true" width="16" height="16">
+            </a>
+            <button class="footer__setting" type="button">
+              <span>언어: &nbsp; KO</span>
+              <img class="footer__setting-icon footer__setting-icon--chevron" src="images/d/f_m4.svg" alt="" aria-hidden="true" width="16" height="16">
+            </button>
+            <button class="footer__setting" type="button">
+              <span>동의 설정</span>
+              <img class="footer__setting-icon" src="images/d/f_m5.svg" alt="" aria-hidden="true" width="16" height="16">
+            </button>
+          </nav>
         </div>
-      </div>
+        <div class="footer__bottom">
+          <nav class="footer__legal" aria-label="법적 정보">
+            <a class="footer__bottom-link footer__legal-link" href="#community">계정</a>
+            <a class="footer__bottom-link" href="#community">연락처</a>
+            <a class="footer__bottom-link" href="#community">캐리어</a>
+            <a class="footer__bottom-link" href="#community">법률</a>
+          </nav>
+          <nav class="footer__socials" aria-label="소셜 미디어">
+            <a class="footer__bottom-link" href="#community">INSTAGRAM</a>
+            <a class="footer__bottom-link" href="#community">YOUTUBE</a>
+            <a class="footer__bottom-link" href="#community">X</a>
+            <a class="footer__bottom-link" href="#community">TIKTOK</a>
+          </nav>
+        </div>
+      </section>
     </footer>
     <script type="module" src="js/main.js"></script>
   </body>

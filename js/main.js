@@ -12,6 +12,8 @@ const filmToggle = document.querySelector('[data-film-toggle]');
 const filmPlayIcon = document.querySelector('[data-film-play-icon]');
 const filmSeek = document.querySelector('[data-film-seek]');
 const filmMute = document.querySelector('[data-film-mute]');
+const communityConsent = document.querySelector('[data-community-consent]');
+const communitySubmit = document.querySelector('[data-community-submit]');
 const backgroundElements = [
   document.querySelector('main'),
   document.querySelector('.site-footer'),
@@ -32,6 +34,8 @@ if (
   !(filmPlayIcon instanceof HTMLSpanElement) ||
   !(filmSeek instanceof HTMLInputElement) ||
   !(filmMute instanceof HTMLButtonElement) ||
+  !(communityConsent instanceof HTMLInputElement) ||
+  !(communitySubmit instanceof HTMLButtonElement) ||
   backgroundElements.some((element) => !(element instanceof HTMLElement))
 ) {
   throw new Error('The page controls could not be initialized.');
@@ -39,6 +43,13 @@ if (
 
 const reducedMotionPreference = window.matchMedia('(prefers-reduced-motion: reduce)');
 let isVideoPlaying = false;
+
+const updateCommunitySubmit = () => {
+  communitySubmit.disabled = !communityConsent.checked;
+};
+
+communityConsent.addEventListener('change', updateCommunitySubmit);
+updateCommunitySubmit();
 
 const updateVideoToggle = () => {
   const label = isVideoPlaying ? '영상 일시정지' : '영상 재생';

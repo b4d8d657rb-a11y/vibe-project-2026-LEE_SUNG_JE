@@ -237,7 +237,8 @@ body.menu-open .site-header {
   }
 
   .site-menu__category:hover,
-  .site-menu__link:hover {
+  .site-menu__link:hover,
+  .site-menu__signature a:hover {
     opacity: 0.6;
   }
 }
@@ -249,7 +250,8 @@ body.menu-open .site-header {
   }
 
   .site-menu__category:hover,
-  .site-menu__link:hover {
+  .site-menu__link:hover,
+  .site-menu__signature a:hover {
     opacity: 1;
   }
 }
