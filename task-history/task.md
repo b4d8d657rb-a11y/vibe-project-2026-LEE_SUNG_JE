@@ -12,7 +12,7 @@
   * **고정 헤더 (`site-header`)**:
     * 햄버거 버튼 (`header__menu-button`): `images/d/hbg.svg` 적용
     * 브랜드 로고 (`header__brand`): `images/d/logo.svg` 적용
-    * 풀스크린 슬라이드 메뉴 오버레이 (`site-menu`): 키보드 트랩, ESC 닫기, 스크롤 잠금, 카테고리 링크 및 푸터 링크 구성
+    * 헤더 바로 아래 드롭다운 메뉴 (`site-menu`): ESC·바깥 클릭·링크 선택으로 닫기, 카테고리 링크 및 푸터 링크 구성
   * **좌측 고정 인디케이터 (`hero-indicator`)**
   * **메인 콘텐츠 (`main#main-content`)**:
     1. **섹션 1 - 히어로 섹션 (`section.section--hero.dark`)**:
@@ -50,6 +50,48 @@
 ---
 
 ## 2. 상세 작업 히스토리 (역순)
+
+### [2026-11-04] 메뉴바와 드롭다운 경계선 제거
+* **요청 사항**: 메뉴바와 메뉴 패널 사이에 보이는 경계선을 없애 일체감 있게 연결.
+* **구현 상태**:
+  * `css/layout/header.css`: 메뉴 패널을 메뉴바 아래로 2px 겹쳐 배치하고 패널 높이를 보정해, 틈 없이 이어지도록 수정.
+* **수정 파일**: `css/layout/header.css`, `task-history/task.md`
+
+### [2026-11-04] 태블릿·모바일 스크롤 헤더 표시 적용
+* **요청 사항**: 태블릿과 모바일에서도 스크롤 방향에 따라 헤더가 숨겨지고 다시 나타나도록 수정.
+* **구현 상태**:
+  * `js/modules/header-scroll.js`: 데스크톱 전용 휠 감지 대신 전체 화면의 스크롤 위치 변화를 감지하도록 변경.
+  * 아래로 스크롤하면 헤더를 숨기고, 위로 스크롤하거나 페이지 상단에 도달하면 표시. 메뉴가 열렸거나 키보드 포커스가 있으면 헤더는 유지.
+  * 스크롤 처리에 requestAnimationFrame을 사용해 모든 화면 크기에서 부드럽게 동작.
+* **수정 파일**: `js/modules/header-scroll.js`, `task-history/task.md`
+
+### [2026-11-04] 메뉴 패널 높이 펼침 모션 추가
+* **요청 사항**: 기존 메뉴 효과를 유지하면서 메뉴바가 늘어나고 줄어드는 모션 적용.
+* **구현 상태**:
+  * `css/layout/header.css`: 패널 높이를 열릴 때 화면 높이에 맞춰 늘리고 닫힐 때 0으로 접으며, 기존 페이드·슬라이드·블러는 유지.
+  * `js/main.js`: 높이 전환 종료 시 닫힌 메뉴를 비활성화하도록 전환 완료 이벤트 기준을 조정.
+* **수정 파일**: `css/layout/header.css`, `js/main.js`, `task-history/task.md`
+
+### [2026-11-04] 메뉴 패널 라운드와 배경색 통일
+* **요청 사항**: 드롭다운 메뉴 상단 모서리를 직각으로 하고 메뉴바와 같은 배경색 적용.
+* **구현 상태**:
+  * `css/layout/header.css`: 열릴 때 헤더 하단 라운드를 없애고 메뉴 패널 상단을 직각, 하단만 라운드 처리.
+  * 패널 배경색을 헤더와 같은 `--greyscale-200`으로 통일.
+* **수정 파일**: `css/layout/header.css`, `task-history/task.md`
+
+### [2026-11-04] 전체 메뉴를 헤더 아래 드롭다운으로 변경
+* **요청 사항**: 메뉴가 화면 전체에서 내려오는 대신 헤더 바로 아래에 펼쳐지도록 조정.
+* **구현 상태**:
+  * `index.html`, `css/layout/header.css`: 전체 화면 오버레이와 메뉴 내부의 중복 헤더를 제거하고, 헤더 바로 아래에 화면 높이에 맞는 드롭다운 패널을 배치. 배경 블러를 되살리고 패널과 헤더 사이의 간격을 제거.
+  * `js/main.js`: 스크롤 잠금·배경 비활성화·포커스 트랩을 제거하고, 헤더 버튼의 열기/닫기 아이콘·레이블, ESC·바깥 클릭·메뉴 링크 닫기를 유지.
+* **수정 파일**: `index.html`, `css/layout/header.css`, `js/main.js`, `task-history/task.md`
+
+### [2026-11-04] 전체 메뉴 닫기 전환 자연스럽게 조정
+* **요청 사항**: 메뉴를 닫을 때 이질적으로 느껴지는 전환을 자연스럽게 개선.
+* **구현 상태**:
+  * `css/layout/header.css`: 열기와 닫기의 패널 이동 및 오버레이 페이드 시간을 0.5초로 맞추고 같은 ease-in-out 이징을 적용.
+  * 화면 크기별로 달랐던 닫기 시간 재정의를 제거해 모든 기기에서 일관된 전환으로 정리.
+* **수정 파일**: `css/layout/header.css`, `task-history/task.md`
 
 ### [2026-11-04] 태블릿·모바일 컬렉션 탐색 버튼 숨김
 * **요청 사항**: 태블릿과 모바일에서 컬렉션 슬라이더 탐색 버튼 숨김.
@@ -256,7 +298,7 @@
 | **SVG** | `images/d/logo.svg` | NOTHING 브랜드 로고 | `.header__brand-logo`, `.site-menu__brand` |
 | **SVG** | `images/d/main.svg` | CTA 버튼 chevron 화살표 | `.button__arrow` (히어로 및 캠페인) |
 | **SVG** | `images/d/card.svg` | 카테고리 카드 링크 chevron 화살표 | `.category-card__arrow` |
-| **SVG** | `images/d/menu_1.svg` | 전체 메뉴 닫기(X) 아이콘 | `.site-menu__close-mark` |
+| **SVG** | `images/d/menu_1.svg` | 메뉴가 열렸을 때 헤더의 닫기(X) 아이콘 | `.header__menu-mark` |
 | **이미지** | `images/d/nothing-dt-1.jpg` | 이어폰 카테고리 제품 이미지 (1000×1000) | 카테고리 카드 1 |
 | **이미지** | `images/d/nothing-dt-4.jpg` | 헤드폰 카테고리 제품 이미지 (1000×1000) | 카테고리 카드 2 |
 | **이미지** | `images/d/nothing-dt-18.jpg` | 스마트폰 카테고리 제품 이미지 (1000×1000) | 카테고리 카드 3 |

@@ -1,40 +1,36 @@
 export const initializeHeaderScroll = () => {
   const header = document.querySelector('.site-header');
-  const mainContent = document.querySelector('#main-content');
 
-  if (!(header instanceof HTMLElement) || !(mainContent instanceof HTMLElement)) {
+  if (!(header instanceof HTMLElement)) {
     throw new Error('The header scroll controls could not be initialized.');
   }
 
-  const desktopViewport = window.matchMedia('(min-width: 1025px)');
-  const handleMainContentWheel = (event) => {
-    if (!desktopViewport.matches || document.body.classList.contains('menu-open')) {
-      return;
+  let previousScrollY = window.scrollY;
+  let scrollFrame = 0;
+  const handleWindowScroll = () => {
+    if (scrollFrame) {
+    return;
     }
 
+    scrollFrame = window.requestAnimationFrame(() => {
+    scrollFrame = 0;
+    const currentScrollY = window.scrollY;
     const hasVisibleKeyboardFocus =
       document.activeElement instanceof HTMLElement &&
       header.contains(document.activeElement) &&
       document.activeElement.matches(':focus-visible');
 
-    if (hasVisibleKeyboardFocus) {
+    if (document.body.classList.contains('menu-open') || hasVisibleKeyboardFocus) {
       header.classList.remove('is-hidden');
-      return;
-    }
-
-    if (event.deltaY > 0) {
+    } else if (currentScrollY <= header.offsetHeight || currentScrollY < previousScrollY) {
+      header.classList.remove('is-hidden');
+    } else if (currentScrollY > previousScrollY) {
       header.classList.add('is-hidden');
-    } else if (event.deltaY < 0) {
-      header.classList.remove('is-hidden');
     }
+
+    previousScrollY = currentScrollY;
+    });
   };
 
-  const handleViewportChange = () => {
-    if (!desktopViewport.matches) {
-      header.classList.remove('is-hidden');
-    }
-  };
-
-  mainContent.addEventListener('wheel', handleMainContentWheel, { passive: true });
-  desktopViewport.addEventListener('change', handleViewportChange);
+  window.addEventListener('scroll', handleWindowScroll, { passive: true });
 };

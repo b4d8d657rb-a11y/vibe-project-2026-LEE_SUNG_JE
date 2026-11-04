@@ -2,11 +2,9 @@ import { initializeCollectionSliders } from './modules/collection-slider.js';
 import { initializeHeaderScroll } from './modules/header-scroll.js';
 
 const menuToggle = document.querySelector('[data-menu-toggle]');
+const menuToggleMark = menuToggle?.querySelector('.header__menu-mark');
 const menu = document.querySelector('#site-menu');
-const menuClose = document.querySelector('[data-menu-close]');
 const menuPanel = menu?.querySelector('.site-menu__panel');
-const menuCloseMark = menuClose?.querySelector('.site-menu__close-mark');
-const menuFocusableElements = menu?.querySelectorAll('button:not([disabled]), a[href]');
 const mainVideo = document.querySelector('[data-main-video]');
 const mainVideoToggle = document.querySelector('[data-main-video-toggle]');
 const filmVideo = document.querySelector('[data-film-video]');
@@ -17,18 +15,11 @@ const filmSeek = document.querySelector('[data-film-seek]');
 const filmMute = document.querySelector('[data-film-mute]');
 const communityConsent = document.querySelector('[data-community-consent]');
 const communitySubmit = document.querySelector('[data-community-submit]');
-const backgroundElements = [
-  document.querySelector('main'),
-  document.querySelector('.site-footer'),
-];
-
 if (
   !(menuToggle instanceof HTMLButtonElement) ||
+  !(menuToggleMark instanceof HTMLImageElement) ||
   !(menu instanceof HTMLElement) ||
-  !(menuClose instanceof HTMLButtonElement) ||
   !(menuPanel instanceof HTMLElement) ||
-  !(menuCloseMark instanceof HTMLImageElement) ||
-  !(menuFocusableElements instanceof NodeList) ||
   !(mainVideo instanceof HTMLVideoElement) ||
   !(mainVideoToggle instanceof HTMLButtonElement) ||
   !(filmVideo instanceof HTMLVideoElement) ||
@@ -38,8 +29,7 @@ if (
   !(filmSeek instanceof HTMLInputElement) ||
   !(filmMute instanceof HTMLButtonElement) ||
   !(communityConsent instanceof HTMLInputElement) ||
-  !(communitySubmit instanceof HTMLButtonElement) ||
-  backgroundElements.some((element) => !(element instanceof HTMLElement))
+  !(communitySubmit instanceof HTMLButtonElement)
 ) {
   throw new Error('The page controls could not be initialized.');
 }
@@ -159,32 +149,25 @@ if (!reducedMotionPreference.matches) {
 updateVideoToggle();
 
 const finishMenuClose = () => {
-  menuCloseMark.src = 'images/d/hbg.svg';
   menu.classList.remove('is-visible');
   menu.setAttribute('aria-hidden', 'true');
   menu.inert = true;
   document.body.classList.remove('menu-open');
-  backgroundElements.forEach((element) => {
-    element.inert = false;
-  });
 };
 
-const setMenuOpen = (isOpen) => {
+const setMenuOpen = (isOpen, shouldFocusToggle = true) => {
   menuToggle.setAttribute('aria-expanded', String(isOpen));
+  menuToggle.setAttribute('aria-label', isOpen ? '전체 메뉴 닫기' : '전체 메뉴 열기');
+  menuToggleMark.src = isOpen ? 'images/d/menu_1.svg' : 'images/d/hbg.svg';
 
   if (isOpen) {
-    menuCloseMark.src = 'images/d/menu_1.svg';
     document.body.classList.add('menu-open');
-    backgroundElements.forEach((element) => {
-      element.inert = true;
-    });
     menu.inert = false;
     menu.setAttribute('aria-hidden', 'false');
     menu.classList.add('is-visible');
     window.requestAnimationFrame(() => {
       if (menuToggle.getAttribute('aria-expanded') === 'true') {
         menu.classList.add('is-open');
-        menuClose.focus();
       }
     });
     return;
@@ -192,8 +175,9 @@ const setMenuOpen = (isOpen) => {
 
   const wasOpen = menu.classList.contains('is-open');
   menu.classList.remove('is-open');
-  menuCloseMark.src = 'images/d/hbg.svg';
-  menuToggle.focus();
+  if (shouldFocusToggle) {
+    menuToggle.focus();
+  }
   if (!wasOpen) {
     finishMenuClose();
   }
@@ -201,10 +185,6 @@ const setMenuOpen = (isOpen) => {
 
 menuToggle.addEventListener('click', () => {
   setMenuOpen(menuToggle.getAttribute('aria-expanded') !== 'true');
-});
-
-menuClose.addEventListener('click', () => {
-  setMenuOpen(false);
 });
 
 menu.addEventListener('click', (event) => {
@@ -221,31 +201,24 @@ document.addEventListener('keydown', (event) => {
   if (event.key === 'Escape') {
     event.preventDefault();
     setMenuOpen(false);
-    return;
   }
+});
 
-  if (event.key !== 'Tab' || menuFocusableElements.length === 0) {
-    return;
-  }
-
-  const firstElement = menuFocusableElements[0];
-  const lastElement = menuFocusableElements[menuFocusableElements.length - 1];
-  if (!menu.contains(document.activeElement)) {
-    event.preventDefault();
-    menuClose.focus();
-  } else if (event.shiftKey && document.activeElement === firstElement) {
-    event.preventDefault();
-    lastElement.focus();
-  } else if (!event.shiftKey && document.activeElement === lastElement) {
-    event.preventDefault();
-    firstElement.focus();
+document.addEventListener('click', (event) => {
+  if (
+    menuToggle.getAttribute('aria-expanded') === 'true' &&
+    event.target instanceof Node &&
+    !menuPanel.contains(event.target) &&
+    !menuToggle.contains(event.target)
+  ) {
+    setMenuOpen(false, false);
   }
 });
 
 menu.addEventListener('transitionend', (event) => {
   if (
     event.target !== menuPanel ||
-    event.propertyName !== 'transform' ||
+    event.propertyName !== 'height' ||
     menu.classList.contains('is-open')
   ) {
     return;
