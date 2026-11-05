@@ -1,0 +1,2 @@
+export const NOTICE_PAGE_SIZE = 5;
+export const NOTICE_MAX_ATTACHMENT_BYTES = 10 * 1024 * 1024;

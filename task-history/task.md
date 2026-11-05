@@ -4,6 +4,27 @@
 
 ---
 
+## [2026-11-05] Nothing 지원센터 공지사항 게시판
+* **요청 사항**:
+  * 첨부 화면을 기준으로 목록·상세·작성·수정 게시판을 구현하고, 삭제·검색·카테고리 필터·페이지네이션을 지원.
+  * localStorage mock을 사용하되 Firebase 전환을 한 서비스 진입점으로 분리.
+  * 목록 시드 7건, 페이지당 5건, 작성/수정에 카테고리·제목·내용·선택 첨부파일 포함.
+* **구현 상태**:
+  * `pages/support/notice.html` 한 경로에서 `view=list`, `view=detail&id=...`, `view=form&mode=create|edit&id=...`로 네 화면을 구성.
+  * `js/services/post-service.js`를 데이터 소스 교체 지점으로 두고, 모든 비동기 CRUD를 mock 서비스로 전달. localStorage 직접 접근은 `storage-helper.js`로 한정.
+  * `nothing-support:notice-posts:v1` 키가 없을 때만 7개 시드 공지를 주입. 조회수 증가, 번호, ISO 타임스탬프, 공지 고정 상태 포함.
+  * 목록 검색·카테고리 필터·5건 페이지네이션, 상세 이전/다음글·수정·삭제, 필수값 검증과 첨부 10MB 제한 구현.
+  * 첨부 파일은 localStorage 용량 제약으로 파일명·크기·형식 메타데이터만 보관. Firebase Storage 연결 시 파일 바이너리 저장을 별도 구현해야 함.
+  * 지원 페이지 전용 레이아웃·컴포넌트 CSS를 분리하고 기존 메인 메뉴와 푸터에서 진입 가능하게 연결.
+* **검증 결과**:
+  * 브라우저에서 시드 7건 및 5건/페이지, 카테고리 필터·제목 검색 확인.
+  * 상세 조회수 증가, 필수 내용 누락 차단, 작성→수정→삭제 흐름 확인.
+  * 10MB 초과 파일 거부 및 파일 선택 초기화 확인.
+  * 375 / 768 / 1280px에서 문서 가로 넘침 없음. 관련 HTML·JS·CSS 진단 오류 없음.
+* **수정 파일**: `index.html`, `pages/support/notice.html`, `css/layout/support-shell.css`, `css/components/notice-board.css`, `css/pages/support-notice.css`, `js/config/notice-board.js`, `js/data/notice-seed.js`, `js/modules/notice-board.js`, `js/modules/notice-board-view.js`, `js/services/post-service.js`, `js/services/mock/post-mock-service.js`, `js/services/mock/storage-helper.js`, `task-history/task.md`
+
+---
+
 ## 1. 현재 구현 구조 및 페이지 구성 요약
 
 * 기술 스택: HTML5, CSS3, Vanilla JavaScript (ES2022+), BEM 네이밍

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ko" class="light">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Nothing 지원센터의 최신 공지와 제품 소식을 확인하세요.">
+    <meta property="og:title" content="공지사항 | Nothing 지원센터">
+    <meta property="og:description" content="Nothing 지원센터의 최신 공지와 제품 소식을 확인하세요.">
+    <title>공지사항 | Nothing 지원센터</title>
+    <link rel="stylesheet" href="../../css/main.css">
+    <link rel="stylesheet" href="../../css/layout/support-shell.css">
+    <link rel="stylesheet" href="../../css/components/notice-board.css">
+    <link rel="stylesheet" href="../../css/pages/support-notice.css">
+  </head>
+  <body class="support-page">
+    <header class="support-header">
+      <div class="inner-box support-header__inner">
+        <a class="visually-hidden" href="#notice-main">본문 바로가기</a>
+        <div class="partition-box partition-box--between partition-box--center support-header__layout">
+          <a class="support-header__brand" href="../../index.html" aria-label="Nothing 홈">
+            <img class="support-header__logo-image" src="../../images/d/logo.svg" alt="NOTHING" width="106" height="14">
+          </a>
+          <nav class="support-header__nav" aria-label="주요 메뉴">
+            <a class="support-header__link" href="../../index.html#category">Phones</a>
+            <a class="support-header__link" href="../../index.html#category">Audio</a>
+            <a class="support-header__link" href="../../index.html#category">Watches</a>
+            <a class="support-header__link" href="../../index.html#category">CMF</a>
+            <a class="support-header__link" href="../../index.html#community">Community</a>
+            <a class="support-header__link support-header__link--current" href="./notice.html" aria-current="page">Support</a>
+          </nav>
+        </div>
+      </div>
+    </header>
+
+    <main class="support-main" id="notice-main">
+      <section class="section support-hero" aria-labelledby="support-hero-title">
+        <img
+          class="support-hero__image"
+          src="../../images/d/nothing-dt-18.jpg"
+          alt=""
+          aria-hidden="true"
+          width="1000"
+          height="1000"
+          fetchpriority="high">
+        <div class="inner-box support-hero__inner">
+          <div class="partition-box partition-box--center support-hero__layout">
+            <div class="content-box support-hero__content">
+              <h1 class="support-hero__title" id="support-hero-title">지원 센터</h1>
+              <p class="support-hero__description">당신의 NOTHING 제품에 대해 더 자세히 알아보고, 문제를 해결하고 도움을 요청할 수 있습니다.</p>
+              <form class="support-hero__search" action="./notice.html" method="get" role="search">
+                <input type="hidden" name="view" value="list">
+                <label class="visually-hidden" for="support-search">공지사항 검색</label>
+                <input class="support-hero__search-input" id="support-search" name="q" type="search" placeholder="검색" autocomplete="off">
+                <button class="support-hero__search-button" type="submit" aria-label="공지사항 검색">검색</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section support-notice-section" aria-label="공지사항 게시판">
+        <div class="inner-box">
+          <div class="partition-box partition-box--center">
+            <div class="content-box support-notice-view" data-notice-view aria-live="polite" aria-busy="true">
+              <p class="notice-status">공지사항을 불러오는 중입니다.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer support-footer">
+        <div class="inner-box support-footer__inner">
+          <div class="partition-box partition-box--between support-footer__layout">
+          <div class="content-box">
+            <nav class="support-footer__links" aria-label="법적 정보">
+              <a class="support-footer__link" href="./notice.html">개인정보 보호정책</a>
+              <a class="support-footer__link" href="./notice.html">이용 제한 정책</a>
+              <a class="support-footer__link" href="./notice.html">사용자 계약</a>
+              <a class="support-footer__link" href="./notice.html">판매조건</a>
+            </nav>
+          </div>
+          <div class="content-box">
+            <nav class="support-footer__socials" aria-label="소셜 미디어">
+              <a class="support-footer__social-link" href="./notice.html" aria-label="Instagram">◎</a>
+              <a class="support-footer__social-link" href="./notice.html" aria-label="YouTube">▶</a>
+              <a class="support-footer__social-link" href="./notice.html" aria-label="X">X</a>
+              <a class="support-footer__social-link" href="./notice.html" aria-label="TikTok">♪</a>
+            </nav>
+          </div>
+          <div class="content-box support-footer__locale">대한민국</div>
+        </div>
+      </div>
+    </footer>
+    <script type="module" src="../../js/modules/notice-board.js"></script>
+  </body>
+</html>
