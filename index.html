@@ -714,6 +714,19 @@
         </div>
       </section>
 
+      <section
+        class="product-detail"
+        id="product-detail"
+        data-product-detail-view
+        aria-busy="false"
+        hidden>
+        <p class="product-detail__status" data-product-detail-status role="status" aria-live="polite">
+          제품 정보를 불러오는 중입니다.
+        </p>
+        <button class="product-detail__retry" type="button" data-product-detail-retry hidden>다시 시도</button>
+        <div class="product-detail__content" data-product-detail-content hidden></div>
+      </section>
+
     </main>
 
     <footer class="site-footer">
@@ -767,6 +780,7 @@
     <script defer src="js/vendor/swiper-bundle.min.js"></script>
     <script type="module" src="js/main.js"></script>
     <script type="module" src="js/modules/products-page.js"></script>
+    <script type="module" src="js/modules/product-detail-page.js"></script>
     <script type="module" src="js/modules/announcement-ticker.js"></script>
   </body>
 </html>

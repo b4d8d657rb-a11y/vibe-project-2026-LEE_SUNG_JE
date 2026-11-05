@@ -23,3 +23,26 @@ export interface ProductService {
   update(id: string, dto: UpdateProductDto): Promise<Product>;
   delete(id: string): Promise<void>;
 }
+
+export interface ProductDetailFeature {
+  label: string;
+  title: string;
+  description: string;
+}
+
+export interface ProductDetailImage {
+  src: string;
+  alt: string;
+  caption: string;
+}
+
+export interface ProductDetailCopy {
+  eyebrow: string;
+  description: string;
+  features: ProductDetailFeature[];
+  storyImages: ProductDetailImage[];
+}
+
+export interface ProductDetailService {
+  getForProduct(product: Product): Promise<ProductDetailCopy>;
+}

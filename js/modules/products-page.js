@@ -1,7 +1,9 @@
 import { productService } from '../services/productService.js';
+import { productDetailPage } from './product-detail-page.js';
 
 const main = document.querySelector('#main-content');
 const productView = document.querySelector('[data-products-view]');
+const detailView = document.querySelector('[data-product-detail-view]');
 const status = document.querySelector('[data-products-status]');
 const retryButton = document.querySelector('[data-products-retry]');
 const grid = document.querySelector('[data-products-grid]');
@@ -16,6 +18,7 @@ const productsMenuLink = document.querySelector('.site-menu__category[href="#pro
 if (
   !(main instanceof HTMLElement) ||
   !(productView instanceof HTMLElement) ||
+  !(detailView instanceof HTMLElement) ||
   !(status instanceof HTMLElement) ||
   !(retryButton instanceof HTMLButtonElement) ||
   !(grid instanceof HTMLUListElement) ||
@@ -42,6 +45,7 @@ const homeTitle = document.title;
 const homeSections = [...main.querySelectorAll(':scope > section:not([data-products-view])')];
 let previousScrollY = window.scrollY;
 let scrollFrame = 0;
+let previousRoute = '';
 
 const updateRefineBoundary = () => {
   const bottomBeforeUpdate = productView.getBoundingClientRect().bottom;
@@ -140,7 +144,12 @@ const renderProducts = (products) => {
     name.textContent = product.series || product.name;
     caption.append(name);
 
-    card.append(figure, caption);
+    const link = document.createElement('a');
+    link.className = 'index-products__link';
+    link.href = `#product/${encodeURIComponent(product.id)}`;
+    link.setAttribute('aria-label', `${product.series || product.name}, ${product.color} 상세 보기`);
+    link.append(figure, caption);
+    card.append(link);
     fragment.append(card);
   });
 
@@ -237,11 +246,28 @@ const loadProducts = async () => {
 };
 
 const updateRoute = () => {
-  const isProductsRoute = window.location.hash === '#products';
+  const hash = window.location.hash;
+  const isProductsRoute = hash === '#products';
+  const productRouteMatch = hash.match(/^#product\/(.+)$/);
+  let productId = null;
+  if (productRouteMatch) {
+    try {
+      productId = decodeURIComponent(productRouteMatch[1]);
+    } catch (error) {
+      console.error('제품 경로를 해석하지 못했습니다.', error);
+    }
+  }
+  const isDetailRoute = productId !== null && productId.length > 0;
+  const currentRoute = isProductsRoute ? 'products' : isDetailRoute ? 'detail' : 'home';
+
   homeSections.forEach((section) => {
-    section.hidden = isProductsRoute;
+    section.hidden = currentRoute !== 'home';
   });
   productView.hidden = !isProductsRoute;
+  detailView.hidden = !isDetailRoute;
+  if (!isDetailRoute) {
+    productDetailPage.deactivate();
+  }
   if (isProductsRoute) {
     productsMenuLink.setAttribute('aria-current', 'page');
   } else {
@@ -253,10 +279,22 @@ const updateRoute = () => {
     window.scrollTo({ top: 0, behavior: 'auto' });
     void loadProducts();
     window.requestAnimationFrame(updateRefineBoundary);
+    previousRoute = currentRoute;
+    return;
+  }
+
+  if (isDetailRoute && productId) {
+    productsMenuLink.removeAttribute('aria-current');
+    void productDetailPage.load(productId);
+    if (previousRoute !== 'detail') {
+      window.scrollTo({ top: 0, behavior: 'auto' });
+    }
+    previousRoute = currentRoute;
     return;
   }
 
   document.title = homeTitle;
+  previousRoute = currentRoute;
 };
 
 updateRefineBoundary();

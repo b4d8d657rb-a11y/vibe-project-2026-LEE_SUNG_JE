@@ -1,0 +1,132 @@
+{
+  "categories": {
+    "audio": {
+      "eyebrow": "SOUND, SHAPED DIFFERENTLY",
+      "description": "선명한 실루엣과 편안한 사용감. 제품의 디자인과 컬러를 자세히 살펴보세요.",
+      "features": [
+        {
+          "label": "01 / DESIGN",
+          "title": "간결한 형태",
+          "description": "군더더기 없는 디자인과 제품의 디테일을 가까이에서 확인해 보세요."
+        },
+        {
+          "label": "02 / COLOUR",
+          "title": "취향에 맞는 컬러",
+          "description": "제품군에 준비된 컬러를 비교하고 원하는 스타일을 선택할 수 있습니다."
+        },
+        {
+          "label": "03 / COLLECTION",
+          "title": "오디오 컬렉션",
+          "description": "같은 제품군의 다양한 제품과 디자인을 한눈에 둘러보세요."
+        }
+      ],
+      "storyImages": []
+    },
+    "phones": {
+      "eyebrow": "A DIFFERENT KIND OF PHONE",
+      "description": "제품의 디자인과 컬러를 자세히 살펴보고, 나에게 맞는 제품을 찾아보세요.",
+      "features": [
+        {
+          "label": "01 / DESIGN",
+          "title": "한눈에 알아보는 디자인",
+          "description": "제품의 실루엣과 세부 디자인을 다양한 각도에서 확인해 보세요."
+        },
+        {
+          "label": "02 / COLOUR",
+          "title": "나만의 컬러 선택",
+          "description": "제품군에 준비된 컬러를 비교하고 원하는 스타일을 선택할 수 있습니다."
+        },
+        {
+          "label": "03 / COLLECTION",
+          "title": "휴대전화 컬렉션",
+          "description": "같은 제품군의 다른 컬러도 함께 살펴볼 수 있습니다."
+        }
+      ],
+      "storyImages": []
+    },
+    "watches": {
+      "eyebrow": "TIME, WITH CHARACTER",
+      "description": "제품의 디자인과 컬러를 자세히 살펴보고, 나에게 맞는 제품을 찾아보세요.",
+      "features": [
+        {
+          "label": "01 / DESIGN",
+          "title": "매일 함께하는 디자인",
+          "description": "제품의 형태와 디테일을 가까이에서 확인해 보세요."
+        },
+        {
+          "label": "02 / COLOUR",
+          "title": "취향에 맞는 컬러",
+          "description": "제품군에 준비된 컬러를 비교하고 원하는 스타일을 선택할 수 있습니다."
+        },
+        {
+          "label": "03 / COLLECTION",
+          "title": "웨어러블 컬렉션",
+          "description": "같은 제품군의 다양한 제품과 디자인을 한눈에 둘러보세요."
+        }
+      ],
+      "storyImages": []
+    },
+    "accessories": {
+      "eyebrow": "SMALL DETAILS, BIG DIFFERENCE",
+      "description": "일상에 더해지는 작은 디테일. 제품의 디자인과 컬러를 자세히 살펴보세요.",
+      "features": [
+        {
+          "label": "01 / DESIGN",
+          "title": "작지만 선명한 존재감",
+          "description": "제품의 형태와 디테일을 가까이에서 확인해 보세요."
+        },
+        {
+          "label": "02 / COLOUR",
+          "title": "취향에 맞는 컬러",
+          "description": "제품군에 준비된 컬러를 비교하고 원하는 스타일을 선택할 수 있습니다."
+        },
+        {
+          "label": "03 / COLLECTION",
+          "title": "액세서리 컬렉션",
+          "description": "같은 제품군의 다양한 제품과 디자인을 한눈에 둘러보세요."
+        }
+      ],
+      "storyImages": []
+    }
+  },
+  "families": {
+    "headphone (1)": {
+      "eyebrow": "NOTHING HEADPHONE (1)",
+      "description": "사운드와 디자인의 균형을 담은 Headphone (1). 제품의 디테일과 캠페인 이미지를 만나보세요.",
+      "features": [
+        {
+          "label": "01 / DESIGN",
+          "title": "투명한 디자인 언어",
+          "description": "Headphone (1)의 형태와 소재가 만들어내는 디자인을 가까이에서 살펴보세요."
+        },
+        {
+          "label": "02 / COLOUR",
+          "title": "화이트와 블랙",
+          "description": "두 가지 컬러를 비교하고 원하는 스타일을 선택할 수 있습니다."
+        },
+        {
+          "label": "03 / COLLECTION",
+          "title": "Headphone (1)",
+          "description": "같은 제품의 다른 컬러도 함께 살펴볼 수 있습니다."
+        }
+      ],
+      "storyImages": [
+        {
+          "src": "images/ss-2/e234708c4c1ce60c8b865904db1f445911579af7-4096x2305.jpg",
+          "alt": "Headphone (1)을 착용한 모델의 캠페인 이미지",
+          "caption": "Designed to be seen."
+        },
+        {
+          "src": "images/ss-2/71e59215b4e50f7b73eb588dc9d2010cd6791e44-4096x2305.jpg",
+          "alt": "Headphone (1) 캠페인 포트레이트",
+          "caption": "A closer look."
+        },
+        {
+          "src": "images/ss-2/e46a5dce8b323b3601995bb54dc8d818cab0b7bf-4096x2305.jpg",
+          "alt": "Headphone (1)의 제품 디테일",
+          "caption": "Every detail, considered."
+        }
+      ]
+    }
+  }
+}

@@ -1257,6 +1257,17 @@ body {
   text-align: center;
 }
 
+.index-products__link {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+}
+
+.index-products__link:focus-visible {
+  outline: 2px solid rgb(var(--greyscale-black));
+  outline-offset: var(--space-4);
+}
+
 .index-products__figure {
   display: flex;
   aspect-ratio: 1;
@@ -1339,9 +1350,13 @@ body {
 }
 
 @media (min-width: 1025px) {
+  .index-products__content {
+    max-width: none;
+  }
+
   .index-products__title {
     margin-block-end: var(--space-48);
-    font-size: 2rem;
+    font-size: 40px;
   }
 
   .index-products__grid {
