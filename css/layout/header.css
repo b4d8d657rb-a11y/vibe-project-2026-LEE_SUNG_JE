@@ -227,10 +227,6 @@ body.menu-open .site-header::before {
 }
 
 @media (hover: hover) and (min-width: 1025px) {
-  .header__menu-button:hover {
-    background-color: rgb(var(--greyscale-900) / 0.1);
-  }
-
   .site-menu__category:hover,
   .site-menu__link:hover,
   .site-menu__signature a:hover {
@@ -239,10 +235,6 @@ body.menu-open .site-header::before {
 }
 
 @media (max-width: 1024px) {
-  .header__menu-button:hover {
-    background-color: transparent;
-  }
-
   .site-menu__category:hover,
   .site-menu__link:hover,
   .site-menu__signature a:hover {

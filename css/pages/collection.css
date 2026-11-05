@@ -95,12 +95,12 @@
 }
 
 .collection__control {
+  position: relative;
+  isolation: isolate;
   display: grid;
   width: var(--control-md);
   height: var(--control-md);
   place-items: center;
-  border: 1px solid rgb(var(--greyscale-black) / 0.3);
-  border-radius: var(--radius-sm);
   background-color: transparent;
   color: rgb(var(--greyscale-black));
   cursor: pointer;
@@ -109,6 +109,27 @@
     background-color 0.2s cubic-bezier(0.4, 0, 0.2, 1),
     color 0.2s cubic-bezier(0.4, 0, 0.2, 1),
     opacity 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.collection__control::before,
+.collection__control::after {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  content: "";
+}
+
+.collection__control::before {
+  border: 2px dotted rgb(var(--greyscale-black) / 0.4);
+  border-radius: 0.5rem;
+}
+
+.collection__control::after {
+  inset: 2px;
+  border-radius: calc(0.5rem - 2px);
+  background-color: transparent;
+  transition: background-color 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .collection__control-icon {
@@ -209,18 +230,22 @@
 
 @media (hover: hover) {
   .collection__control:not(:disabled):hover {
-    background-color: rgb(var(--greyscale-black));
-    color: rgb(var(--greyscale-white));
+    color: rgb(var(--greyscale-black));
+  }
+
+  .collection__control:not(:disabled):hover::after {
+    background-color: #D8D9D9;
   }
 
   .collection__control:not(:disabled):hover .collection__control-icon {
-    filter: brightness(0) invert(1);
+    filter: brightness(0);
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .collection__control,
-  .collection__control-icon {
+  .collection__control-icon,
+  .collection__control::after {
     transition-duration: 0.01ms;
   }
 }
