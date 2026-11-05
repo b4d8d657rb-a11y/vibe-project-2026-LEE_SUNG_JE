@@ -14,8 +14,8 @@
 }
 
 .notice-button--primary {
-  border-color: rgb(var(--accent-blue));
-  background-color: rgb(var(--accent-blue));
+  border-color: rgb(var(--greyscale-black));
+  background-color: rgb(var(--greyscale-black));
   color: rgb(var(--greyscale-white));
 }
 
@@ -63,13 +63,19 @@
 }
 
 .notice-search__button {
+  display: grid;
   align-self: stretch;
+  place-items: center;
   padding-inline: var(--space-12);
   border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
   background-color: transparent;
-  color: rgb(var(--greyscale-black));
-  font-family: var(--font-mono);
-  font-size: var(--type-size-mono-xs);
+  color: rgb(var(--greyscale-800));
+}
+
+.notice-search__icon {
+  display: block;
+  width: 24px;
+  height: 24px;
 }
 
 .notice-search__input:focus-visible,
@@ -267,7 +273,7 @@
   }
 
   .notice-button--primary:hover {
-    background-color: rgb(var(--accent-blue) / 0.85);
+    background-color: rgb(var(--greyscale-1000));
   }
 
   .notice-table__title:hover {

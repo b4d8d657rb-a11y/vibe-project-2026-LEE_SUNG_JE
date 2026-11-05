@@ -95,8 +95,26 @@ const renderToolbar = ({ category, query }) => {
   searchInput.value = query;
   searchInput.placeholder = '검색어를 입력하세요.';
   searchInput.setAttribute('aria-label', '제목 검색');
-  const searchButton = element('button', 'notice-search__button', '검색');
+  const searchButton = element('button', 'notice-search__button');
   searchButton.type = 'submit';
+  searchButton.setAttribute('aria-label', '검색');
+  const searchIcon = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+  searchIcon.classList.add('notice-search__icon');
+  searchIcon.setAttribute('viewBox', '0 0 24 24');
+  searchIcon.setAttribute('fill', 'currentColor');
+  searchIcon.setAttribute('aria-hidden', 'true');
+  searchIcon.setAttribute('focusable', 'false');
+  [
+    [9, 4], [13, 4], [17, 7], [18, 11], [16, 15], [13, 17],
+    [9, 17], [6, 15], [4, 11], [5, 7], [18, 18], [21, 21],
+  ].forEach(([cx, cy]) => {
+    const dot = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+    dot.setAttribute('cx', String(cx));
+    dot.setAttribute('cy', String(cy));
+    dot.setAttribute('r', '1.25');
+    searchIcon.append(dot);
+  });
+  searchButton.append(searchIcon);
   search.append(searchInput, searchButton);
   form.append(viewInput, categorySelect, search);
 
