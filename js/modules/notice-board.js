@@ -1,5 +1,6 @@
 import { NOTICE_CATEGORIES } from '../data/notice-seed.js';
 import { NOTICE_MAX_ATTACHMENT_BYTES, NOTICE_PAGE_SIZE } from '../config/notice-board.js';
+import { initializeNoticeTicker } from './notice-ticker.js';
 import { postService } from '../services/post-service.js';
 import {
   renderDetailView,
@@ -232,4 +233,5 @@ if (heroSearch instanceof HTMLInputElement) {
   heroSearch.value = getRoute().query;
 }
 
+void initializeNoticeTicker();
 void renderRoute();

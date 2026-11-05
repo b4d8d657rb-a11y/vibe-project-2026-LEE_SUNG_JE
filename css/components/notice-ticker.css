@@ -1,0 +1,135 @@
+:root {
+  --notice-ticker-height: 48px;
+}
+
+.notice-ticker {
+  position: sticky;
+  z-index: calc(var(--z-sticky) + 1);
+  inset-block-start: 0;
+  min-height: var(--notice-ticker-height);
+  background-color: rgb(var(--greyscale-black));
+  color: rgb(var(--greyscale-white));
+}
+
+.notice-ticker__inner {
+  display: flex;
+  min-height: var(--notice-ticker-height);
+  align-items: center;
+  gap: var(--space-16);
+}
+
+.notice-ticker__label {
+  flex: 0 0 auto;
+  color: rgb(var(--greyscale-400));
+  font-family: var(--font-mono);
+  font-size: var(--type-size-mono-xs);
+}
+
+.notice-ticker__message {
+  display: flex;
+  min-width: 0;
+  flex: 1 1 auto;
+  align-items: center;
+  gap: var(--space-12);
+}
+
+.notice-ticker__category {
+  flex: 0 0 auto;
+  color: rgb(var(--greyscale-400));
+  font-size: var(--type-size-body-xs);
+}
+
+.notice-ticker__title {
+  min-width: 0;
+  overflow: hidden;
+  color: inherit;
+  font-size: var(--type-size-body-sm);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.notice-ticker__title:hover {
+  text-decoration: underline;
+  text-underline-offset: var(--space-2);
+}
+
+.notice-ticker__counter {
+  flex: 0 0 auto;
+  color: rgb(var(--greyscale-400));
+  font-family: var(--font-mono);
+  font-size: var(--type-size-mono-xs);
+  font-variant-numeric: tabular-nums;
+}
+
+.notice-ticker__controls {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.notice-ticker__control {
+  display: grid;
+  width: 32px;
+  height: 32px;
+  place-items: center;
+  border-radius: var(--radius-sm);
+  background-color: transparent;
+  color: rgb(var(--greyscale-white));
+  font-family: var(--font-mono);
+  font-size: var(--type-size-body-sm);
+}
+
+.notice-ticker__control:hover {
+  background-color: rgb(var(--greyscale-white) / 0.14);
+}
+
+.notice-ticker__control:focus-visible {
+  outline: 2px solid rgb(var(--greyscale-white));
+  outline-offset: 1px;
+}
+
+.notice-ticker__control[hidden] {
+  display: none;
+}
+
+body.has-notice-ticker:not(.support-page) .site-header {
+  inset-block-start: var(--notice-ticker-height);
+}
+
+@media (max-width: 520px) {
+  .notice-ticker__inner {
+    gap: var(--space-8);
+  }
+
+  .notice-ticker__label {
+    font-size: 0.625rem;
+  }
+
+  .notice-ticker__message {
+    gap: var(--space-8);
+  }
+
+  .notice-ticker__category {
+    display: none;
+  }
+
+  .notice-ticker__counter {
+    font-size: 0.625rem;
+  }
+
+  .notice-ticker__controls {
+    gap: 0;
+  }
+
+  .notice-ticker__control {
+    width: 28px;
+    height: 32px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .notice-ticker__title {
+    scroll-behavior: auto;
+  }
+}

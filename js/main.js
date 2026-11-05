@@ -1,5 +1,6 @@
 import { initializeCollectionSliders } from './modules/collection-slider.js';
 import { initializeHeaderScroll } from './modules/header-scroll.js';
+import { initializeNoticeTicker } from './modules/notice-ticker.js';
 
 const menuToggle = document.querySelector('[data-menu-toggle]');
 const menuToggleMark = menuToggle?.querySelector('.header__menu-mark');
@@ -229,3 +230,4 @@ menu.addEventListener('transitionend', (event) => {
 
 initializeCollectionSliders();
 initializeHeaderScroll();
+void initializeNoticeTicker();
