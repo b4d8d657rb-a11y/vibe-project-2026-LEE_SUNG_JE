@@ -4,6 +4,7 @@
 
 ---
 
+<<<<<<< HEAD
 ## [2026-11-05] 전체 메뉴 오버레이 반투명 틴트 제거
 * **요청 사항**: 메뉴를 펼쳤을 때 주변 배경의 반투명 효과 제거.
 * **구현 상태**: 흰색 반투명 배경을 투명으로 변경하고 배경 블러 효과는 유지.
@@ -144,6 +145,8 @@
   * 브라우저 뷰포트·콘솔 확인은 실행하지 않음.
 * **수정 파일**: `index.html`, `css/main.css`, `css/pages/products.css`, `js/types/product.js`, `js/services/productService.js`, `js/services/mock/storageHelper.js`, `js/services/mock/productMockService.js`, `js/services/firebase/firebaseConfig.js`, `js/services/firebase/productFirebaseService.js`, `js/modules/products-page.js`, `task-history/task.md`
 
+=======
+>>>>>>> 4085516f6f4dc810ec796f318cd2517cf9cfdfb4
 ## [2026-11-05] 전체 제품 목록 페이지 구현
 * **요청 사항**:
   * 메인 메뉴의 "모든 제품"에서 전체 제품 페이지로 이동하고, 첨부한 데스크톱·태블릿·모바일 화면을 기준으로 61개 제품 목록 구성.

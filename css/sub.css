@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 @import url("./base/tokens.css");
 @import url("./base/reset.css");
 @import url("./base/typography.css");
@@ -31,6 +32,8 @@ body {
   opacity: 0.3;
 }
 
+=======
+>>>>>>> 4085516f6f4dc810ec796f318cd2517cf9cfdfb4
 .sub-page {
   min-height: 100svh;
   background-color: rgb(var(--greyscale-100));

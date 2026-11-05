@@ -81,6 +81,7 @@
     </header>
 
     <main class="products-main" id="main-content">
+<<<<<<< HEAD
       <section class="section products__section" aria-labelledby="products-title" data-products-page aria-busy="true">
         <div class="inner-box">
           <div class="partition-box partition-box--center">
@@ -113,6 +114,28 @@
                   type="button"
                   aria-expanded="false"
                   aria-controls="products-filter-menu"
+=======
+      <section class="section products" aria-labelledby="products-title">
+        <div class="inner-box products__inner">
+          <div class="partition-box partition-box--center products__layout">
+            <div class="content-box products__content">
+              <h1 class="products__title" id="products-title">전체 제품</h1>
+              <ul class="products__grid" id="products-grid" data-products-grid aria-label="전체 제품 목록"></ul>
+              <p class="visually-hidden" data-products-count aria-live="polite"></p>
+              <div class="products__refine">
+                <div class="products__refine-options" id="products-refine-options" role="group" aria-label="제품 카테고리" hidden>
+                  <button class="products__filter" type="button" data-product-filter="all" aria-pressed="true">전체 제품</button>
+                  <button class="products__filter" type="button" data-product-filter="phones" aria-pressed="false">휴대전화</button>
+                  <button class="products__filter" type="button" data-product-filter="audio" aria-pressed="false">오디오</button>
+                  <button class="products__filter" type="button" data-product-filter="cmf" aria-pressed="false">CMF</button>
+                </div>
+                <button
+                  class="products__refine-toggle"
+                  type="button"
+                  aria-controls="products-refine-options"
+                  aria-expanded="false"
+                  aria-label="제품 카테고리 필터 열기"
+>>>>>>> 4085516f6f4dc810ec796f318cd2517cf9cfdfb4
                   data-products-refine>
                   <span>REFINE</span>
                   <img src="images/d/f_m4.svg" alt="" aria-hidden="true" width="16" height="16">
@@ -173,7 +196,10 @@
       </section>
     </footer>
     <script type="module" src="js/sub.js"></script>
+<<<<<<< HEAD
     <script type="module" src="js/modules/products-page.js"></script>
+=======
+>>>>>>> 4085516f6f4dc810ec796f318cd2517cf9cfdfb4
     <script type="module" src="js/modules/announcement-ticker.js"></script>
   </body>
 </html>
