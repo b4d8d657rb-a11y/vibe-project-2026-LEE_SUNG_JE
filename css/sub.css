@@ -1,0 +1,38 @@
+@import url("./base/tokens.css");
+@import url("./base/reset.css");
+@import url("./base/typography.css");
+@import url("./layout/box.css");
+@import url("./layout/header.css");
+@import url("./layout/footer.css");
+@import url("./components/announcement-ticker.css");
+@import url("./pages/products.css");
+@import url("./utilities.css");
+
+body {
+  position: relative;
+  min-height: 100svh;
+  background-color: rgb(var(--greyscale-100));
+  color: rgb(var(--greyscale-black));
+}
+
+.body-pattern {
+  position: fixed;
+  z-index: var(--z-raised);
+  inset: 0 0 auto;
+  height: 100svh;
+  pointer-events: none;
+  background-image: radial-gradient(
+    circle,
+    rgb(var(--greyscale-white)) var(--decoration-dot-size),
+    transparent var(--decoration-dot-size)
+  );
+  background-size: var(--space-192) var(--space-192);
+  mix-blend-mode: difference;
+  opacity: 0.3;
+}
+
+.sub-page {
+  min-height: 100svh;
+  background-color: rgb(var(--greyscale-100));
+  color: rgb(var(--greyscale-black));
+}

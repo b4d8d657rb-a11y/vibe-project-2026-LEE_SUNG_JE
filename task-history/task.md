@@ -4,6 +4,164 @@
 
 ---
 
+## [2026-11-05] 전체 메뉴 오버레이 반투명 틴트 제거
+* **요청 사항**: 메뉴를 펼쳤을 때 주변 배경의 반투명 효과 제거.
+* **구현 상태**: 흰색 반투명 배경을 투명으로 변경하고 배경 블러 효과는 유지.
+* **수정 파일**: `css/layout/header.css`, `task-history/task.md`
+
+## [2026-11-05] 제품 카드 타이틀 미디움 굵기 적용
+* **요청 사항**: 제품 카드 타이틀을 미디움 굵기로 표시.
+* **구현 상태**: 카드 캡션에 `font-weight: 500`을 지정해 제품명과 브랜드 라벨 굵기를 미디움으로 조정.
+* **수정 파일**: `css/pages/products.css`, `task-history/task.md`
+
+## [2026-11-05] 제품 카드 제목 크기 16px로 확대
+* **요청 사항**: 제품 카드 타이틀 텍스트를 16px로 키우기.
+* **구현 상태**: 제품명과 브랜드 라벨이 포함된 카드 캡션의 글꼴 크기를 모든 화면 크기에서 16px로 조정하고, 두 줄 표시 높이도 함께 맞춤.
+* **수정 파일**: `css/pages/products.css`, `task-history/task.md`
+
+## [2026-11-05] REFINE 반투명 배경 및 선택 필터 강조
+* **요청 사항**: REFINE 바 배경을 반투명하게 하고 선택한 글자는 선명하게, 미선택 글자는 반투명하게 표시.
+* **구현 상태**: 하단 바와 펼쳐진 필터 메뉴에 반투명 흰 배경 및 블러 적용. 필터 선택 항목은 불투명, 미선택 항목은 낮은 불투명도로 표시.
+* **수정 파일**: `css/pages/products.css`, `task-history/task.md`
+
+## [2026-11-05] REFINE 바를 main 하단 경계에 제한
+* **요청 사항**: REFINE 바가 푸터 영역까지 따라오지 않고 main 영역 안에서 멈추도록 수정.
+* **구현 상태**: main 하단이 뷰포트에 도달하면 REFINE 바를 main의 하단에 고정하고, 필터 메뉴 높이에 맞춰 콘텐츠 공간을 보존. 창 크기 변경 및 필터 열림 상태도 반영.
+* **수정 파일**: `css/pages/products.css`, `js/modules/products-page.js`, `task-history/task.md`
+
+## [2026-11-05] 제품 카드 호버 흐림 효과 제거
+* **요청 사항**: 마우스 호버 시 제품 이미지가 흐려지는 효과 제거.
+* **구현 상태**: 그리드 내 비호버 이미지의 투명도 변경 규칙을 제거하고, 호버 카드의 확대 효과는 유지.
+* **수정 파일**: `css/pages/products.css`, `task-history/task.md`
+
+## [2026-11-05] 공지 티커 표시 중 전체 메뉴 높이 조정
+* **요청 사항**: 공지사항 팝업(상단 티커)이 표시된 상태에서 메뉴 하단 항목이 화면 밖으로 밀려 보이지 않는 문제 해결.
+* **구현 상태**: 티커가 표시될 때 열려 있는 메뉴 패널 높이에서 티커 높이를 제외해 패널이 화면 아래를 넘지 않도록 조정. 기본 메뉴 동작은 유지.
+* **수정 파일**: `css/layout/header.css`, `task-history/task.md`
+
+## [2026-11-05] REFINE 아이콘 열림 방향 표시
+* **요청 사항**: REFINE 메뉴를 열 때 아이콘 방향이 바뀌던 기존 동작 복원.
+* **구현 상태**: 기존 `f_m4.svg` 아이콘을 유지하고 메뉴 열림 상태에서 180도 회전하며, 모션 감소 설정도 지원.
+* **수정 파일**: `css/pages/products.css`, `task-history/task.md`
+
+## [2026-11-05] 전체 제품 REFINE 필터 구현
+* **요청 사항**: 전체 제품 페이지의 REFINE 메뉴를 열 수 있고 적절한 필터를 제공하도록 구현.
+* **구현 상태**:
+  * REFINE을 실제 버튼으로 변경하고 접근성 있는 모달 필터 패널을 추가. 모바일 하단 시트 및 데스크톱 중앙 패널로 표시.
+  * 제품 유형(휴대전화·오디오·CMF)과 브랜드(NOTHING·CMF) 체크 필터, 적용·초기화·닫기 및 활성 필터 수 표시를 구현.
+  * 필터 결과가 없을 때 안내 문구를 노출하고, 필터 적용 시 61번째 제품 카드 전용 중앙 배치가 오동작하지 않도록 전체 목록일 때만 마지막 카드 클래스를 지정.
+* **수정 파일**: `products.html`, `css/pages/products.css`, `js/modules/products-page.js`, `task-history/task.md`
+
+## [2026-11-05] 비보안 컨텍스트 제품 ID 생성 오류 개선
+* **요청 사항**: `crypto.randomUUID()`가 없는 환경에서 제품 목록 대신 오류 문구가 표시되는 문제 제거.
+* **구현 상태**:
+  * `crypto.randomUUID()` 미지원 시 `crypto.getRandomValues()`를 사용해 UUID v4 형식 ID를 생성하고, Web Crypto도 없는 환경은 로컬 Mock 데이터용 난수 바이트로 대체.
+  * `file://`를 이유로 초기 시드를 차단하는 별도 오류도 제거.
+* **검증 결과**: 브라우저에서 `randomUUID()` 미지원 상황을 재현해도 61개 제품과 UUID v4 ID가 생성되고 콘솔 오류가 없는 것을 확인.
+* **수정 파일**: `js/services/mock/productMockService.js`, `task-history/task.md`
+
+## [2026-11-05] 전체 제품 타이틀 크기 미세 조정
+* **요청 사항**: 데스크톱 타이틀을 32px로 줄이고 태블릿·모바일 크기도 비례 조정.
+* **구현 상태**:
+  * 모바일 24px, 태블릿 28px, 데스크톱 32px 적용.
+  * 타이틀 하단 간격도 모바일 32px, 태블릿 40px, 데스크톱 48px로 조정.
+* **수정 파일**: `css/pages/products.css`, `task-history/task.md`
+
+## [2026-11-05] 전체 제품 제목과 그리드 간격 조정
+* **요청 사항**: 전체 제품 페이지 타이틀을 키우고 카드 목록과 간격을 넓힘.
+* **구현 상태**:
+  * 모바일 타이틀을 40px, 태블릿 48px, 데스크톱 60px로 확대.
+  * 타이틀과 카드 그리드 사이 간격을 모바일 48px, 태블릿 이상 56px로 조정.
+* **수정 파일**: `css/pages/products.css`, `task-history/task.md`
+
+## [2026-11-05] REFINE 바 스크롤 동작 동기화
+* **요청 사항**: 메인 메뉴바처럼 스크롤 방향에 따라 REFINE 바가 숨겨지고 다시 나타나도록 수정.
+* **구현 상태**:
+  * 아래로 스크롤하면 바를 숨기고 위로 스크롤하면 표시하도록 `requestAnimationFrame` 기반 passive scroll 처리 추가.
+  * 필터 패널이 펼쳐져 있거나 키보드 포커스가 바에 있을 때는 계속 표시.
+  * 모션 감소 설정 지원.
+* **검증 결과**: 브라우저 마우스 휠로 하향 스크롤 숨김, 상향 스크롤 표시, 필터 펼침 상태에서 고정 표시 확인.
+* **수정 파일**: `js/modules/products-page.js`, `css/pages/products.css`, `task-history/task.md`
+
+## [2026-11-05] REFINE 아이콘 원복
+* **요청 사항**: REFINE 버튼 아이콘을 이전 아이콘으로 복원.
+* **구현 상태**: CSS chevron span을 제거하고 기존 `images/d/f_m4.svg` 아이콘을 다시 적용.
+* **수정 파일**: `products.html`, `css/pages/products.css`, `task-history/task.md`
+
+## [2026-11-05] REFINE 메뉴를 레퍼런스 형태로 재구성
+* **요청 사항**: 첨부한 레퍼런스처럼 REFINE 아래에 카테고리·브랜드 선택 행이 보이도록 변경.
+* **구현 상태**:
+  * 중앙 팝업 대화상자 대신 하단 REFINE 바에 연결된 확장 패널로 변경.
+  * ALL / AUDIO / PHONES / WATCHES / ACCESSORIES와 NOTHING / CMF를 버튼 행으로 구성하고 선택 즉시 목록 필터링.
+  * 선택 상태는 `aria-pressed`와 색상으로 표시하며, 바깥 클릭 대신 REFINE 또는 Escape로 접기 가능.
+  * 카테고리 분류에 제품 시리즈명을 반영하고 선택 조합이 비어 있으면 안내 문구를 노출.
+* **검증 결과**:
+  * 브라우저에서 메뉴 표시, PHONE 필터 12개 결과, ALL 복구 61개 및 CMF 28개 결과 확인.
+  * 375px 폭에서 필터 옵션 넘침 없음, 콘솔 오류와 4xx 응답 없음.
+* **수정 파일**: `products.html`, `css/pages/products.css`, `js/modules/products-page.js`, `task-history/task.md`
+
+## [2026-11-05] 전체 제품 REFINE 필터 검증
+* **요청 사항**: REFINE 메뉴를 열어 제품 목록을 조건별로 좁힐 수 있도록 구현.
+* **구현 상태**:
+  * 유형(휴대전화·오디오·CMF) 및 브랜드(NOTHING·CMF)를 선택해 적용하는 필터 대화상자 추가.
+  * 초기화, 닫기, 활성 필터 수 배지와 결과 없음 안내를 제공.
+  * 모든 제품 상태일 때에만 61번째 카드를 마지막 행 가운데에 정렬하도록 처리.
+* **검증 결과**:
+  * 브라우저에서 REFINE 대화상자 표시, 휴대전화 12개 결과, 초기화 후 61개 복구를 확인.
+  * 결과가 없는 브랜드/유형 조합에서 안내 표시 및 초기화 복구를 확인.
+* **수정 파일**: `products.html`, `css/pages/products.css`, `js/modules/products-page.js`, `task-history/task.md`
+
+## [2026-11-05] 전체 제품 독립 페이지 분리
+* **요청 사항**:
+  * 전체 제품 목록을 독립 `products.html`로 구성하고, 메인 페이지에 있던 제품 섹션은 제거.
+  * 제품 Mock 데이터 계층과 공통 디자인은 유지하며 작업 이력에 변경 사항 추가.
+* **구현 상태**:
+  * 기존 홈 `index.html`의 제품 섹션을 제거하고 메뉴의 "모든 제품" 링크를 `products.html`로 복원.
+  * `products.html`에 독립 헤더·메뉴·제품 목록·REFINE 바·푸터를 구성하고 공통 메뉴/헤더 스크롤/공지 티커를 기존 모듈로 연결.
+  * `css/sub.css`를 독립 페이지용 공통 스타일 진입점으로 구성하고 제품 페이지 CSS를 이 경로에서만 로드.
+  * `js/sub.js`에는 공통 헤더/메뉴 초기화만 남기고 제품 데이터 렌더링은 `js/modules/products-page.js`와 기존 `productService`로 분리.
+  * `localstorage_to_firebase_guidelines.md` 지침은 이번 요청에 따라 적용 기준으로 사용하지 않음. 기존 Mock 서비스는 기존 데이터 유지 목적으로 그대로 사용.
+* **검증 결과**:
+  * 브라우저에서 375 / 768 / 1280px 기준 2 / 5 / 5열, 각 61개 카드, 마지막 카드 중앙 정렬 확인.
+  * 이미지 61개 모두 표시되고 상위 5개 우선 로드, 나머지 56개 지연 로드 확인.
+  * 메인 페이지 제품 섹션 제거 및 메뉴의 `products.html` 연결, 독립 페이지 메뉴 동작 확인. 브라우저 콘솔 오류와 4xx 응답 없음.
+* **수정 파일**: `index.html`, `products.html`, `css/main.css`, `css/sub.css`, `js/sub.js`, `task-history/task.md`
+
+## [2026-11-05] 전체 제품 목록 Mock 서비스 연동
+* **요청 사항**:
+  * 첨부한 데스크톱·태블릿·모바일 화면을 기준으로 제품 61개 목록을 구현하고, localStorage Mock DB를 Firebase Firestore로 교체 가능한 서비스 계층으로 분리.
+  * 기존 홈 화면과 공통 헤더·메뉴·푸터를 보존하고, 제품 섹션과 로딩·빈 목록·오류 상태를 추가.
+* **구현 상태**:
+  * 작업 시점에 루트 `products.html`이 존재하지 않아 사용자 확인 후 기존 홈 `index.html`에 독립 제품 섹션으로 추가하고, 메뉴의 모든 제품 링크를 `#products`로 연결.
+  * 기존 `images/sb-1/` 원본 61장과 대응하는 `images/products/*.webp` 61장을 사용. 각 WebP는 800×800이며, 원본 파일은 변경하지 않음.
+  * `Product`, DTO 및 서비스 계약을 JSDoc으로 정의하고, `productService.js`를 Mock/Firebase 구현체 교체 진입점으로 구성.
+  * Mock 서비스는 `mock_products`와 별도 시드 완료 키를 사용해 UUID·ISO 날짜를 포함한 61개 항목을 한 번만 저장하며, localStorage 접근은 150ms 지연이 있는 storage helper로 한정.
+  * 제품 모듈에 로딩·빈 목록·오류 화면, 색상 포함 alt, 상위 5개 우선 로드, 나머지 지연 로드를 구현.
+  * Firebase 서비스는 미구현 상태를 명시적으로 알리는 계약용 스텁으로 두고, 서비스 진입점에서 한 줄을 바꾸는 마이그레이션 지침을 기록.
+* **검증 결과**:
+  * 제품 데이터 61건, WebP 참조 누락 0건, 원본 PNG와 WebP 파일명 매핑 61/61건을 확인.
+  * 원본 PNG는 1000~2400px이며, 제품 WebP 61장은 모두 800×800.
+  * 브라우저 뷰포트·콘솔 확인은 실행하지 않음.
+* **수정 파일**: `index.html`, `css/main.css`, `css/pages/products.css`, `js/types/product.js`, `js/services/productService.js`, `js/services/mock/storageHelper.js`, `js/services/mock/productMockService.js`, `js/services/firebase/firebaseConfig.js`, `js/services/firebase/productFirebaseService.js`, `js/modules/products-page.js`, `task-history/task.md`
+
+## [2026-11-05] 전체 제품 목록 페이지 구현
+* **요청 사항**:
+  * 메인 메뉴의 "모든 제품"에서 전체 제품 페이지로 이동하고, 첨부한 데스크톱·태블릿·모바일 화면을 기준으로 61개 제품 목록 구성.
+  * 제품 정보를 JSON에서 읽고, WebP 이미지·반응형 그리드·고정형 REFINE 바를 적용.
+  * 기존 공통 헤더·메뉴·공지 티커·푸터 동작과 디자인을 재사용.
+* **구현 상태**:
+  * 저장소에 없던 루트 `products.html`을 추가하고, 비어 있던 `css/pages/products.css`, `css/sub.css`, `js/sub.js`를 구현.
+  * 기존 `data/products.json`의 61개 제품 정보를 렌더링하도록 확장하고 이미지 크기·색상 포함 대체 텍스트를 기록.
+  * `images/sb-1/` 원본은 그대로 보존하고, 이미 준비된 `images/products/*.webp` 61개를 사용. 최장 변은 800px 이하이며 파일 크기는 원본 합계 대비 약 98% 감소.
+  * 메뉴 동작을 `js/modules/site-menu.js`로 분리해 메인 페이지 동작을 유지하면서 제품 페이지에서도 재사용.
+  * 데스크톱·태블릿 5열, 모바일 2열, 마지막 카드 중앙 정렬, 데스크톱 카드 호버·모션 감소 대응 및 REFINE 플로팅 바 구현.
+  * 메인 메뉴의 "모든 제품" 링크를 루트 `products.html`로 연결.
+* **검증 결과**:
+  * 브라우저에서 375px 2열, 768 / 1280px 5열을 확인했고 세 너비 모두 문서 가로 넘침이 없음.
+  * 61개 카드와 마지막 카드 중앙 정렬 확인. 최적화 이미지 크기 속성, 상단 5개 우선 로드, 나머지 지연 로드 및 이미지 응답 404 없음 확인.
+  * 제품 페이지 콘솔 오류 없음. 데스크톱 카드 확대(1.04)·비호버 카드 투명도(0.65), 메뉴 ESC 닫기 및 메인 메뉴에서 제품 페이지 이동 확인.
+* **수정 파일**: `index.html`, `products.html`, `css/pages/products.css`, `css/sub.css`, `js/main.js`, `js/sub.js`, `js/modules/site-menu.js`, `data/products.json`, `task-history/task.md`
+
 ## [2026-11-05] Nothing 지원센터 공지사항 게시판
 * **요청 사항**:
   * 첨부 화면을 기준으로 목록·상세·작성·수정 게시판을 구현하고, 삭제·검색·카테고리 필터·페이지네이션을 지원.
