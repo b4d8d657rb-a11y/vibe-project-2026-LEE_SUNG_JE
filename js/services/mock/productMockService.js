@@ -7,24 +7,11 @@ const SEED_URL = new URL('../../../data/products.json', import.meta.url);
 let initializationPromise;
 
 const createId = () => {
-  if (typeof globalThis.crypto?.randomUUID === 'function') {
-    return globalThis.crypto.randomUUID();
+  if (typeof globalThis.crypto?.randomUUID !== 'function') {
+    throw new Error('이 브라우저는 crypto.randomUUID()를 지원하지 않습니다.');
   }
 
-  const bytes = new Uint8Array(16);
-  if (typeof globalThis.crypto?.getRandomValues === 'function') {
-    globalThis.crypto.getRandomValues(bytes);
-  } else {
-    bytes.forEach((_, index) => {
-      bytes[index] = Math.floor(Math.random() * 256);
-    });
-  }
-
-  bytes[6] = (bytes[6] & 0x0f) | 0x40;
-  bytes[8] = (bytes[8] & 0x3f) | 0x80;
-
-  const hex = Array.from(bytes, (byte) => byte.toString(16).padStart(2, '0')).join('');
-  return `${hex.slice(0, 8)}-${hex.slice(8, 12)}-${hex.slice(12, 16)}-${hex.slice(16, 20)}-${hex.slice(20)}`;
+  return globalThis.crypto.randomUUID();
 };
 
 const readSeed = async () => {
@@ -87,7 +74,10 @@ const initializeProducts = async () => {
 
 const ensureInitialized = () => {
   if (!initializationPromise) {
-    initializationPromise = initializeProducts();
+    initializationPromise = initializeProducts().catch((error) => {
+      initializationPromise = undefined;
+      throw error;
+    });
   }
 
   return initializationPromise;

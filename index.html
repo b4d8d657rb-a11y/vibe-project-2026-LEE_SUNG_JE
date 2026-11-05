@@ -54,7 +54,7 @@
               <div class="site-menu__panel">
                 <div class="site-menu__content">
                   <ul class="site-menu__categories">
-                    <li><a class="site-menu__category" href="products.html" data-menu-link>모든 제품</a></li>
+                    <li><a class="site-menu__category" href="#products" data-menu-link>모든 제품</a></li>
                     <li><a class="site-menu__category" href="#hero" data-menu-link>휴대전화</a></li>
                     <li><a class="site-menu__category" href="#hero" data-menu-link>오디오</a></li>
                     <li><a class="site-menu__category" href="#hero" data-menu-link>시계</a></li>
@@ -210,6 +210,10 @@
                   </div>
                 </article>
               </div>
+              <a class="button category__all-products" href="#products">
+                모든 제품 보기
+                <img class="button__arrow" src="images/d/main.svg" alt="" aria-hidden="true" width="16" height="16">
+              </a>
             </div>
           </div>
         </div>
@@ -656,6 +660,55 @@
                 가입하기
                 <img class="button__arrow community__arrow" src="images/d/main.svg" alt="" aria-hidden="true" width="16" height="16">
               </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section
+        class="section index-products"
+        id="products"
+        aria-labelledby="products-title"
+        data-products-view
+        aria-busy="false"
+        hidden>
+        <div class="inner-box">
+          <div class="partition-box partition-box--center">
+            <div class="content-box index-products__content">
+              <h1 class="index-products__title" id="products-title">전체 제품</h1>
+              <p class="index-products__status" data-products-status role="status" aria-live="polite">제품 목록을 불러오는 중입니다.</p>
+              <button class="button index-products__retry" type="button" data-products-retry hidden>다시 시도</button>
+              <ul class="index-products__grid" data-products-grid aria-label="전체 제품 목록" hidden></ul>
+              <p class="visually-hidden" data-products-count aria-live="polite"></p>
+              <div class="index-products__refine-wrap" data-products-refine-wrap>
+                <div
+                  class="index-products__filter-menu"
+                  id="products-filter-menu"
+                  aria-label="제품 필터"
+                  data-products-filter-menu
+                  hidden>
+                  <div class="index-products__filter-group" role="group" aria-label="제품 유형">
+                    <button class="index-products__filter is-selected" type="button" data-filter-category="all" aria-pressed="true">ALL</button>
+                    <button class="index-products__filter" type="button" data-filter-category="audio" aria-pressed="false">AUDIO</button>
+                    <button class="index-products__filter" type="button" data-filter-category="phones" aria-pressed="false">PHONES</button>
+                    <button class="index-products__filter" type="button" data-filter-category="watches" aria-pressed="false">WATCHES</button>
+                    <button class="index-products__filter" type="button" data-filter-category="accessories" aria-pressed="false">ACCESSORIES</button>
+                  </div>
+                  <div class="index-products__filter-group index-products__filter-group--brands" role="group" aria-label="브랜드">
+                    <button class="index-products__filter" type="button" data-filter-brand="NOTHING" aria-pressed="false">NOTHING</button>
+                    <button class="index-products__filter" type="button" data-filter-brand="CMF" aria-pressed="false">CMF</button>
+                  </div>
+                </div>
+                <button
+                  class="index-products__refine"
+                  type="button"
+                  aria-expanded="false"
+                  aria-controls="products-filter-menu"
+                  data-products-refine>
+                  <span>REFINE</span>
+                  <img src="images/d/f_m4.svg" alt="" aria-hidden="true" width="16" height="16">
+                </button>
+              </div>
             </div>
           </div>
         </div>

@@ -1,103 +1,77 @@
 import { productService } from '../services/productService.js';
 
-const page = document.querySelector('[data-products-page]');
-const grid = document.querySelector('[data-products-grid]');
+const main = document.querySelector('#main-content');
+const productView = document.querySelector('[data-products-view]');
 const status = document.querySelector('[data-products-status]');
+const retryButton = document.querySelector('[data-products-retry]');
+const grid = document.querySelector('[data-products-grid]');
 const count = document.querySelector('[data-products-count]');
-const refineButton = document.querySelector('[data-products-refine]');
 const filterWrap = document.querySelector('[data-products-refine-wrap]');
 const filterMenu = document.querySelector('[data-products-filter-menu]');
-const main = document.querySelector('.products-main');
+const refineButton = document.querySelector('[data-products-refine]');
 const categoryFilters = [...document.querySelectorAll('[data-filter-category]')];
 const brandFilters = [...document.querySelectorAll('[data-filter-brand]')];
+const productsMenuLink = document.querySelector('.site-menu__category[href="#products"]');
 
 if (
-  !(page instanceof HTMLElement) ||
-  !(grid instanceof HTMLUListElement) ||
+  !(main instanceof HTMLElement) ||
+  !(productView instanceof HTMLElement) ||
   !(status instanceof HTMLElement) ||
+  !(retryButton instanceof HTMLButtonElement) ||
+  !(grid instanceof HTMLUListElement) ||
   !(count instanceof HTMLElement) ||
-  !(refineButton instanceof HTMLButtonElement) ||
   !(filterWrap instanceof HTMLElement) ||
   !(filterMenu instanceof HTMLElement) ||
-  !(main instanceof HTMLElement) ||
+  !(refineButton instanceof HTMLButtonElement) ||
+  !(productsMenuLink instanceof HTMLAnchorElement) ||
   categoryFilters.length === 0 ||
   brandFilters.length === 0 ||
   categoryFilters.some((button) => !(button instanceof HTMLButtonElement)) ||
   brandFilters.some((button) => !(button instanceof HTMLButtonElement))
 ) {
-  throw new Error('전체 제품 섹션을 초기화할 수 없습니다.');
+  throw new Error('전체 제품 화면을 초기화할 수 없습니다.');
 }
 
-/** @type {import('../types/product.js').Product[]} */
-let allProducts = [];
+/** @type {import('../types/product.js').Product[] | null} */
+let allProducts = null;
+/** @type {Promise<void> | null} */
+let loadingPromise = null;
 let selectedCategory = 'all';
-let selectedBrands = new Set();
+const selectedBrands = new Set();
+const homeTitle = document.title;
+const homeSections = [...main.querySelectorAll(':scope > section:not([data-products-view])')];
+let previousScrollY = window.scrollY;
+let scrollFrame = 0;
 
-/**
- * @param {import('../types/product.js').Product[]} products
- */
-const renderProducts = (products) => {
-  if (!Array.isArray(products)) {
-    throw new TypeError('제품 목록 형식이 올바르지 않습니다.');
+const updateRefineBoundary = () => {
+  const bottomBeforeUpdate = productView.getBoundingClientRect().bottom;
+  const previousReservedHeight =
+    Number.parseFloat(productView.style.getPropertyValue('--index-products-refine-height')) || 0;
+  const isAtMainEnd = bottomBeforeUpdate <= window.innerHeight + 2;
+  const nextReservedHeight = isAtMainEnd ? filterWrap.offsetHeight : 0;
+
+  productView.classList.toggle('index-products--refine-clamped', isAtMainEnd);
+  filterWrap.classList.toggle('index-products__refine-wrap--at-main-end', isAtMainEnd);
+
+  if (isAtMainEnd) {
+    productView.style.setProperty('--index-products-refine-height', `${nextReservedHeight}px`);
+  } else {
+    productView.style.removeProperty('--index-products-refine-height');
   }
 
-  if (products.length === 0) {
-    status.textContent = '표시할 제품이 없습니다.';
-    status.hidden = false;
-    grid.hidden = true;
-    count.textContent = '표시할 제품이 없습니다.';
-    updateRefineBoundary();
-    return;
+  const addedHeight = nextReservedHeight - previousReservedHeight;
+  if (addedHeight > 0 && bottomBeforeUpdate <= window.innerHeight + 2) {
+    previousScrollY += addedHeight;
+    window.scrollBy(0, addedHeight);
   }
+};
 
-  const fragment = document.createDocumentFragment();
-  products.forEach((product, index) => {
-    const card = document.createElement('li');
-    card.className = 'products__card';
-    if (products.length === 61 && product.order === 61) {
-      card.classList.add('products__card--last');
-    }
-
-    const figure = document.createElement('figure');
-    figure.className = 'products__figure';
-
-    const image = document.createElement('img');
-    image.className = 'products__image';
-    image.src = new URL(product.imageUrl, document.baseURI).href;
-    image.alt = product.alt;
-    image.width = 800;
-    image.height = 800;
-    image.decoding = 'async';
-    if (index < 5) {
-      image.fetchPriority = 'high';
-    } else {
-      image.loading = 'lazy';
-    }
-    figure.append(image);
-
-    const caption = document.createElement('figcaption');
-    caption.className = 'products__caption';
-    if (product.brand === 'CMF') {
-      const brand = document.createElement('span');
-      brand.className = 'products__brand';
-      brand.textContent = product.brand;
-      caption.append(brand);
-    }
-
-    const name = document.createElement('span');
-    name.className = 'products__name';
-    name.textContent = product.series;
-    caption.append(name);
-
-    card.append(figure, caption);
-    fragment.append(card);
-  });
-
-  grid.replaceChildren(fragment);
-  grid.hidden = false;
-  status.hidden = true;
-  count.textContent = `${products.length}개 제품이 표시되었습니다.`;
-  updateRefineBoundary();
+const setStatus = (message, { loading = false, error = false } = {}) => {
+  status.textContent = message;
+  status.hidden = !message;
+  status.classList.toggle('is-loading', loading);
+  status.setAttribute('role', error ? 'alert' : 'status');
+  retryButton.hidden = !error;
 };
 
 const getProductCategory = (product) => {
@@ -117,23 +91,80 @@ const getProductCategory = (product) => {
   return 'accessories';
 };
 
+const renderProducts = (products) => {
+  if (!Array.isArray(products)) {
+    throw new TypeError('제품 목록 형식이 올바르지 않습니다.');
+  }
+
+  if (products.length === 0) {
+    grid.replaceChildren();
+    grid.hidden = true;
+    count.textContent = '선택한 조건에 맞는 제품이 없습니다.';
+    setStatus('선택한 조건에 맞는 제품이 없습니다.');
+    updateRefineBoundary();
+    return;
+  }
+
+  const fragment = document.createDocumentFragment();
+  products.forEach((product, index) => {
+    const card = document.createElement('li');
+    card.className = 'index-products__card';
+    if (products.length === 61 && product.order === 61) {
+      card.classList.add('index-products__card--last');
+    }
+
+    const figure = document.createElement('figure');
+    figure.className = 'index-products__figure';
+
+    const image = document.createElement('img');
+    image.className = 'index-products__image';
+    image.src = new URL(product.imageUrl, document.baseURI).href;
+    image.alt = product.alt;
+    image.width = 800;
+    image.height = 800;
+    image.decoding = 'async';
+    image.loading = index < 5 ? 'eager' : 'lazy';
+    figure.append(image);
+
+    const caption = document.createElement('figcaption');
+    caption.className = 'index-products__caption';
+    if (product.brand === 'CMF') {
+      const brand = document.createElement('span');
+      brand.className = 'index-products__brand';
+      brand.textContent = product.brand;
+      caption.append(brand);
+    }
+
+    const name = document.createElement('span');
+    name.className = 'index-products__name';
+    name.textContent = product.series || product.name;
+    caption.append(name);
+
+    card.append(figure, caption);
+    fragment.append(card);
+  });
+
+  grid.replaceChildren(fragment);
+  grid.hidden = false;
+  count.textContent = `${products.length}개 제품이 표시되었습니다.`;
+  setStatus('');
+  updateRefineBoundary();
+};
+
 const applyFilters = () => {
+  if (!allProducts) {
+    return;
+  }
+
   const filteredProducts = allProducts.filter((product) => {
-    const matchesCategory = selectedCategory === 'all' || getProductCategory(product) === selectedCategory;
-    const matchesBrand = selectedBrands.size === 0 ||
+    const matchesCategory =
+      selectedCategory === 'all' || getProductCategory(product) === selectedCategory;
+    const matchesBrand =
+      selectedBrands.size === 0 ||
       selectedBrands.size === brandFilters.length ||
       selectedBrands.has(product.brand);
     return matchesCategory && matchesBrand;
   });
-
-  if (filteredProducts.length === 0) {
-    status.textContent = '선택한 조건에 맞는 제품이 없습니다.';
-    status.hidden = false;
-    grid.hidden = true;
-    count.textContent = '선택한 조건에 맞는 제품이 없습니다.';
-    updateRefineBoundary();
-    return;
-  }
 
   renderProducts(filteredProducts);
 };
@@ -151,23 +182,87 @@ const syncFilterChoices = () => {
   });
 };
 
-let previousScrollY = window.scrollY;
-let scrollFrame = 0;
-const updateRefineBoundary = () => {
-  const isAtMainEnd = main.getBoundingClientRect().bottom <= window.innerHeight;
-  main.classList.toggle('products-main--refine-clamped', isAtMainEnd);
-  filterWrap.classList.toggle('products__refine-wrap--at-main-end', isAtMainEnd);
+const isProduct = (product) =>
+  product !== null &&
+  typeof product === 'object' &&
+  typeof product.id === 'string' &&
+  typeof product.name === 'string' &&
+  typeof product.series === 'string' &&
+  (product.brand === 'NOTHING' || product.brand === 'CMF') &&
+  typeof product.category === 'string' &&
+  typeof product.color === 'string' &&
+  typeof product.imageUrl === 'string' &&
+  typeof product.alt === 'string' &&
+  typeof product.order === 'number' &&
+  typeof product.createdAt === 'string' &&
+  typeof product.updatedAt === 'string';
 
-  if (isAtMainEnd) {
-    main.style.setProperty('--products-refine-height', `${filterWrap.offsetHeight}px`);
-  } else {
-    main.style.removeProperty('--products-refine-height');
+const loadProducts = async () => {
+  if (allProducts) {
+    applyFilters();
+    return;
   }
+  if (loadingPromise) {
+    await loadingPromise;
+    return;
+  }
+
+  productView.setAttribute('aria-busy', 'true');
+  grid.hidden = true;
+  retryButton.hidden = true;
+  setStatus('제품 목록을 불러오는 중입니다.', { loading: true });
+
+  loadingPromise = (async () => {
+    try {
+      const products = await productService.getAll();
+      if (!Array.isArray(products) || !products.every(isProduct)) {
+        throw new TypeError('제품 목록 형식이 올바르지 않습니다.');
+      }
+      allProducts = products;
+      applyFilters();
+    } catch (error) {
+      console.error('제품 목록을 불러오지 못했습니다.', error);
+      setStatus(
+        error instanceof Error ? error.message : '제품 목록을 불러오지 못했습니다.',
+        { error: true },
+      );
+    } finally {
+      productView.setAttribute('aria-busy', 'false');
+      loadingPromise = null;
+      updateRefineBoundary();
+    }
+  })();
+
+  await loadingPromise;
+};
+
+const updateRoute = () => {
+  const isProductsRoute = window.location.hash === '#products';
+  homeSections.forEach((section) => {
+    section.hidden = isProductsRoute;
+  });
+  productView.hidden = !isProductsRoute;
+  if (isProductsRoute) {
+    productsMenuLink.setAttribute('aria-current', 'page');
+  } else {
+    productsMenuLink.removeAttribute('aria-current');
+  }
+
+  if (isProductsRoute) {
+    document.title = '전체 제품 | Nothing';
+    window.scrollTo({ top: 0, behavior: 'auto' });
+    void loadProducts();
+    window.requestAnimationFrame(updateRefineBoundary);
+    return;
+  }
+
+  document.title = homeTitle;
 };
 
 updateRefineBoundary();
+
 window.addEventListener('scroll', () => {
-  if (scrollFrame) {
+  if (scrollFrame || productView.hidden) {
     return;
   }
 
@@ -181,9 +276,9 @@ window.addEventListener('scroll', () => {
     const isFilterOpen = refineButton.getAttribute('aria-expanded') === 'true';
 
     if (isFilterOpen || hasVisibleKeyboardFocus || currentScrollY < previousScrollY) {
-      filterWrap.classList.remove('products__refine-wrap--hidden');
+      filterWrap.classList.remove('index-products__refine-wrap--hidden');
     } else if (currentScrollY > previousScrollY) {
-      filterWrap.classList.add('products__refine-wrap--hidden');
+      filterWrap.classList.add('index-products__refine-wrap--hidden');
     }
 
     updateRefineBoundary();
@@ -197,7 +292,7 @@ refineButton.addEventListener('click', () => {
   const isExpanded = refineButton.getAttribute('aria-expanded') === 'true';
   refineButton.setAttribute('aria-expanded', String(!isExpanded));
   filterMenu.hidden = isExpanded;
-  filterWrap.classList.remove('products__refine-wrap--hidden');
+  filterWrap.classList.remove('index-products__refine-wrap--hidden');
   updateRefineBoundary();
 });
 
@@ -235,23 +330,9 @@ document.addEventListener('keydown', (event) => {
   }
 });
 
-const showProductsError = (error) => {
-  console.error('제품 목록을 불러오지 못했습니다.', error);
-  status.textContent = error instanceof Error
-    ? error.message
-    : '제품 목록을 불러오지 못했습니다. localhost 또는 HTTPS 환경에서 다시 시도해 주세요.';
-  status.setAttribute('role', 'alert');
-  status.hidden = false;
-  grid.hidden = true;
-  count.textContent = '제품 목록을 불러오지 못했습니다.';
-  updateRefineBoundary();
-};
+retryButton.addEventListener('click', () => {
+  void loadProducts();
+});
 
-try {
-  allProducts = await productService.getAll();
-  renderProducts(allProducts);
-} catch (error) {
-  showProductsError(error);
-} finally {
-  page.setAttribute('aria-busy', 'false');
-}
+window.addEventListener('hashchange', updateRoute);
+updateRoute();
