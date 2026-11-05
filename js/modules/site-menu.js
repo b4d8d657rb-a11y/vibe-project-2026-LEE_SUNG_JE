@@ -1,3 +1,8 @@
+const menuIcons = {
+  closed: new URL('../../images/d/hbg.svg', import.meta.url).href,
+  open: new URL('../../images/d/menu_1.svg', import.meta.url).href,
+};
+
 export const initializeSiteMenu = () => {
   const menuToggle = document.querySelector('[data-menu-toggle]');
   const menuToggleMark = menuToggle?.querySelector('.header__menu-mark');
@@ -23,7 +28,7 @@ export const initializeSiteMenu = () => {
   const setMenuOpen = (isOpen, shouldFocusToggle = true) => {
     menuToggle.setAttribute('aria-expanded', String(isOpen));
     menuToggle.setAttribute('aria-label', isOpen ? '전체 메뉴 닫기' : '전체 메뉴 열기');
-    menuToggleMark.src = isOpen ? 'images/d/menu_1.svg' : 'images/d/hbg.svg';
+    menuToggleMark.src = isOpen ? menuIcons.open : menuIcons.closed;
 
     if (isOpen) {
       document.body.classList.add('menu-open');

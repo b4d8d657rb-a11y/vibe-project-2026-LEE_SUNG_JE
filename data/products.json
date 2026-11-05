@@ -4,231 +4,330 @@
     "image": "images/products/headphone-1-pro-white.webp",
     "name": "Headphone (1) Pro",
     "color": "화이트",
-    "category": "audio"
+    "category": "audio",
+    "width": 800,
+    "height": 800,
+    "alt": "Headphone (1) Pro - 화이트"
   },
   {
     "id": "product-02",
     "image": "images/products/headphone-1-pro-black.webp",
     "name": "Headphone (1) Pro",
     "color": "블랙",
-    "category": "audio"
+    "category": "audio",
+    "width": 800,
+    "height": 800,
+    "alt": "Headphone (1) Pro - 블랙"
   },
   {
     "id": "product-03",
     "image": "images/products/headphone-1-white-3_4-view-thumbnail.webp",
     "name": "Headphone (1)",
     "color": "화이트",
-    "category": "audio"
+    "category": "audio",
+    "width": 800,
+    "height": 800,
+    "alt": "Headphone (1) - 화이트"
   },
   {
     "id": "product-04",
     "image": "images/products/headphone-1-black-3_4-view-thumbnail.webp",
     "name": "Headphone (1)",
     "color": "블랙",
-    "category": "audio"
+    "category": "audio",
+    "width": 800,
+    "height": 800,
+    "alt": "Headphone (1) - 블랙"
   },
   {
     "id": "product-05",
     "image": "images/products/headphone-a-white-3_4-view-thumbnail.webp",
     "name": "Headphone (a)",
     "color": "화이트",
-    "category": "audio"
+    "category": "audio",
+    "width": 800,
+    "height": 800,
+    "alt": "Headphone (a) - 화이트"
   },
   {
     "id": "product-06",
     "image": "images/products/headphone-a-black-3_4-view-thumbnail.webp",
     "name": "Headphone (a)",
     "color": "블랙",
-    "category": "audio"
+    "category": "audio",
+    "width": 800,
+    "height": 800,
+    "alt": "Headphone (a) - 블랙"
   },
   {
     "id": "product-07",
     "image": "images/products/headphone-a-pink-3_4-view-thumbnail.webp",
     "name": "Headphone (a)",
     "color": "핑크",
-    "category": "audio"
+    "category": "audio",
+    "width": 800,
+    "height": 800,
+    "alt": "Headphone (a) - 핑크"
   },
   {
     "id": "product-08",
     "image": "images/products/headphone-a-yellow-3_4-view-thumbnail.webp",
     "name": "Headphone (a)",
     "color": "옐로",
-    "category": "audio"
+    "category": "audio",
+    "width": 800,
+    "height": 800,
+    "alt": "Headphone (a) - 옐로"
   },
   {
     "id": "product-09",
     "image": "images/products/Phone-4a-White.webp",
     "name": "Phone (4a)",
     "color": "화이트",
-    "category": "phones"
+    "category": "phones",
+    "width": 800,
+    "height": 800,
+    "alt": "Phone (4a) - 화이트"
   },
   {
     "id": "product-10",
     "image": "images/products/Phone-4a-Black.webp",
     "name": "Phone (4a)",
     "color": "블랙",
-    "category": "phones"
+    "category": "phones",
+    "width": 800,
+    "height": 800,
+    "alt": "Phone (4a) - 블랙"
   },
   {
     "id": "product-11",
     "image": "images/products/Phone-4a-Pink.webp",
     "name": "Phone (4a)",
     "color": "핑크",
-    "category": "phones"
+    "category": "phones",
+    "width": 800,
+    "height": 800,
+    "alt": "Phone (4a) - 핑크"
   },
   {
     "id": "product-12",
     "image": "images/products/Phone-4a-Blue.webp",
     "name": "Phone (4a)",
     "color": "블루",
-    "category": "phones"
+    "category": "phones",
+    "width": 800,
+    "height": 800,
+    "alt": "Phone (4a) - 블루"
   },
   {
     "id": "product-13",
     "image": "images/products/product-thumbnail-white.webp",
     "name": "Ear (3a)",
     "color": "화이트",
-    "category": "audio"
+    "category": "audio",
+    "width": 800,
+    "height": 800,
+    "alt": "Ear (3a) - 화이트"
   },
   {
     "id": "product-14",
     "image": "images/products/product-thumbnail-black.webp",
     "name": "Ear (3a)",
     "color": "블랙",
-    "category": "audio"
+    "category": "audio",
+    "width": 800,
+    "height": 800,
+    "alt": "Ear (3a) - 블랙"
   },
   {
     "id": "product-15",
     "image": "images/products/product-thumbnail-yellow.webp",
     "name": "Ear (3a)",
     "color": "옐로",
-    "category": "audio"
+    "category": "audio",
+    "width": 800,
+    "height": 800,
+    "alt": "Ear (3a) - 옐로"
   },
   {
     "id": "product-16",
     "image": "images/products/product-thumbnail-pink.webp",
     "name": "Ear (3a)",
     "color": "핑크",
-    "category": "audio"
+    "category": "audio",
+    "width": 800,
+    "height": 800,
+    "alt": "Ear (3a) - 핑크"
   },
   {
     "id": "product-17",
     "image": "images/products/Phone-4a-Pro-White.webp",
     "name": "Phone (4a) Pro",
     "color": "화이트",
-    "category": "phones"
+    "category": "phones",
+    "width": 800,
+    "height": 800,
+    "alt": "Phone (4a) Pro - 화이트"
   },
   {
     "id": "product-18",
     "image": "images/products/Phone-4a-Pro-Black.webp",
     "name": "Phone (4a) Pro",
     "color": "블랙",
-    "category": "phones"
+    "category": "phones",
+    "width": 800,
+    "height": 800,
+    "alt": "Phone (4a) Pro - 블랙"
   },
   {
     "id": "product-19",
     "image": "images/products/Phone-4a-Pro-Pink.webp",
     "name": "Phone (4a) Pro",
     "color": "핑크",
-    "category": "phones"
+    "category": "phones",
+    "width": 800,
+    "height": 800,
+    "alt": "Phone (4a) Pro - 핑크"
   },
   {
     "id": "product-20",
     "image": "images/products/0000s_0011_Phone-3-white.webp",
     "name": "Phone (3)",
     "color": "화이트",
-    "category": "phones"
+    "category": "phones",
+    "width": 800,
+    "height": 800,
+    "alt": "Phone (3) - 화이트"
   },
   {
     "id": "product-21",
     "image": "images/products/0000s_0012_Phone-3-black.webp",
     "name": "Phone (3)",
     "color": "블랙",
-    "category": "phones"
+    "category": "phones",
+    "width": 800,
+    "height": 800,
+    "alt": "Phone (3) - 블랙"
   },
   {
     "id": "product-22",
     "image": "images/products/Ear3-white_9c7c5465-3f29-4bb9-a438-7883444a6bad.webp",
     "name": "Ear (3)",
     "color": "화이트",
-    "category": "audio"
+    "category": "audio",
+    "width": 800,
+    "height": 800,
+    "alt": "Ear (3) - 화이트"
   },
   {
     "id": "product-23",
     "image": "images/products/Ear3-black.webp",
     "name": "Ear (3)",
     "color": "블랙",
-    "category": "audio"
+    "category": "audio",
+    "width": 800,
+    "height": 800,
+    "alt": "Ear (3) - 블랙"
   },
   {
     "id": "product-24",
     "image": "images/products/0000s_0028_Ear-_open_-white.webp",
     "name": "Ear (open)",
     "color": "화이트",
-    "category": "audio"
+    "category": "audio",
+    "width": 800,
+    "height": 800,
+    "alt": "Ear (open) - 화이트"
   },
   {
     "id": "product-25",
     "image": "images/products/ear-open-plp.webp",
     "name": "Ear (open)",
     "color": "블루",
-    "category": "audio"
+    "category": "audio",
+    "width": 800,
+    "height": 800,
+    "alt": "Ear (open) - 블루"
   },
   {
     "id": "product-26",
     "image": "images/products/0000s_0008_Phone-3a-black.webp",
     "name": "Phone (3a)",
     "color": "블랙",
-    "category": "phones"
+    "category": "phones",
+    "width": 800,
+    "height": 800,
+    "alt": "Phone (3a) - 블랙"
   },
   {
     "id": "product-27",
     "image": "images/products/0000s_0004_Phone-3a-white.webp",
     "name": "Phone (3a)",
     "color": "화이트",
-    "category": "phones"
+    "category": "phones",
+    "width": 800,
+    "height": 800,
+    "alt": "Phone (3a) - 화이트"
   },
   {
     "id": "product-28",
     "image": "images/products/0000s_0007_Phone-3a-blue.webp",
     "name": "Phone (3a)",
     "color": "블루",
-    "category": "phones"
+    "category": "phones",
+    "width": 800,
+    "height": 800,
+    "alt": "Phone (3a) - 블루"
   },
   {
     "id": "product-29",
     "image": "images/products/0000s_0024_Ear-black.webp",
     "name": "Ear",
     "color": "블랙",
-    "category": "audio"
+    "category": "audio",
+    "width": 800,
+    "height": 800,
+    "alt": "Ear - 블랙"
   },
   {
     "id": "product-30",
     "image": "images/products/0000s_0023_Ear-white.webp",
     "name": "Ear",
     "color": "화이트",
-    "category": "audio"
+    "category": "audio",
+    "width": 800,
+    "height": 800,
+    "alt": "Ear - 화이트"
   },
   {
     "id": "product-31",
     "image": "images/products/0000s_0026_Ear-a-white.webp",
     "name": "Ear (a)",
     "color": "화이트",
-    "category": "audio"
+    "category": "audio",
+    "width": 800,
+    "height": 800,
+    "alt": "Ear (a) - 화이트"
   },
   {
     "id": "product-32",
     "image": "images/products/0000s_0027_Ear-a-black.webp",
     "name": "Ear (a)",
     "color": "블랙",
-    "category": "audio"
+    "category": "audio",
+    "width": 800,
+    "height": 800,
+    "alt": "Ear (a) - 블랙"
   },
   {
     "id": "product-33",
     "image": "images/products/0000s_0025_Ear-a-yellow.webp",
     "name": "Ear (a)",
     "color": "옐로",
-    "category": "audio"
+    "category": "audio",
+    "width": 800,
+    "height": 800,
+    "alt": "Ear (a) - 옐로"
   },
   {
     "id": "product-34",
@@ -236,7 +335,10 @@
     "brand": "CMF",
     "name": "Clip Pro",
     "color": "오렌지",
-    "category": "cmf"
+    "category": "cmf",
+    "width": 800,
+    "height": 800,
+    "alt": "CMF Clip Pro - 오렌지"
   },
   {
     "id": "product-35",
@@ -244,7 +346,10 @@
     "brand": "CMF",
     "name": "Clip Pro",
     "color": "화이트",
-    "category": "cmf"
+    "category": "cmf",
+    "width": 800,
+    "height": 800,
+    "alt": "CMF Clip Pro - 화이트"
   },
   {
     "id": "product-36",
@@ -252,7 +357,10 @@
     "brand": "CMF",
     "name": "Clip Pro",
     "color": "블랙",
-    "category": "cmf"
+    "category": "cmf",
+    "width": 800,
+    "height": 800,
+    "alt": "CMF Clip Pro - 블랙"
   },
   {
     "id": "product-37",
@@ -260,7 +368,10 @@
     "brand": "CMF",
     "name": "Speaker S",
     "color": "터쿼이즈",
-    "category": "cmf"
+    "category": "cmf",
+    "width": 800,
+    "height": 800,
+    "alt": "CMF Speaker S - 터쿼이즈"
   },
   {
     "id": "product-38",
@@ -268,7 +379,10 @@
     "brand": "CMF",
     "name": "Speaker S",
     "color": "다크 그레이",
-    "category": "cmf"
+    "category": "cmf",
+    "width": 800,
+    "height": 800,
+    "alt": "CMF Speaker S - 다크 그레이"
   },
   {
     "id": "product-39",
@@ -276,7 +390,10 @@
     "brand": "CMF",
     "name": "Speaker S",
     "color": "화이트",
-    "category": "cmf"
+    "category": "cmf",
+    "width": 800,
+    "height": 800,
+    "alt": "CMF Speaker S - 화이트"
   },
   {
     "id": "product-40",
@@ -284,7 +401,10 @@
     "brand": "CMF",
     "name": "Speaker S",
     "color": "오렌지",
-    "category": "cmf"
+    "category": "cmf",
+    "width": 800,
+    "height": 800,
+    "alt": "CMF Speaker S - 오렌지"
   },
   {
     "id": "product-41",
@@ -292,7 +412,10 @@
     "brand": "CMF",
     "name": "Speaker M",
     "color": "터쿼이즈",
-    "category": "cmf"
+    "category": "cmf",
+    "width": 800,
+    "height": 800,
+    "alt": "CMF Speaker M - 터쿼이즈"
   },
   {
     "id": "product-42",
@@ -300,7 +423,10 @@
     "brand": "CMF",
     "name": "Speaker M",
     "color": "다크 그레이",
-    "category": "cmf"
+    "category": "cmf",
+    "width": 800,
+    "height": 800,
+    "alt": "CMF Speaker M - 다크 그레이"
   },
   {
     "id": "product-43",
@@ -308,7 +434,10 @@
     "brand": "CMF",
     "name": "Speaker M",
     "color": "화이트",
-    "category": "cmf"
+    "category": "cmf",
+    "width": 800,
+    "height": 800,
+    "alt": "CMF Speaker M - 화이트"
   },
   {
     "id": "product-44",
@@ -316,7 +445,10 @@
     "brand": "CMF",
     "name": "Speaker M",
     "color": "오렌지",
-    "category": "cmf"
+    "category": "cmf",
+    "width": 800,
+    "height": 800,
+    "alt": "CMF Speaker M - 오렌지"
   },
   {
     "id": "product-45",
@@ -324,7 +456,10 @@
     "brand": "CMF",
     "name": "Headphone Pro",
     "color": "라이트 그린",
-    "category": "cmf"
+    "category": "cmf",
+    "width": 800,
+    "height": 800,
+    "alt": "CMF Headphone Pro - 라이트 그린"
   },
   {
     "id": "product-46",
@@ -332,7 +467,10 @@
     "brand": "CMF",
     "name": "Headphone Pro",
     "color": "라이트 그레이",
-    "category": "cmf"
+    "category": "cmf",
+    "width": 800,
+    "height": 800,
+    "alt": "CMF Headphone Pro - 라이트 그레이"
   },
   {
     "id": "product-47",
@@ -340,7 +478,10 @@
     "brand": "CMF",
     "name": "Headphone Pro",
     "color": "다크 그레이",
-    "category": "cmf"
+    "category": "cmf",
+    "width": 800,
+    "height": 800,
+    "alt": "CMF Headphone Pro - 다크 그레이"
   },
   {
     "id": "product-48",
@@ -348,7 +489,10 @@
     "brand": "CMF",
     "name": "Watch 3 Pro",
     "color": "민트",
-    "category": "cmf"
+    "category": "cmf",
+    "width": 800,
+    "height": 800,
+    "alt": "CMF Watch 3 Pro - 민트"
   },
   {
     "id": "product-49",
@@ -356,7 +500,10 @@
     "brand": "CMF",
     "name": "Watch 3 Pro",
     "color": "오렌지",
-    "category": "cmf"
+    "category": "cmf",
+    "width": 800,
+    "height": 800,
+    "alt": "CMF Watch 3 Pro - 오렌지"
   },
   {
     "id": "product-50",
@@ -364,7 +511,10 @@
     "brand": "CMF",
     "name": "Watch 3 Pro",
     "color": "라이트 그레이",
-    "category": "cmf"
+    "category": "cmf",
+    "width": 800,
+    "height": 800,
+    "alt": "CMF Watch 3 Pro - 라이트 그레이"
   },
   {
     "id": "product-51",
@@ -372,7 +522,10 @@
     "brand": "CMF",
     "name": "Watch 3 Pro",
     "color": "다크 그레이",
-    "category": "cmf"
+    "category": "cmf",
+    "width": 800,
+    "height": 800,
+    "alt": "CMF Watch 3 Pro - 다크 그레이"
   },
   {
     "id": "product-52",
@@ -380,7 +533,10 @@
     "brand": "CMF",
     "name": "Buds Pro 2",
     "color": "오렌지",
-    "category": "cmf"
+    "category": "cmf",
+    "width": 800,
+    "height": 800,
+    "alt": "CMF Buds Pro 2 - 오렌지"
   },
   {
     "id": "product-53",
@@ -388,7 +544,10 @@
     "brand": "CMF",
     "name": "Buds Pro 2",
     "color": "블랙",
-    "category": "cmf"
+    "category": "cmf",
+    "width": 800,
+    "height": 800,
+    "alt": "CMF Buds Pro 2 - 블랙"
   },
   {
     "id": "product-54",
@@ -396,7 +555,10 @@
     "brand": "CMF",
     "name": "Buds Pro 2",
     "color": "실버",
-    "category": "cmf"
+    "category": "cmf",
+    "width": 800,
+    "height": 800,
+    "alt": "CMF Buds Pro 2 - 실버"
   },
   {
     "id": "product-55",
@@ -404,7 +566,10 @@
     "brand": "CMF",
     "name": "Buds Pro 2",
     "color": "블루",
-    "category": "cmf"
+    "category": "cmf",
+    "width": 800,
+    "height": 800,
+    "alt": "CMF Buds Pro 2 - 블루"
   },
   {
     "id": "product-56",
@@ -412,7 +577,10 @@
     "brand": "CMF",
     "name": "Watch Pro 2",
     "color": "오렌지",
-    "category": "cmf"
+    "category": "cmf",
+    "width": 800,
+    "height": 800,
+    "alt": "CMF Watch Pro 2 - 오렌지"
   },
   {
     "id": "product-57",
@@ -420,7 +588,10 @@
     "brand": "CMF",
     "name": "Watch Pro 2",
     "color": "블랙",
-    "category": "cmf"
+    "category": "cmf",
+    "width": 800,
+    "height": 800,
+    "alt": "CMF Watch Pro 2 - 블랙"
   },
   {
     "id": "product-58",
@@ -428,7 +599,10 @@
     "brand": "CMF",
     "name": "Watch Pro 2",
     "color": "그레이",
-    "category": "cmf"
+    "category": "cmf",
+    "width": 800,
+    "height": 800,
+    "alt": "CMF Watch Pro 2 - 그레이"
   },
   {
     "id": "product-59",
@@ -436,7 +610,10 @@
     "brand": "CMF",
     "name": "Watch Pro 2",
     "color": "블루",
-    "category": "cmf"
+    "category": "cmf",
+    "width": 800,
+    "height": 800,
+    "alt": "CMF Watch Pro 2 - 블루"
   },
   {
     "id": "product-60",
@@ -444,7 +621,10 @@
     "brand": "CMF",
     "name": "Headphone Pro Ear Cushions",
     "color": "라이트 그린",
-    "category": "cmf"
+    "category": "cmf",
+    "width": 800,
+    "height": 800,
+    "alt": "CMF Headphone Pro Ear Cushions - 라이트 그린"
   },
   {
     "id": "product-61",
@@ -452,6 +632,9 @@
     "brand": "CMF",
     "name": "Headphone Pro Ear Cushions",
     "color": "라이트 오렌지",
-    "category": "cmf"
+    "category": "cmf",
+    "width": 800,
+    "height": 800,
+    "alt": "CMF Headphone Pro Ear Cushions - 라이트 오렌지"
   }
 ]
