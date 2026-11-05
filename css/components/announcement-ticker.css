@@ -43,6 +43,12 @@
 
 .announcement-ticker__label {
   display: none;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-2) var(--space-8);
+  border: 1px dotted rgb(var(--greyscale-white));
+  border-radius: var(--radius-full);
+  font-family: var(--font-ndot);
 }
 
 .announcement-ticker__title {
@@ -85,7 +91,7 @@
 
 @media (min-width: 400px) {
   .announcement-ticker__label {
-    display: inline;
+    display: inline-flex;
   }
 }
 

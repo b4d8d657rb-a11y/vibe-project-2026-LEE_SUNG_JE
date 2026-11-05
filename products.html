@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="ko" class="light">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Nothing과 CMF의 스마트폰, 오디오 제품과 액세서리를 모두 만나보세요.">
+    <meta property="og:title" content="전체 제품 | Nothing">
+    <meta property="og:description" content="Nothing과 CMF의 전체 제품을 확인하세요.">
+    <title>전체 제품 | Nothing</title>
+    <link rel="stylesheet" href="css/sub.css">
+  </head>
+  <body class="products-page light">
+    <aside class="announcement-ticker" data-announcement-ticker data-notice-url="pages/support/notice.html" aria-label="주요 공지사항" hidden>
+      <div class="inner-box announcement-ticker__inner">
+        <a class="announcement-ticker__link" data-announcement-link>
+          <span class="announcement-ticker__label" aria-hidden="true">NOTICE</span>
+          <span class="announcement-ticker__title" data-announcement-title aria-live="off"></span>
+        </a>
+        <div class="announcement-ticker__controls" role="group" aria-label="공지 순환 제어">
+          <span class="announcement-ticker__count" data-announcement-count aria-hidden="true"></span>
+          <button class="announcement-ticker__control" type="button" data-announcement-pause aria-label="공지 순환 멈춤">
+            <span aria-hidden="true">Ⅱ</span>
+          </button>
+          <button class="announcement-ticker__control" type="button" data-announcement-play aria-label="공지 순환 재생">
+            <span aria-hidden="true">▶</span>
+          </button>
+          <button class="announcement-ticker__control" type="button" data-announcement-close aria-label="공지 닫기">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+      </div>
+    </aside>
+    <div class="body-pattern" aria-hidden="true"></div>
+    <header class="site-header">
+      <div class="inner-box">
+        <div class="partition-box partition-box--center">
+          <div class="content-box header__content">
+            <a class="visually-hidden" href="#main-content">본문 바로가기</a>
+            <button
+              class="header__menu-button"
+              type="button"
+              aria-label="전체 메뉴 열기"
+              aria-controls="site-menu"
+              aria-expanded="false"
+              data-menu-toggle>
+              <img class="header__menu-mark" src="images/d/hbg.svg" alt="" aria-hidden="true" width="16" height="16">
+            </button>
+            <a class="header__brand" href="index.html#main-content" aria-label="NOTHING 홈">
+              <img class="header__brand-logo" src="images/d/logo.svg" alt="NOTHING" width="106" height="14">
+            </a>
+            <span class="header__balance" aria-hidden="true"></span>
+
+            <nav class="site-menu" id="site-menu" aria-label="전체 메뉴" aria-hidden="true" inert>
+              <div class="site-menu__panel">
+                <div class="site-menu__content">
+                  <ul class="site-menu__categories">
+                    <li><a class="site-menu__category" href="products.html" data-menu-link aria-current="page">모든 제품</a></li>
+                    <li><a class="site-menu__category" href="index.html#category" data-menu-link>휴대전화</a></li>
+                    <li><a class="site-menu__category" href="index.html#category" data-menu-link>오디오</a></li>
+                    <li><a class="site-menu__category" href="index.html#category" data-menu-link>시계</a></li>
+                    <li><a class="site-menu__category" href="index.html#category" data-menu-link>액세서리</a></li>
+                  </ul>
+                  <div class="site-menu__signature" aria-label="CMF, NOTHING OS 5.0">
+                    <a class="site-menu__cmf" href="index.html#category">CMF</a>
+                    <a class="site-menu__slogan" href="index.html#main-content">NOTHING OS 5.0</a>
+                  </div>
+                </div>
+                <nav class="site-menu__footer" aria-label="추가 링크">
+                  <ul class="site-menu__links">
+                    <li><a class="site-menu__link" href="index.html#main-content" data-menu-link>ACCOUNT</a></li>
+                    <li><a class="site-menu__link" href="pages/support/notice.html" data-menu-link>지원</a></li>
+                    <li><a class="site-menu__link" href="index.html#community" data-menu-link>COMMUNITY</a></li>
+                    <li><a class="site-menu__link" href="index.html#community" data-menu-link>회사 소개</a></li>
+                  </ul>
+                </nav>
+              </div>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="products-main" id="main-content">
+      <section class="section products" aria-labelledby="products-title">
+        <div class="inner-box products__inner">
+          <div class="partition-box partition-box--center products__layout">
+            <div class="content-box products__content">
+              <h1 class="products__title" id="products-title">전체 제품</h1>
+              <ul class="products__grid" id="products-grid" data-products-grid aria-label="전체 제품 목록"></ul>
+              <p class="visually-hidden" data-products-count aria-live="polite"></p>
+              <div class="products__refine">
+                <div class="products__refine-options" id="products-refine-options" role="group" aria-label="제품 카테고리" hidden>
+                  <button class="products__filter" type="button" data-product-filter="all" aria-pressed="true">전체 제품</button>
+                  <button class="products__filter" type="button" data-product-filter="phones" aria-pressed="false">휴대전화</button>
+                  <button class="products__filter" type="button" data-product-filter="audio" aria-pressed="false">오디오</button>
+                  <button class="products__filter" type="button" data-product-filter="cmf" aria-pressed="false">CMF</button>
+                </div>
+                <button
+                  class="products__refine-toggle"
+                  type="button"
+                  aria-controls="products-refine-options"
+                  aria-expanded="false"
+                  aria-label="제품 카테고리 필터 열기"
+                  data-products-refine>
+                  <span>REFINE</span>
+                  <img src="images/d/f_m4.svg" alt="" aria-hidden="true" width="16" height="16">
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <section class="footer__section" aria-label="사이트 정보">
+        <div class="footer__main">
+          <h2 class="footer__heading"><a href="index.html#community">회사 소개</a></h2>
+          <nav class="footer__platforms" aria-label="Nothing 플랫폼">
+            <a class="footer__platform" href="index.html#main-content">NOTHING OS 5.0</a>
+            <a class="footer__platform" href="index.html#community">COMMUNITY</a>
+            <a class="footer__platform" href="index.html#category">PLAYGROUND</a>
+          </nav>
+          <nav class="footer__settings" aria-label="지원 및 설정">
+            <a class="footer__setting" href="pages/support/notice.html">
+              <span>지원</span>
+              <img class="footer__setting-icon" src="images/d/f_m1.svg" alt="" aria-hidden="true" width="16" height="16">
+            </a>
+            <a class="footer__setting" href="index.html#community">
+              <span>뉴스레터</span>
+              <img class="footer__setting-icon" src="images/d/f_m2.svg" alt="" aria-hidden="true" width="16" height="16">
+            </a>
+            <a class="footer__setting" href="index.html#community">
+              <span>매장: SOUTH KOREA</span>
+              <img class="footer__setting-icon" src="images/d/f_m3.svg" alt="" aria-hidden="true" width="16" height="16">
+            </a>
+            <button class="footer__setting" type="button">
+              <span>언어: KO</span>
+              <img class="footer__setting-icon footer__setting-icon--chevron" src="images/d/f_m4.svg" alt="" aria-hidden="true" width="16" height="16">
+            </button>
+            <button class="footer__setting" type="button">
+              <span>동의 설정</span>
+              <img class="footer__setting-icon" src="images/d/f_m5.svg" alt="" aria-hidden="true" width="16" height="16">
+            </button>
+          </nav>
+        </div>
+        <div class="footer__bottom">
+          <nav class="footer__legal" aria-label="법적 정보">
+            <a class="footer__bottom-link footer__legal-link" href="index.html#community">계정</a>
+            <a class="footer__bottom-link" href="index.html#community">연락처</a>
+            <a class="footer__bottom-link" href="index.html#community">캐리어</a>
+            <a class="footer__bottom-link" href="index.html#community">법률</a>
+          </nav>
+          <nav class="footer__socials" aria-label="소셜 미디어">
+            <a class="footer__bottom-link" href="index.html#community">INSTAGRAM</a>
+            <a class="footer__bottom-link" href="index.html#community">YOUTUBE</a>
+            <a class="footer__bottom-link" href="index.html#community">X</a>
+            <a class="footer__bottom-link" href="index.html#community">TIKTOK</a>
+          </nav>
+        </div>
+      </section>
+    </footer>
+    <script type="module" src="js/sub.js"></script>
+    <script type="module" src="js/modules/announcement-ticker.js"></script>
+  </body>
+</html>

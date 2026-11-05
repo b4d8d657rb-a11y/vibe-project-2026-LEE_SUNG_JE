@@ -1,10 +1,7 @@
 import { initializeCollectionSliders } from './modules/collection-slider.js';
 import { initializeHeaderScroll } from './modules/header-scroll.js';
+import { initializeSiteMenu } from './modules/site-menu.js';
 
-const menuToggle = document.querySelector('[data-menu-toggle]');
-const menuToggleMark = menuToggle?.querySelector('.header__menu-mark');
-const menu = document.querySelector('#site-menu');
-const menuPanel = menu?.querySelector('.site-menu__panel');
 const mainVideo = document.querySelector('[data-main-video]');
 const mainVideoToggle = document.querySelector('[data-main-video-toggle]');
 const filmVideo = document.querySelector('[data-film-video]');
@@ -16,10 +13,6 @@ const filmMute = document.querySelector('[data-film-mute]');
 const communityConsent = document.querySelector('[data-community-consent]');
 const communitySubmit = document.querySelector('[data-community-submit]');
 if (
-  !(menuToggle instanceof HTMLButtonElement) ||
-  !(menuToggleMark instanceof HTMLImageElement) ||
-  !(menu instanceof HTMLElement) ||
-  !(menuPanel instanceof HTMLElement) ||
   !(mainVideo instanceof HTMLVideoElement) ||
   !(mainVideoToggle instanceof HTMLButtonElement) ||
   !(filmVideo instanceof HTMLVideoElement) ||
@@ -148,84 +141,6 @@ if (!reducedMotionPreference.matches) {
 }
 updateVideoToggle();
 
-const finishMenuClose = () => {
-  menu.classList.remove('is-visible');
-  menu.setAttribute('aria-hidden', 'true');
-  menu.inert = true;
-  document.body.classList.remove('menu-open');
-};
-
-const setMenuOpen = (isOpen, shouldFocusToggle = true) => {
-  menuToggle.setAttribute('aria-expanded', String(isOpen));
-  menuToggle.setAttribute('aria-label', isOpen ? '전체 메뉴 닫기' : '전체 메뉴 열기');
-  menuToggleMark.src = isOpen ? 'images/d/menu_1.svg' : 'images/d/hbg.svg';
-
-  if (isOpen) {
-    document.body.classList.add('menu-open');
-    menu.inert = false;
-    menu.setAttribute('aria-hidden', 'false');
-    menu.classList.add('is-visible');
-    window.requestAnimationFrame(() => {
-      if (menuToggle.getAttribute('aria-expanded') === 'true') {
-        menu.classList.add('is-open');
-      }
-    });
-    return;
-  }
-
-  const wasOpen = menu.classList.contains('is-open');
-  menu.classList.remove('is-open');
-  if (shouldFocusToggle) {
-    menuToggle.focus();
-  }
-  if (!wasOpen) {
-    finishMenuClose();
-  }
-};
-
-menuToggle.addEventListener('click', () => {
-  setMenuOpen(menuToggle.getAttribute('aria-expanded') !== 'true');
-});
-
-menu.addEventListener('click', (event) => {
-  if (event.target instanceof Element && event.target.closest('[data-menu-link]')) {
-    setMenuOpen(false);
-  }
-});
-
-document.addEventListener('keydown', (event) => {
-  if (menuToggle.getAttribute('aria-expanded') !== 'true') {
-    return;
-  }
-
-  if (event.key === 'Escape') {
-    event.preventDefault();
-    setMenuOpen(false);
-  }
-});
-
-document.addEventListener('click', (event) => {
-  if (
-    menuToggle.getAttribute('aria-expanded') === 'true' &&
-    event.target instanceof Node &&
-    !menuPanel.contains(event.target) &&
-    !menuToggle.contains(event.target)
-  ) {
-    setMenuOpen(false, false);
-  }
-});
-
-menu.addEventListener('transitionend', (event) => {
-  if (
-    event.target !== menuPanel ||
-    event.propertyName !== 'height' ||
-    menu.classList.contains('is-open')
-  ) {
-    return;
-  }
-
-  finishMenuClose();
-});
-
+initializeSiteMenu();
 initializeCollectionSliders();
 initializeHeaderScroll();
