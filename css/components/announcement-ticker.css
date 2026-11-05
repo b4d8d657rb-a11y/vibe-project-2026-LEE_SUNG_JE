@@ -1,0 +1,96 @@
+.announcement-ticker {
+  position: sticky;
+  z-index: var(--z-overlay);
+  inset-block-start: 0;
+  min-height: var(--control-md);
+  background-color: rgb(var(--greyscale-black));
+  color: rgb(var(--greyscale-white));
+}
+
+.announcement-ticker[hidden] {
+  display: none;
+}
+
+.announcement-ticker__inner {
+  display: flex;
+  min-height: var(--control-md);
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-8);
+}
+
+.announcement-ticker__link {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  gap: var(--space-12);
+  color: inherit;
+  text-decoration: none;
+}
+
+.announcement-ticker__link:focus-visible,
+.announcement-ticker__control:focus-visible {
+  outline: 2px solid rgb(var(--greyscale-white));
+  outline-offset: 2px;
+}
+
+.announcement-ticker__label,
+.announcement-ticker__count {
+  flex: 0 0 auto;
+  font-family: var(--font-mono);
+  font-size: var(--type-size-mono-xs);
+}
+
+.announcement-ticker__label {
+  display: none;
+}
+
+.announcement-ticker__title {
+  min-width: 0;
+  overflow: hidden;
+  font-size: var(--type-size-body-sm);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.announcement-ticker__controls {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.announcement-ticker__control {
+  display: grid;
+  width: var(--control-md);
+  height: var(--control-md);
+  flex: 0 0 var(--control-md);
+  place-items: center;
+  border-radius: var(--radius-sm);
+  background-color: transparent;
+  color: inherit;
+  cursor: pointer;
+  font-family: var(--font-mono);
+  font-size: var(--type-size-mono-sm);
+}
+
+.announcement-ticker__control:disabled {
+  cursor: not-allowed;
+  opacity: 0.3;
+}
+
+.has-announcement-ticker .site-header {
+  inset-block-start: var(--control-md);
+}
+
+@media (min-width: 400px) {
+  .announcement-ticker__label {
+    display: inline;
+  }
+}
+
+@media (hover: hover) {
+  .announcement-ticker__control:hover:not(:disabled) {
+    background-color: rgb(var(--greyscale-white) / 0.12);
+  }
+}

@@ -10,6 +10,26 @@
     <link rel="stylesheet" href="css/main.css">
   </head>
   <body>
+    <aside class="announcement-ticker" data-announcement-ticker data-notice-url="pages/support/notice.html" aria-label="주요 공지사항" hidden>
+      <div class="inner-box announcement-ticker__inner">
+        <a class="announcement-ticker__link" data-announcement-link>
+          <span class="announcement-ticker__label" aria-hidden="true">NOTICE</span>
+          <span class="announcement-ticker__title" data-announcement-title aria-live="off"></span>
+        </a>
+        <div class="announcement-ticker__controls" role="group" aria-label="공지 순환 제어">
+          <span class="announcement-ticker__count" data-announcement-count aria-hidden="true"></span>
+          <button class="announcement-ticker__control" type="button" data-announcement-pause aria-label="공지 순환 멈춤">
+            <span aria-hidden="true">Ⅱ</span>
+          </button>
+          <button class="announcement-ticker__control" type="button" data-announcement-play aria-label="공지 순환 재생">
+            <span aria-hidden="true">▶</span>
+          </button>
+          <button class="announcement-ticker__control" type="button" data-announcement-close aria-label="공지 닫기">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+      </div>
+    </aside>
     <div class="body-pattern" aria-hidden="true"></div>
     <header class="site-header">
       <div class="inner-box">
@@ -692,5 +712,6 @@
     </footer>
     <script defer src="js/vendor/swiper-bundle.min.js"></script>
     <script type="module" src="js/main.js"></script>
+    <script type="module" src="js/modules/announcement-ticker.js"></script>
   </body>
 </html>
