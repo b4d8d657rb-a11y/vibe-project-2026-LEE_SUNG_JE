@@ -407,7 +407,7 @@ body {
 
 .community__policy {
   text-decoration: underline;
-  text-underline-offset: 2px;
+  text-underline-offset: 0.5px;
 }
 
 .community__policy:focus-visible {
@@ -811,7 +811,7 @@ body {
   line-height: 1.25;
   text-decoration: underline;
   text-decoration-thickness: 1px;
-  text-underline-offset: 4px;
+  text-underline-offset: 0.5px;
 }
 
 .sound-card__link:focus-visible {

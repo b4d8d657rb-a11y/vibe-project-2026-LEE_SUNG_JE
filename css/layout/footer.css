@@ -139,7 +139,7 @@
   .footer__platform:hover,
   .footer__legal a:hover,
   .footer__socials a:hover {
-    color: rgb(89 90 90);
+    color: rgb(var(--greyscale-900));
   }
 }
 

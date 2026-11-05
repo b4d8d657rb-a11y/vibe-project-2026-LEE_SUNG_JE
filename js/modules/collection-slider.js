@@ -1,6 +1,7 @@
 export const initializeCollectionSliders = () => {
   const SwiperConstructor = globalThis.Swiper;
   const featuredSlider = document.querySelector('[data-collection-featured]');
+  const featuredScrollbar = document.querySelector('[data-collection-featured-scrollbar]');
   const gallerySlider = document.querySelector('[data-collection-gallery]');
   const featuredPrevious = document.querySelector('[data-collection-featured-prev]');
   const featuredNext = document.querySelector('[data-collection-featured-next]');
@@ -10,6 +11,7 @@ export const initializeCollectionSliders = () => {
   if (
     typeof SwiperConstructor !== 'function' ||
     !(featuredSlider instanceof HTMLElement) ||
+    !(featuredScrollbar instanceof HTMLElement) ||
     !(gallerySlider instanceof HTMLElement) ||
     !(featuredPrevious instanceof HTMLButtonElement) ||
     !(featuredNext instanceof HTMLButtonElement) ||
@@ -39,6 +41,12 @@ export const initializeCollectionSliders = () => {
     navigation: {
       prevEl: featuredPrevious,
       nextEl: featuredNext,
+    },
+    scrollbar: {
+      el: featuredScrollbar,
+      draggable: true,
+      hide: false,
+      snapOnRelease: true,
     },
     slidesPerView: 1,
     speed,
