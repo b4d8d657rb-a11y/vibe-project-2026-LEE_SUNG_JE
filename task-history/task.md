@@ -4,6 +4,104 @@
 
 ---
 
+## [2026-11-06] 묻고답하기 게시판 추가
+* **요청 사항**: Firebase 기반 질문·답변 게시판, 5개 질문 유형, 비공개 글, 작성자 전용 수정/삭제, 관리자 전용 답변 제공.
+* **구현 상태**:
+  * 공지 게시판과 유사한 목록·상세·작성·수정 화면 및 질문 유형 필터/제목 검색 추가.
+  * 공개 질문 메타데이터와 본문을 별도 컬렉션으로 저장해 비공개 글은 목록에 표시하면서 본문/답변을 작성자와 관리자에게만 허용.
+  * 질문 작성/수정/삭제는 회원 본인 UID로 제한하고, 답변 등록은 관리자 이메일로 제한.
+  * 공통 헤더/푸터의 홈 메뉴와 지원 메뉴에 묻고답하기 링크 추가. Firestore Rules를 Console에 게시 완료.
+* **검증 결과**: Q&A 목록 Firebase 조회, 빈 목록/로그인 CTA 렌더링, 375 / 768 / 1280px 메뉴·레이아웃, 샘플 데이터의 비공개 표시·답변완료·상세 답변/본문 차단 확인. 실계정으로 질문/답변 쓰기 흐름은 테스트 데이터 생성을 피하기 위해 실행하지 않음.
+* **수정 파일**: `js/config/qna-board.js`, `js/services/qna-service.js`, `js/modules/qna-board.js`, `js/modules/qna-board-view.js`, `pages/support/qna.html`, `css/pages/qna.css`, `partials/site-shell.html`, `js/modules/site-shell.js`, `firestore.rules`, `task-history/task.md`
+
+---
+
+## [2026-11-06] 제품 상세 복귀 링크 확대
+* **요청 사항**: 제품 상세의 모든 제품 복귀 아이콘과 텍스트를 확대.
+* **구현 상태**: 아이콘을 24px, 텍스트를 16px로 키우고 링크 높이 48px는 유지.
+* **검증 결과**: 브라우저 계산 스타일에서 텍스트·아이콘 크기와 링크 높이 확인. CSS 진단 오류 없음.
+* **수정 파일**: `css/pages/product-detail.css`, `task-history/task.md`
+
+---
+
+## [2026-11-06] 제품 상세 캡션 크기 통일
+* **요청 사항**: 갤러리 캡션의 박스·폰트 크기를 대표 이미지 캡션과 일치.
+* **구현 상태**: 두 캡션의 패딩 8×12px, 반경, 모노 서체, 12px 글자 크기, 자간을 공통 규칙으로 통합. 모바일 글자 축소 제거.
+* **검증 결과**: 브라우저에서 모바일·데스크톱 모두 두 캡션 높이 34px 및 동일 스타일 확인. CSS 진단 오류 없음.
+* **수정 파일**: `css/pages/product-detail.css`, `task-history/task.md`
+
+---
+
+## [2026-11-06] 공지 목록 복귀 아이콘 교체
+* **요청 사항**: 공지 상세의 목록 복귀 버튼 화살표를 `main.svg`로 변경.
+* **구현 상태**: 텍스트 화살표를 장식용 아이콘으로 교체하고, 뒤집어 왼쪽 방향을 유지. 버튼 문구는 접근성 이름으로 유지.
+* **검증 결과**: 브라우저에서 SVG 경로, 16px 크기, 왼쪽 회전 및 버튼 링크 확인. JS/CSS 진단 오류 없음.
+* **수정 파일**: `js/modules/notice-board-view.js`, `css/components/notice-board.css`, `task-history/task.md`
+
+---
+
+## [2026-11-06] 전체 메뉴 한글·영문 행 높이 통일
+* **요청 사항**: 영문 메뉴 텍스트의 세로 행 높이를 한글 메뉴와 맞춤.
+* **구현 상태**: 영문 시그니처 글자 크기를 유지하면서 행간을 데스크톱 1.7, 모바일 1.5로 조정.
+* **검증 결과**: 브라우저 계산 행 높이에서 한글/영문이 모바일 44.8/45px, 데스크톱 51.2/51px로 일치에 가깝고 가로 넘침 없음.
+* **수정 파일**: `css/layout/header.css`, `task-history/task.md`
+
+---
+
+## [2026-11-06] 전체 메뉴 간격 통일
+* **요청 사항**: 메뉴 내부 항목 간 간격을 균일하게 조정.
+* **구현 상태**: 한글 카테고리, 카테고리/영문 시그니처 그룹, 영문 시그니처 항목 사이 간격을 모바일·데스크톱 모두 `--space-8`(8px)로 통일.
+* **검증 결과**: 브라우저 계산 스타일에서 375px 및 1280px 모두 각 간격 8px, 가로 넘침 없음.
+* **수정 파일**: `css/layout/header.css`, `task-history/task.md`
+
+---
+
+## [2026-11-06] 전체 메뉴 영문 굵기 통일
+* **요청 사항**: 전체 메뉴의 영문 텍스트 굵기를 한글 메뉴와 맞춤.
+* **구현 상태**: `CMF`, `NOTHING OS 5.0`에 한글 메뉴와 동일한 `NType82-Headline` 및 400 굵기를 적용하고 기존 크기는 유지.
+* **검증 결과**: 브라우저 계산 스타일에서 한글/영문 모두 동일 서체 및 굵기 확인. 페이지 오류 없음.
+* **수정 파일**: `css/layout/header.css`, `task-history/task.md`
+
+---
+
+## [2026-11-06] 공통 헤더·푸터 모듈화
+* **요청 사항**: 페이지별 HTML에 반복된 상단·하단 공통 모듈을 한 곳에서 관리.
+* **구현 상태**:
+  * `partials/site-shell.html`에 메인/지원 헤더·푸터와 공지 티커 템플릿을 중앙화.
+  * `data-site-shell` 설정을 읽는 `js/modules/site-shell.js`가 각 페이지의 `<main>` 앞뒤에 공통 레이아웃을 삽입.
+  * 메인·지원 페이지의 인증 상태, 티커, 메뉴 초기화를 레이아웃 로딩 완료 뒤 실행하도록 조정. 인증 팝업 전용 헤더와 페이지 본문은 유지.
+* **검증 결과**: 메인 메뉴 동작, 지원 로그인 버튼, 게시판·티커 렌더링 확인. 두 페이지 모두 375 / 768 / 1280px 가로 넘침과 브라우저 페이지 오류 없음. HTML·JS 진단 오류 없음.
+* **수정 파일**: `partials/site-shell.html`, `js/modules/site-shell.js`, `js/modules/auth-status.js`, `js/modules/announcement-ticker.js`, `js/modules/notice-board.js`, `js/modules/products-page.js`, `js/main.js`, `index.html`, `pages/support/notice.html`, `task-history/task.md`
+
+---
+
+## [2026-11-06] 로그인/회원가입 및 공지 관리자 권한
+* **요청 사항**: 커뮤니티 버튼에서 새 로그인 창을 열고 이름·아이디·비밀번호·이메일 회원가입, 로그인 상태 표시 및 관리자 전용 공지 CRUD 제공.
+* **구현 상태**:
+  * Firebase 이메일/비밀번호 인증과 아이디별 이메일 조회를 연결하고, 아이디 중복을 트랜잭션으로 방지.
+  * 인증 페이지는 로그인만 기본 표시하고, 로그인 폼 아래 회원가입 버튼으로 별도 화면 전환. 회원가입 화면에는 로그인 복귀 버튼 제공.
+  * 커뮤니티 버튼은 인증 팝업을 열며, 차단된 환경에서는 현재 창으로 이동. 로그인 상태 상자는 지원센터 페이지에만 표시하고, 홈 헤더에서는 제거.
+  * 지원센터 로그인 상태 상자는 비로그인 시 로그인, 로그인 시 환영 문구와 로그아웃으로 전환.
+  * 게시판 작성·수정·삭제 UI와 라우트는 관리자 계정에만 제공하고, Firestore Rules도 관리자 이메일로 쓰기 권한 제한.
+  * 관리자 전용 Firestore Rules를 Firebase Console의 기본 데이터베이스에 게시 완료.
+  * Email/Password 제공자를 활성화하고 Firebase Console에 관리자 이메일 계정을 등록 완료. 비밀번호는 소스와 문서에 저장하지 않음.
+* **검증 결과**: 인증 화면 375 / 768 / 1280px 가로 넘침 없음. 로그인·회원가입 화면 전환과 로그인 복귀, 홈 인증 상자 제거 및 커뮤니티 버튼 유지, 지원센터 로그인 버튼 표시, 비로그인 작성 버튼 미노출 및 직접 작성 URL 차단 확인. JS/HTML/CSS 진단 통과, Firestore Console 게시 후 미게시 변경사항 없음 확인.
+* **수정 파일**: `index.html`, `pages/auth.html`, `pages/support/notice.html`, `css/components/auth.css`, `css/layout/header.css`, `css/layout/support-shell.css`, `css/main.css`, `css/pages/auth.css`, `js/main.js`, `js/modules/auth-page.js`, `js/modules/auth-status.js`, `js/modules/notice-board-view.js`, `js/modules/notice-board.js`, `js/services/auth-service.js`, `js/services/firebase/postFirebaseService.js`, `firestore.rules`, `task-history/task.md`
+
+---
+
+## [2026-11-06] 공지사항 Firestore 전환
+* **요청 사항**: 공지사항 Mock DB를 Firebase Firestore로 전환하고, 테스트용으로 관리자 계정 없이 연결.
+* **구현 상태**:
+  * Firebase 웹 SDK 11.10.0 브라우저 모듈, Firestore 및 익명 인증 연결 복구. 별도 로그인 UI나 관리자 계정은 사용하지 않음.
+  * 익명 인증이 허용되면 기존 LocalStorage 게시글·첨부 메타데이터를 문서 ID와 함께 Firestore로 최초 이관하고, 조회수는 원자적으로 증가.
+  * Firebase Console에서 익명 제공자를 활성화하고 전체 공개 임시 Rules를 공지 컬렉션 검증 Rules로 교체.
+  * 익명 인증/Firestore 쓰기가 설정되지 않은 동안에는 기존 LocalStorage Mock으로 fallback.
+* **검증 결과**: 브라우저에서 7건 이관 완료. LocalStorage와 Firestore 문서 ID 및 첨부 메타데이터가 일치하고, 번호 카운터가 7인 것을 확인.
+* **수정 파일**: `js/services/firebase/firebaseConfig.js`, `js/services/firebase/postFirebaseService.js`, `js/services/post-service.js`, `js/modules/notice-board.js`, `firestore.rules`, `task-history/task.md`
+
+---
+
 <<<<<<< HEAD
 ## [2026-11-05] 전체 메뉴 오버레이 반투명 틴트 제거
 * **요청 사항**: 메뉴를 펼쳤을 때 주변 배경의 반투명 효과 제거.

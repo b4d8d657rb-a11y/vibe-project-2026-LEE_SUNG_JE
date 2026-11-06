@@ -1,0 +1,44 @@
+.auth-status {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--space-8);
+  color: inherit;
+  font-size: var(--type-size-body-sm);
+}
+
+.auth-status__greeting {
+  max-width: 14ch;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.auth-status__button {
+  min-height: var(--control-sm);
+  flex: 0 0 auto;
+  padding-inline: var(--space-12);
+  border: 1px solid currentColor;
+  border-radius: var(--radius-sm);
+  background-color: transparent;
+  color: inherit;
+  font-family: var(--font-mono);
+  font-size: var(--type-size-mono-xs);
+}
+
+.auth-status__button:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: var(--space-2);
+}
+
+.auth-status__button:disabled {
+  cursor: wait;
+  opacity: 0.3;
+}
+
+@media (min-width: 768px) {
+  .auth-status__greeting {
+    max-width: 14ch;
+  }
+}

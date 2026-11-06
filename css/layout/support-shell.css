@@ -53,6 +53,10 @@
   white-space: nowrap;
 }
 
+.support-header__auth {
+  flex: 0 0 100%;
+}
+
 .support-header__link--current {
   text-decoration: underline;
   text-underline-offset: var(--space-2);
@@ -212,6 +216,10 @@
     flex: 0 1 auto;
     gap: var(--space-24);
     overflow-x: auto;
+  }
+
+  .support-header__auth {
+    flex: 0 0 auto;
   }
 
   .support-hero__title {

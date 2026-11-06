@@ -1,4 +1,7 @@
 import { postService } from '../services/post-service.js';
+import { siteShellReady } from './site-shell.js';
+
+await siteShellReady;
 
 const ticker = document.querySelector('[data-announcement-ticker]');
 if (ticker instanceof HTMLElement) {

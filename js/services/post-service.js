@@ -1,1 +1,1 @@
-export { postMockService as postService } from './mock/post-mock-service.js';
+export { postFirebaseService as postService } from './firebase/postFirebaseService.js';

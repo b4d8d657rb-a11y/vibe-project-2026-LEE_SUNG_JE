@@ -75,7 +75,14 @@ const getVariantColor = (color) => {
 };
 
 const makeBackLink = () => {
-  const link = makeElement('a', 'product-detail__back', '← 모든 제품');
+  const link = makeElement('a', 'product-detail__back');
+  const icon = makeElement('img', 'product-detail__back-icon');
+  icon.src = 'images/d/main.svg';
+  icon.alt = '';
+  icon.setAttribute('aria-hidden', 'true');
+  icon.width = 16;
+  icon.height = 16;
+  link.append(icon, makeElement('span', '', '모든 제품'));
   link.href = '#products';
   return link;
 };
@@ -183,6 +190,7 @@ const createSpecDock = (product, variants) => {
     makeElement('span', 'product-detail__dock-product', `${product.series || product.name} · ${product.color}`),
     makeElement('span', 'product-detail__dock-indicator', '+'),
   );
+  toggle.querySelector('.product-detail__dock-indicator').setAttribute('aria-hidden', 'true');
 
   const panel = makeElement('div', 'product-detail__spec-panel');
   panel.id = 'product-detail-specs';

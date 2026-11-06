@@ -1,6 +1,11 @@
 import { initializeCollectionSliders } from './modules/collection-slider.js';
 import { initializeHeaderScroll } from './modules/header-scroll.js';
 import { initializeSiteMenu } from './modules/site-menu.js';
+import { initializeAuthStatus } from './modules/auth-status.js';
+import { siteShellReady } from './modules/site-shell.js';
+
+await siteShellReady;
+initializeAuthStatus();
 
 const mainVideo = document.querySelector('[data-main-video]');
 const mainVideoToggle = document.querySelector('[data-main-video-toggle]');
@@ -10,7 +15,6 @@ const filmToggle = document.querySelector('[data-film-toggle]');
 const filmPlayIcon = document.querySelector('[data-film-play-icon]');
 const filmSeek = document.querySelector('[data-film-seek]');
 const filmMute = document.querySelector('[data-film-mute]');
-const communityConsent = document.querySelector('[data-community-consent]');
 const communitySubmit = document.querySelector('[data-community-submit]');
 if (
   !(mainVideo instanceof HTMLVideoElement) ||
@@ -21,7 +25,6 @@ if (
   !(filmPlayIcon instanceof HTMLSpanElement) ||
   !(filmSeek instanceof HTMLInputElement) ||
   !(filmMute instanceof HTMLButtonElement) ||
-  !(communityConsent instanceof HTMLInputElement) ||
   !(communitySubmit instanceof HTMLButtonElement)
 ) {
   throw new Error('The page controls could not be initialized.');
@@ -29,13 +32,6 @@ if (
 
 const reducedMotionPreference = window.matchMedia('(prefers-reduced-motion: reduce)');
 let isVideoPlaying = false;
-
-const updateCommunitySubmit = () => {
-  communitySubmit.disabled = !communityConsent.checked;
-};
-
-communityConsent.addEventListener('change', updateCommunitySubmit);
-updateCommunitySubmit();
 
 const updateVideoToggle = () => {
   const label = isVideoPlaying ? '영상 일시정지' : '영상 재생';

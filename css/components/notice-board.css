@@ -23,6 +23,13 @@
   background-color: transparent;
 }
 
+.notice-button__icon {
+  display: block;
+  width: var(--icon-size-sm);
+  height: var(--icon-size-sm);
+  transform: rotate(180deg);
+}
+
 .notice-button:focus-visible,
 .notice-pagination__link:focus-visible,
 .notice-adjacent__link:focus-visible {

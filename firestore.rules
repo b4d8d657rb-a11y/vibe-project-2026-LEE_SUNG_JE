@@ -1,0 +1,247 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function signedIn() {
+      return request.auth != null;
+    }
+
+    function isAdmin() {
+      return signedIn() && request.auth.token.email == 'admin.com@company.co.kr';
+    }
+
+    function registeredMember() {
+      return signedIn() && request.auth.token.firebase.sign_in_provider != 'anonymous';
+    }
+
+    function qnaQuestionPath(questionId) {
+      return /databases/$(database)/documents/qnaQuestions/$(questionId);
+    }
+
+    function qnaContentPath(questionId) {
+      return /databases/$(database)/documents/qnaContents/$(questionId);
+    }
+
+    function qnaAnswerPath(questionId) {
+      return /databases/$(database)/documents/qnaAnswers/$(questionId);
+    }
+
+    function validAttachment(attachment) {
+      return attachment == null || (
+        attachment is map &&
+        attachment.keys().hasOnly(['name', 'size', 'type', 'lastModified']) &&
+        attachment.keys().hasAll(['name', 'size', 'type', 'lastModified']) &&
+        attachment.name is string &&
+        attachment.name.size() <= 255 &&
+        attachment.size is int &&
+        attachment.size >= 0 &&
+        attachment.type is string &&
+        attachment.type.size() <= 128 &&
+        attachment.lastModified is int &&
+        attachment.lastModified >= 0
+      );
+    }
+
+    function validNotice() {
+      return request.resource.data.keys().hasOnly([
+          'number', 'category', 'title', 'content', 'createdAt', 'updatedAt',
+          'views', 'isPinned', 'attachment'
+        ]) &&
+        request.resource.data.keys().hasAll([
+          'number', 'category', 'title', 'content', 'createdAt', 'updatedAt',
+          'views', 'isPinned', 'attachment'
+        ]) &&
+        request.resource.data.number is int &&
+        request.resource.data.number > 0 &&
+        request.resource.data.category in ['공지', '휴대폰', '오디오', '앱', '서비스', '정책'] &&
+        request.resource.data.title is string &&
+        request.resource.data.title.size() > 0 &&
+        request.resource.data.title.size() <= 100 &&
+        request.resource.data.content is string &&
+        request.resource.data.content.size() > 0 &&
+        request.resource.data.content.size() <= 900000 &&
+        request.resource.data.createdAt is string &&
+        request.resource.data.updatedAt is string &&
+        request.resource.data.views is int &&
+        request.resource.data.views >= 0 &&
+        request.resource.data.isPinned is bool &&
+        validAttachment(request.resource.data.attachment);
+    }
+
+    function validQnaQuestion() {
+      return request.resource.data.keys().hasOnly([
+          'category', 'title', 'createdAt', 'updatedAt', 'ownerUid', 'isPrivate', 'hasAnswer'
+        ]) &&
+        request.resource.data.keys().hasAll([
+          'category', 'title', 'createdAt', 'updatedAt', 'ownerUid', 'isPrivate', 'hasAnswer'
+        ]) &&
+        request.resource.data.category in ['배송문의', '계정문의', '교환/환불', '시스템오류', '기타'] &&
+        request.resource.data.title is string &&
+        request.resource.data.title.size() > 0 &&
+        request.resource.data.title.size() <= 100 &&
+        request.resource.data.createdAt is string &&
+        request.resource.data.updatedAt is string &&
+        request.resource.data.ownerUid is string &&
+        request.resource.data.isPrivate is bool &&
+        request.resource.data.hasAnswer is bool;
+    }
+
+    function validQnaContent() {
+      return request.resource.data.keys().hasOnly([
+          'ownerUid', 'isPrivate', 'content', 'createdAt', 'updatedAt'
+        ]) &&
+        request.resource.data.keys().hasAll([
+          'ownerUid', 'isPrivate', 'content', 'createdAt', 'updatedAt'
+        ]) &&
+        request.resource.data.ownerUid is string &&
+        request.resource.data.isPrivate is bool &&
+        request.resource.data.content is string &&
+        request.resource.data.content.size() > 0 &&
+        request.resource.data.content.size() <= 900000 &&
+        request.resource.data.createdAt is string &&
+        request.resource.data.updatedAt is string;
+    }
+
+    function validQnaAnswer() {
+      return request.resource.data.keys().hasOnly([
+          'questionId', 'ownerUid', 'adminUid', 'content', 'createdAt', 'updatedAt'
+        ]) &&
+        request.resource.data.keys().hasAll([
+          'questionId', 'ownerUid', 'adminUid', 'content', 'createdAt', 'updatedAt'
+        ]) &&
+        request.resource.data.questionId is string &&
+        request.resource.data.ownerUid is string &&
+        request.resource.data.adminUid is string &&
+        request.resource.data.content is string &&
+        request.resource.data.content.size() > 0 &&
+        request.resource.data.content.size() <= 900000 &&
+        request.resource.data.createdAt is string &&
+        request.resource.data.updatedAt is string;
+    }
+
+    match /notices/{noticeId} {
+      allow read: if true;
+      allow create: if isAdmin() && validNotice();
+      allow update: if isAdmin() &&
+        validNotice() &&
+        request.resource.data.number == resource.data.number &&
+        request.resource.data.createdAt == resource.data.createdAt &&
+        request.resource.data.isPinned == resource.data.isPinned ||
+        signedIn() &&
+        request.resource.data.diff(resource.data).affectedKeys().hasOnly(['views']) &&
+        request.resource.data.views == resource.data.views + 1;
+      allow delete: if isAdmin();
+    }
+
+    match /noticeMetadata/{metadataId} {
+      allow get: if isAdmin() && metadataId == 'notice-counter';
+      allow create: if isAdmin() &&
+        metadataId == 'notice-counter' &&
+        request.resource.data.keys().hasOnly(['lastNumber']) &&
+        request.resource.data.lastNumber is int &&
+        request.resource.data.lastNumber >= 0;
+      allow update: if isAdmin() &&
+        metadataId == 'notice-counter' &&
+        request.resource.data.keys().hasOnly(['lastNumber']) &&
+        request.resource.data.lastNumber is int &&
+        request.resource.data.lastNumber >= resource.data.lastNumber;
+    }
+
+    match /usernames/{username} {
+      allow get: if signedIn();
+      allow list: if false;
+      allow create: if signedIn() &&
+        username != 'admin' &&
+        request.auth.uid == request.resource.data.uid &&
+        request.auth.token.email == request.resource.data.email &&
+        request.resource.data.keys().hasOnly(['uid', 'email']) &&
+        request.resource.data.uid is string &&
+        request.resource.data.email is string;
+      allow update, delete: if false;
+    }
+
+    match /qnaQuestions/{questionId} {
+      allow get, list: if true;
+      allow create: if registeredMember() &&
+        validQnaQuestion() &&
+        request.resource.data.ownerUid == request.auth.uid &&
+        request.resource.data.hasAnswer == false &&
+        existsAfter(qnaContentPath(questionId)) &&
+        getAfter(qnaContentPath(questionId)).data.ownerUid == request.auth.uid &&
+        getAfter(qnaContentPath(questionId)).data.isPrivate == request.resource.data.isPrivate;
+      allow update: if (
+          registeredMember() &&
+          resource.data.ownerUid == request.auth.uid &&
+          validQnaQuestion() &&
+          request.resource.data.ownerUid == resource.data.ownerUid &&
+          request.resource.data.createdAt == resource.data.createdAt &&
+          request.resource.data.hasAnswer == resource.data.hasAnswer &&
+          request.resource.data.diff(resource.data).affectedKeys().hasOnly([
+            'category', 'title', 'updatedAt', 'isPrivate'
+          ]) &&
+          existsAfter(qnaContentPath(questionId)) &&
+          getAfter(qnaContentPath(questionId)).data.ownerUid == request.auth.uid &&
+          getAfter(qnaContentPath(questionId)).data.isPrivate == request.resource.data.isPrivate
+        ) || (
+          isAdmin() &&
+          request.resource.data.diff(resource.data).affectedKeys().hasOnly(['hasAnswer', 'updatedAt']) &&
+          request.resource.data.hasAnswer == true &&
+          existsAfter(qnaAnswerPath(questionId)) &&
+          getAfter(qnaAnswerPath(questionId)).data.questionId == questionId
+        );
+      allow delete: if registeredMember() &&
+        resource.data.ownerUid == request.auth.uid &&
+        !existsAfter(qnaContentPath(questionId)) &&
+        !existsAfter(qnaAnswerPath(questionId));
+    }
+
+    match /qnaContents/{questionId} {
+      allow get: if exists(qnaQuestionPath(questionId)) && (
+        !get(qnaQuestionPath(questionId)).data.isPrivate ||
+        isAdmin() ||
+        (registeredMember() && resource.data.ownerUid == request.auth.uid)
+      );
+      allow list: if false;
+      allow create: if registeredMember() &&
+        validQnaContent() &&
+        request.resource.data.ownerUid == request.auth.uid &&
+        existsAfter(qnaQuestionPath(questionId)) &&
+        getAfter(qnaQuestionPath(questionId)).data.ownerUid == request.auth.uid &&
+        getAfter(qnaQuestionPath(questionId)).data.isPrivate == request.resource.data.isPrivate;
+      allow update: if registeredMember() &&
+        resource.data.ownerUid == request.auth.uid &&
+        validQnaContent() &&
+        request.resource.data.ownerUid == resource.data.ownerUid &&
+        existsAfter(qnaQuestionPath(questionId)) &&
+        getAfter(qnaQuestionPath(questionId)).data.ownerUid == request.auth.uid &&
+        getAfter(qnaQuestionPath(questionId)).data.isPrivate == request.resource.data.isPrivate;
+      allow delete: if registeredMember() &&
+        resource.data.ownerUid == request.auth.uid &&
+        !existsAfter(qnaQuestionPath(questionId));
+    }
+
+    match /qnaAnswers/{questionId} {
+      allow get: if exists(qnaQuestionPath(questionId)) &&
+        get(qnaQuestionPath(questionId)).data.hasAnswer == true &&
+        (
+          !get(qnaQuestionPath(questionId)).data.isPrivate ||
+          isAdmin() ||
+          (registeredMember() && get(qnaQuestionPath(questionId)).data.ownerUid == request.auth.uid)
+        );
+      allow list: if false;
+      allow create, update: if isAdmin() &&
+        validQnaAnswer() &&
+        request.resource.data.questionId == questionId &&
+        request.resource.data.adminUid == request.auth.uid &&
+        existsAfter(qnaQuestionPath(questionId)) &&
+        getAfter(qnaQuestionPath(questionId)).data.hasAnswer == true &&
+        getAfter(qnaQuestionPath(questionId)).data.ownerUid == request.resource.data.ownerUid;
+      allow delete: if isAdmin() || (
+        registeredMember() &&
+        resource.data.ownerUid == request.auth.uid &&
+        !existsAfter(qnaQuestionPath(questionId))
+      );
+    }
+
+  }
+}
