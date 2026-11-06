@@ -1,0 +1,104 @@
+.qna-table__answer-status,
+.qna-table__category {
+  text-align: center;
+}
+
+.qna-table__answer-status {
+  white-space: nowrap;
+}
+
+.qna-table__title-group {
+  align-items: flex-start;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.qna-answer-badge,
+.qna-private-label,
+.qna-category-label {
+  display: inline-flex;
+  width: fit-content;
+  align-items: center;
+  padding: var(--space-4) var(--space-8);
+  border: 1px solid rgb(var(--greyscale-300));
+  border-radius: var(--radius-sm);
+  color: rgb(var(--greyscale-800));
+  font-size: var(--type-size-mono-xs);
+  line-height: 1.25;
+}
+
+.qna-answer-badge.is-complete {
+  border-color: rgb(var(--greyscale-black));
+  color: rgb(var(--greyscale-black));
+}
+
+.qna-private-label {
+  color: rgb(var(--greyscale-800));
+}
+
+.qna-category-label {
+  color: rgb(var(--greyscale-1000));
+}
+
+.qna-answer-section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-16);
+  margin-block-start: var(--space-24);
+  padding-block-start: var(--space-24);
+  border-block-start: 1px solid rgb(var(--greyscale-300));
+}
+
+.qna-answer-section__title {
+  font-size: var(--type-size-ntype-heading-md);
+  font-weight: 400;
+}
+
+.qna-question__body,
+.qna-answer__body {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.qna-answer-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-12);
+}
+
+.qna-private-toggle {
+  display: flex;
+  min-height: var(--control-md);
+  align-items: center;
+  gap: var(--space-8);
+  color: rgb(var(--greyscale-black));
+  font-size: var(--type-size-body-sm);
+}
+
+.qna-private-toggle input {
+  width: var(--space-16);
+  height: var(--space-16);
+  accent-color: rgb(var(--greyscale-black));
+}
+
+.qna-section .notice-status {
+  padding-block: var(--space-32);
+}
+
+@media (min-width: 768px) {
+  .qna-table__answer-status {
+    width: 14%;
+  }
+
+  .qna-table__category {
+    width: 18%;
+  }
+
+  .qna-table__title-cell {
+    width: 54%;
+  }
+
+  .qna-table__date {
+    width: 14%;
+  }
+}

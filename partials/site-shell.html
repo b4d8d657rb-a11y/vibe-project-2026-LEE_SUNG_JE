@@ -58,6 +58,7 @@
               <nav class="site-menu__footer" aria-label="추가 링크">
                 <ul class="site-menu__links">
                   <li><a class="site-menu__link" href="#hero" data-menu-link>ACCOUNT</a></li>
+                  <li><a class="site-menu__link" href="pages/support/qna.html" data-menu-link>묻고답하기</a></li>
                   <li><a class="site-menu__link" href="pages/support/notice.html" data-menu-link>지원</a></li>
                   <li><a class="site-menu__link" href="#hero" data-menu-link>COMMUNITY</a></li>
                   <li><a class="site-menu__link" href="#hero" data-menu-link>회사 소개</a></li>
@@ -74,7 +75,7 @@
 <template id="support-header-template">
   <header class="support-header">
     <div class="inner-box support-header__inner">
-      <a class="visually-hidden" href="#notice-main">본문 바로가기</a>
+      <a class="visually-hidden" href="#notice-main" data-shell-skip>본문 바로가기</a>
       <div class="partition-box partition-box--between partition-box--center support-header__layout">
         <a class="support-header__brand" href="../../index.html" aria-label="Nothing 홈">
           <img class="support-header__logo-image" src="../../images/d/logo.svg" alt="NOTHING" width="106" height="14">
@@ -85,7 +86,8 @@
           <a class="support-header__link" href="../../index.html#category">Watches</a>
           <a class="support-header__link" href="../../index.html#category">CMF</a>
           <a class="support-header__link" href="../../index.html#community">Community</a>
-          <a class="support-header__link support-header__link--current" href="./notice.html" aria-current="page">Support</a>
+          <a class="support-header__link" href="./qna.html" data-shell-nav="qna">묻고답하기</a>
+          <a class="support-header__link" href="./notice.html" data-shell-nav="support">Support</a>
         </nav>
         <div class="auth-status support-header__auth" data-auth-status>
           <span class="auth-status__greeting" data-auth-greeting hidden></span>

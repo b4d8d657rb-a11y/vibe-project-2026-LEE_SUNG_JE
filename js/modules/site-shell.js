@@ -8,6 +8,15 @@ const SITE_LAYOUTS = {
     header: 'support-header-template',
     footer: 'support-footer-template',
     noticeUrl: './notice.html',
+    currentNav: 'support',
+    mainId: 'notice-main',
+  },
+  qna: {
+    header: 'support-header-template',
+    footer: 'support-footer-template',
+    noticeUrl: './notice.html',
+    currentNav: 'qna',
+    mainId: 'qna-main',
   },
 };
 
@@ -37,8 +46,20 @@ const renderSiteShell = async () => {
 
   const ticker = cloneTemplate(templateDocument, 'announcement-ticker-template');
   ticker.firstElementChild.dataset.noticeUrl = layout.noticeUrl;
+  const header = cloneTemplate(templateDocument, layout.header);
+  const skipLink = header.querySelector('[data-shell-skip]');
+  if (skipLink instanceof HTMLAnchorElement && layout.mainId) {
+    skipLink.href = `#${layout.mainId}`;
+  }
+  if (layout.currentNav) {
+    const activeLink = header.querySelector(`[data-shell-nav="${layout.currentNav}"]`);
+    if (activeLink instanceof HTMLAnchorElement) {
+      activeLink.classList.add('support-header__link--current');
+      activeLink.setAttribute('aria-current', 'page');
+    }
+  }
   document.body.prepend(ticker);
-  main.before(cloneTemplate(templateDocument, layout.header));
+  main.before(header);
   main.after(cloneTemplate(templateDocument, layout.footer));
 };
 
