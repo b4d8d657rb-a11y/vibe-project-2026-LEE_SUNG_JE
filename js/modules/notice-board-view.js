@@ -235,7 +235,13 @@ export const renderDetailView = ({ post, previousPost, nextPost, canManage }) =>
   const root = element('div', 'notice-view notice-view--detail');
   root.append(renderPageHeading());
   const actions = element('div', 'notice-detail__top-actions');
-  actions.append(link('./notice.html?view=list', 'notice-button notice-button--secondary', '← 목록으로'));
+  const listLink = link('./notice.html?view=list', 'notice-button notice-button--secondary', '목록으로');
+  const backIcon = element('img', 'notice-button__icon');
+  backIcon.src = '../../images/d/main.svg';
+  backIcon.alt = '';
+  backIcon.setAttribute('aria-hidden', 'true');
+  listLink.prepend(backIcon);
+  actions.append(listLink);
   if (canManage) {
     const management = element('div', 'notice-detail__management');
     management.append(link(makeFormUrl(post.id), 'notice-button notice-button--secondary', '수정하기'));
