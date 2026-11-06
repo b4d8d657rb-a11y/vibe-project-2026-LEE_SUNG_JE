@@ -75,7 +75,14 @@ const getVariantColor = (color) => {
 };
 
 const makeBackLink = () => {
-  const link = makeElement('a', 'product-detail__back', '← 모든 제품');
+  const link = makeElement('a', 'product-detail__back');
+  const icon = makeElement('img', 'product-detail__back-icon');
+  icon.src = 'images/d/main.svg';
+  icon.alt = '';
+  icon.setAttribute('aria-hidden', 'true');
+  icon.width = 16;
+  icon.height = 16;
+  link.append(icon, makeElement('span', '', '모든 제품'));
   link.href = '#products';
   return link;
 };
