@@ -1,14 +1,21 @@
 import { NOTICE_CATEGORIES } from '../data/notice-seed.js';
 import { NOTICE_MAX_ATTACHMENT_BYTES, NOTICE_PAGE_SIZE } from '../config/notice-board.js';
+import { ADMIN_EMAIL, authService } from '../services/auth-service.js';
 import { postService } from '../services/post-service.js';
+import { initializeAuthStatus } from './auth-status.js';
 import {
   renderDetailView,
   renderFormView,
   renderListView,
   renderStatusView,
 } from './notice-board-view.js';
+import { siteShellReady } from './site-shell.js';
+
+await siteShellReady;
+initializeAuthStatus();
 
 const viewRoot = document.querySelector('[data-notice-view]');
+let canManageNotices = false;
 if (!(viewRoot instanceof HTMLElement)) {
   throw new Error('공지사항 화면을 찾을 수 없습니다.');
 }
@@ -55,6 +62,7 @@ const renderList = async (route) => {
     query: route.query,
     page: route.page,
     pageSize: NOTICE_PAGE_SIZE,
+    canManage: canManageNotices,
   }));
 };
 
@@ -72,10 +80,16 @@ const renderDetail = async (route) => {
     post,
     previousPost: posts[postIndex + 1] ?? null,
     nextPost: posts[postIndex - 1] ?? null,
+    canManage: canManageNotices,
   }));
 };
 
 const renderForm = async (route) => {
+  if (!canManageNotices) {
+    setPageTitle('관리자 로그인 필요');
+    showView(renderStatusView('공지사항 관리는 관리자 로그인 후 이용할 수 있습니다.', true));
+    return;
+  }
   const isEdit = route.mode === 'edit';
   setPageTitle(isEdit ? '공지 수정' : '공지 작성');
   if (!isEdit) {
@@ -139,6 +153,10 @@ const getAttachment = (form, existingAttachment) => {
 };
 
 const submitNoticeForm = async (form) => {
+  if (!canManageNotices) {
+    displayFormMessage(form, '공지사항 관리는 관리자 로그인 후 이용할 수 있습니다.');
+    return;
+  }
   if (!form.reportValidity()) return;
   const formData = new FormData(form);
   const category = String(formData.get('category') ?? '');
@@ -200,6 +218,7 @@ viewRoot.addEventListener('change', (event) => {
 
 viewRoot.addEventListener('click', async (event) => {
   if (!(event.target instanceof Element)) return;
+  if (!canManageNotices) return;
   const deleteButton = event.target.closest('[data-notice-action="delete"]');
   if (!(deleteButton instanceof HTMLButtonElement)) return;
   if (!window.confirm('이 공지사항을 삭제할까요?')) return;
@@ -231,5 +250,12 @@ const heroSearch = document.querySelector('#support-search');
 if (heroSearch instanceof HTMLInputElement) {
   heroSearch.value = getRoute().query;
 }
+
+authService.subscribe((user) => {
+  const isAdmin = Boolean(user && !user.isAnonymous && user.email === ADMIN_EMAIL);
+  if (isAdmin === canManageNotices) return;
+  canManageNotices = isAdmin;
+  if (viewRoot.getAttribute('aria-busy') === 'false') void renderRoute();
+});
 
 void renderRoute();

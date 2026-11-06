@@ -12,46 +12,7 @@
     <link rel="stylesheet" href="../../css/components/notice-board.css">
     <link rel="stylesheet" href="../../css/pages/support-notice.css">
   </head>
-  <body class="support-page">
-    <aside class="announcement-ticker" data-announcement-ticker data-notice-url="./notice.html" aria-label="주요 공지사항" hidden>
-      <div class="inner-box announcement-ticker__inner">
-        <a class="announcement-ticker__link" data-announcement-link>
-          <span class="announcement-ticker__label" aria-hidden="true">NOTICE</span>
-          <span class="announcement-ticker__title" data-announcement-title aria-live="off"></span>
-        </a>
-        <div class="announcement-ticker__controls" role="group" aria-label="공지 순환 제어">
-          <span class="announcement-ticker__count" data-announcement-count aria-hidden="true"></span>
-          <button class="announcement-ticker__control" type="button" data-announcement-pause aria-label="공지 순환 멈춤">
-            <span aria-hidden="true">Ⅱ</span>
-          </button>
-          <button class="announcement-ticker__control" type="button" data-announcement-play aria-label="공지 순환 재생">
-            <span aria-hidden="true">▶</span>
-          </button>
-          <button class="announcement-ticker__control" type="button" data-announcement-close aria-label="공지 닫기">
-            <span aria-hidden="true">×</span>
-          </button>
-        </div>
-      </div>
-    </aside>
-    <header class="support-header">
-      <div class="inner-box support-header__inner">
-        <a class="visually-hidden" href="#notice-main">본문 바로가기</a>
-        <div class="partition-box partition-box--between partition-box--center support-header__layout">
-          <a class="support-header__brand" href="../../index.html" aria-label="Nothing 홈">
-            <img class="support-header__logo-image" src="../../images/d/logo.svg" alt="NOTHING" width="106" height="14">
-          </a>
-          <nav class="support-header__nav" aria-label="주요 메뉴">
-            <a class="support-header__link" href="../../index.html#category">Phones</a>
-            <a class="support-header__link" href="../../index.html#category">Audio</a>
-            <a class="support-header__link" href="../../index.html#category">Watches</a>
-            <a class="support-header__link" href="../../index.html#category">CMF</a>
-            <a class="support-header__link" href="../../index.html#community">Community</a>
-            <a class="support-header__link support-header__link--current" href="./notice.html" aria-current="page">Support</a>
-          </nav>
-        </div>
-      </div>
-    </header>
-
+  <body class="support-page" data-site-shell="support">
     <main class="support-main" id="notice-main">
       <section class="section support-hero" aria-labelledby="support-hero-title">
         <img
@@ -73,7 +34,7 @@
                 <input class="support-hero__search-input" id="support-search" name="q" type="search" placeholder="검색" autocomplete="off">
                 <button class="support-hero__search-button" type="submit" aria-label="공지사항 검색">
                   <svg class="support-hero__search-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-                    <g fill="currentColor">
+                    <g fill="currentColor"> 
                       <circle cx="9" cy="4" r="1.25" />
                       <circle cx="13" cy="4" r="1.25" />
                       <circle cx="17" cy="7" r="1.25" />
@@ -106,29 +67,6 @@
       </section>
     </main>
 
-    <footer class="site-footer support-footer">
-        <div class="inner-box support-footer__inner">
-          <div class="partition-box partition-box--between support-footer__layout">
-          <div class="content-box">
-            <nav class="support-footer__links" aria-label="법적 정보">
-              <a class="support-footer__link" href="./notice.html">개인정보 보호정책</a>
-              <a class="support-footer__link" href="./notice.html">이용 제한 정책</a>
-              <a class="support-footer__link" href="./notice.html">사용자 계약</a>
-              <a class="support-footer__link" href="./notice.html">판매조건</a>
-            </nav>
-          </div>
-          <div class="content-box">
-            <nav class="support-footer__socials" aria-label="소셜 미디어">
-              <a class="support-footer__social-link" href="./notice.html" aria-label="Instagram">◎</a>
-              <a class="support-footer__social-link" href="./notice.html" aria-label="YouTube">▶</a>
-              <a class="support-footer__social-link" href="./notice.html" aria-label="X">X</a>
-              <a class="support-footer__social-link" href="./notice.html" aria-label="TikTok">♪</a>
-            </nav>
-          </div>
-          <div class="content-box support-footer__locale">대한민국</div>
-        </div>
-      </div>
-    </footer>
     <script type="module" src="../../js/modules/notice-board.js"></script>
     <script type="module" src="../../js/modules/announcement-ticker.js"></script>
   </body>

@@ -64,7 +64,7 @@ const renderPageHeading = () => {
   return heading;
 };
 
-const renderToolbar = ({ category, query }) => {
+const renderToolbar = ({ category, query, canManage }) => {
   const toolbar = element('div', 'notice-toolbar');
   const form = element('form', 'notice-toolbar__filters');
   form.method = 'get';
@@ -118,8 +118,10 @@ const renderToolbar = ({ category, query }) => {
   search.append(searchInput, searchButton);
   form.append(viewInput, categorySelect, search);
 
-  const writeLink = link('./notice.html?view=form&mode=create', 'notice-button notice-button--primary notice-toolbar__write', '글쓰기');
-  toolbar.append(form, writeLink);
+  toolbar.append(form);
+  if (canManage) {
+    toolbar.append(link('./notice.html?view=form&mode=create', 'notice-button notice-button--primary notice-toolbar__write', '글쓰기'));
+  }
   return toolbar;
 };
 
@@ -178,7 +180,7 @@ const renderPostRow = (post) => {
   return row;
 };
 
-export const renderListView = ({ posts, category, query, page, pageSize }) => {
+export const renderListView = ({ posts, category, query, page, pageSize, canManage }) => {
   const root = element('div', 'notice-view notice-view--list');
   root.append(renderPageHeading());
 
@@ -191,7 +193,7 @@ export const renderListView = ({ posts, category, query, page, pageSize }) => {
   const currentPage = Math.min(Math.max(1, page), pageCount);
   const start = (currentPage - 1) * pageSize;
   const pagePosts = filteredPosts.slice(start, start + pageSize);
-  root.append(renderToolbar({ category, query }));
+  root.append(renderToolbar({ category, query, canManage }));
 
   const table = element('table', 'notice-table');
   table.append(element('caption', 'visually-hidden', '공지사항 목록'));
@@ -229,17 +231,19 @@ const renderAdjacentLink = (post, label, direction) => {
   return item;
 };
 
-export const renderDetailView = ({ post, previousPost, nextPost }) => {
+export const renderDetailView = ({ post, previousPost, nextPost, canManage }) => {
   const root = element('div', 'notice-view notice-view--detail');
   root.append(renderPageHeading());
   const actions = element('div', 'notice-detail__top-actions');
   actions.append(link('./notice.html?view=list', 'notice-button notice-button--secondary', '← 목록으로'));
-  const management = element('div', 'notice-detail__management');
-  management.append(link(makeFormUrl(post.id), 'notice-button notice-button--secondary', '수정하기'));
-  const deleteButton = actionButton('notice-button notice-button--secondary', '삭제하기', 'delete');
-  deleteButton.dataset.postId = post.id;
-  management.append(deleteButton);
-  actions.append(management);
+  if (canManage) {
+    const management = element('div', 'notice-detail__management');
+    management.append(link(makeFormUrl(post.id), 'notice-button notice-button--secondary', '수정하기'));
+    const deleteButton = actionButton('notice-button notice-button--secondary', '삭제하기', 'delete');
+    deleteButton.dataset.postId = post.id;
+    management.append(deleteButton);
+    actions.append(management);
+  }
 
   const article = element('article', 'notice-detail');
   const articleHeader = element('header', 'notice-detail__header');

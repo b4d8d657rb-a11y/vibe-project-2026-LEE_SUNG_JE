@@ -10,6 +10,7 @@ import {
 } from 'https://www.gstatic.com/firebasejs/11.10.0/firebase-firestore.js';
 import { NOTICE_CATEGORIES, NOTICE_SEED } from '../../data/notice-seed.js';
 import { postMockService } from '../mock/post-mock-service.js';
+import { ADMIN_EMAIL } from '../auth-service.js';
 import { ensureAnonymousUser, db, firebaseProjectId } from './firebaseConfig.js';
 
 const POSTS_COLLECTION = 'notices';
@@ -107,7 +108,8 @@ const migrateLocalPosts = async () => {
 };
 
 const ensureReady = async () => {
-  await ensureAnonymousUser();
+  const user = await ensureAnonymousUser();
+  if (user.email !== ADMIN_EMAIL) return;
   if (window.localStorage.getItem(MIGRATED_KEY) !== 'true') {
     migrationPromise ??= migrateLocalPosts().finally(() => {
       migrationPromise = null;

@@ -9,77 +9,8 @@
     <title>NOTHING Headphone (1) Pro</title>
     <link rel="stylesheet" href="css/main.css">
   </head>
-  <body>
-    <aside class="announcement-ticker" data-announcement-ticker data-notice-url="pages/support/notice.html" aria-label="주요 공지사항" hidden>
-      <div class="inner-box announcement-ticker__inner">
-        <a class="announcement-ticker__link" data-announcement-link>
-          <span class="announcement-ticker__label" aria-hidden="true">NOTICE</span>
-          <span class="announcement-ticker__title" data-announcement-title aria-live="off"></span>
-        </a>
-        <div class="announcement-ticker__controls" role="group" aria-label="공지 순환 제어">
-          <span class="announcement-ticker__count" data-announcement-count aria-hidden="true"></span>
-          <button class="announcement-ticker__control" type="button" data-announcement-pause aria-label="공지 순환 멈춤">
-            <span aria-hidden="true">Ⅱ</span>
-          </button>
-          <button class="announcement-ticker__control" type="button" data-announcement-play aria-label="공지 순환 재생">
-            <span aria-hidden="true">▶</span>
-          </button>
-          <button class="announcement-ticker__control" type="button" data-announcement-close aria-label="공지 닫기">
-            <span aria-hidden="true">×</span>
-          </button>
-        </div>
-      </div>
-    </aside>
+  <body data-site-shell="home">
     <div class="body-pattern" aria-hidden="true"></div>
-    <header class="site-header">
-      <div class="inner-box">
-        <div class="partition-box partition-box--center">
-          <div class="content-box header__content">
-            <a class="visually-hidden" href="#main-content">본문 바로가기</a>
-            <button
-              class="header__menu-button"
-              type="button"
-              aria-label="전체 메뉴 열기"
-              aria-controls="site-menu"
-              aria-expanded="false"
-              data-menu-toggle>
-              <img class="header__menu-mark" src="images/d/hbg.svg" alt="" aria-hidden="true" width="16" height="16">
-            </button>
-            <a class="header__brand" href="#main-content" aria-label="NOTHING 홈">
-              <img class="header__brand-logo" src="images/d/logo.svg" alt="NOTHING" width="106" height="14">
-            </a>
-            <span class="header__balance" aria-hidden="true"></span>
-
-            <nav class="site-menu" id="site-menu" aria-label="전체 메뉴" aria-hidden="true" inert>
-              <div class="site-menu__panel">
-                <div class="site-menu__content">
-                  <ul class="site-menu__categories">
-                    <li><a class="site-menu__category" href="#products" data-menu-link>모든 제품</a></li>
-                    <li><a class="site-menu__category" href="#hero" data-menu-link>휴대전화</a></li>
-                    <li><a class="site-menu__category" href="#hero" data-menu-link>오디오</a></li>
-                    <li><a class="site-menu__category" href="#hero" data-menu-link>시계</a></li>
-                    <li><a class="site-menu__category" href="#hero" data-menu-link>액세서리</a></li>
-                  </ul>
-                  <div class="site-menu__signature" aria-label="CMF, NOTHING OS 5.0">
-                    <a class="site-menu__cmf" href="#sound">CMF</a>
-                    <a class="site-menu__slogan" href="#hero">NOTHING OS 5.0</a>
-                  </div>
-                </div>
-
-                <nav class="site-menu__footer" aria-label="추가 링크">
-                  <ul class="site-menu__links">
-                    <li><a class="site-menu__link" href="#hero" data-menu-link>ACCOUNT</a></li>
-                    <li><a class="site-menu__link" href="pages/support/notice.html" data-menu-link>지원</a></li>
-                    <li><a class="site-menu__link" href="#hero" data-menu-link>COMMUNITY</a></li>
-                    <li><a class="site-menu__link" href="#hero" data-menu-link>회사 소개</a></li>
-                  </ul>
-                </nav>
-              </div>
-            </nav>
-          </div>
-        </div>
-      </div>
-    </header>
 
     <main class="main-content" id="main-content">
       <section class="section section--hero" id="hero" aria-labelledby="hero-title">
@@ -210,10 +141,6 @@
                   </div>
                 </article>
               </div>
-              <a class="button category__all-products" href="#products">
-                모든 제품 보기
-                <img class="button__arrow" src="images/d/main.svg" alt="" aria-hidden="true" width="16" height="16">
-              </a>
             </div>
           </div>
         </div>
@@ -261,7 +188,7 @@
                         alt="스마트폰 제품 컬렉션"
                         loading="lazy"
                         decoding="async"
-                        width="1000"
+                        width="1000"  
                         height="1000">
                       <figcaption class="collection__featured-caption">스마트폰</figcaption>
                     </figure>
@@ -637,27 +564,10 @@
         <div class="inner-box inner-box--community">
           <div class="community__content">
             <h2 class="community__title" id="community-title">커뮤니티에 참여하세요</h2>
-            <p class="community__description">제품, 이벤트, 혜택에 대한 새로운 소식을 받아보세요.</p>
-            <div class="community__form" role="group" aria-label="커뮤니티 가입">
-              <label class="visually-hidden" for="community-email">이메일 주소</label>
-              <input
-                class="community__email"
-                id="community-email"
-                name="email"
-                type="email"
-                placeholder="이메일 주소"
-                autocomplete="email">
-              <label class="community__consent">
-                <input class="community__checkbox" type="checkbox" name="consent" data-community-consent>
-                <span>
-                  귀하는 당사의
-                  <span class="community__policy">개인정보 처리방침</span>
-                  및
-                  <span class="community__policy">이용약관</span>에 동의하게 됩니다.
-                </span>
-              </label>
-              <button class="community__submit" type="button" disabled data-community-submit>
-                가입하기
+            <p class="community__description">로그인하거나 계정을 만들어 Nothing 커뮤니티에 참여하세요.</p>
+            <div class="community__form" role="group" aria-label="로그인 및 회원가입">
+              <button class="community__submit" type="button" data-community-submit data-auth-open data-auth-url="pages/auth.html">
+                로그인 / 회원가입
                 <img class="button__arrow community__arrow" src="images/d/main.svg" alt="" aria-hidden="true" width="16" height="16">
               </button>
             </div>
@@ -729,54 +639,6 @@
 
     </main>
 
-    <footer class="site-footer">
-      <section class="footer__section" aria-label="사이트 정보">
-        <div class="footer__main">
-          <h2 class="footer__heading"><a href="#community">회사 소개</a></h2>
-          <nav class="footer__platforms" aria-label="Nothing 플랫폼">
-            <a class="footer__platform" href="#hero">NOTHING OS 5.0</a>
-            <a class="footer__platform" href="#community">COMMUNITY</a>
-            <a class="footer__platform" href="#sound">PLAYGROUND</a>
-          </nav>
-          <nav class="footer__settings" aria-label="지원 및 설정">
-            <a class="footer__setting" href="pages/support/notice.html">
-              <span>지원</span>
-              <img class="footer__setting-icon" src="images/d/f_m1.svg" alt="" aria-hidden="true" width="16" height="16">
-            </a>
-            <a class="footer__setting" href="#community">
-              <span>뉴스레터</span>
-              <img class="footer__setting-icon" src="images/d/f_m2.svg" alt="" aria-hidden="true" width="16" height="16">
-            </a>
-            <a class="footer__setting" href="#community">
-              <span>매장: SOUTH KOREA</span>
-              <img class="footer__setting-icon" src="images/d/f_m3.svg" alt="" aria-hidden="true" width="16" height="16">
-            </a>
-            <button class="footer__setting" type="button">
-              <span>언어: KO</span>
-              <img class="footer__setting-icon footer__setting-icon--chevron" src="images/d/f_m4.svg" alt="" aria-hidden="true" width="16" height="16">
-            </button>
-            <button class="footer__setting" type="button">
-              <span>동의 설정</span>
-              <img class="footer__setting-icon" src="images/d/f_m5.svg" alt="" aria-hidden="true" width="16" height="16">
-            </button>
-          </nav>
-        </div>
-        <div class="footer__bottom">
-          <nav class="footer__legal" aria-label="법적 정보">
-            <a class="footer__bottom-link footer__legal-link" href="#community">계정</a>
-            <a class="footer__bottom-link" href="#community">연락처</a>
-            <a class="footer__bottom-link" href="#community">캐리어</a>
-            <a class="footer__bottom-link" href="#community">법률</a>
-          </nav>
-          <nav class="footer__socials" aria-label="소셜 미디어">
-            <a class="footer__bottom-link" href="#community">INSTAGRAM</a>
-            <a class="footer__bottom-link" href="#community">YOUTUBE</a>
-            <a class="footer__bottom-link" href="#community">X</a>
-            <a class="footer__bottom-link" href="#community">TIKTOK</a>
-          </nav>
-        </div>
-      </section>
-    </footer>
     <script defer src="js/vendor/swiper-bundle.min.js"></script>
     <script type="module" src="js/main.js"></script>
     <script type="module" src="js/modules/products-page.js"></script>

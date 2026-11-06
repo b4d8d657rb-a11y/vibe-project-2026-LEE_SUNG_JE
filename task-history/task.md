@@ -4,6 +4,32 @@
 
 ---
 
+## [2026-11-06] 공통 헤더·푸터 모듈화
+* **요청 사항**: 페이지별 HTML에 반복된 상단·하단 공통 모듈을 한 곳에서 관리.
+* **구현 상태**:
+  * `partials/site-shell.html`에 메인/지원 헤더·푸터와 공지 티커 템플릿을 중앙화.
+  * `data-site-shell` 설정을 읽는 `js/modules/site-shell.js`가 각 페이지의 `<main>` 앞뒤에 공통 레이아웃을 삽입.
+  * 메인·지원 페이지의 인증 상태, 티커, 메뉴 초기화를 레이아웃 로딩 완료 뒤 실행하도록 조정. 인증 팝업 전용 헤더와 페이지 본문은 유지.
+* **검증 결과**: 메인 메뉴 동작, 지원 로그인 버튼, 게시판·티커 렌더링 확인. 두 페이지 모두 375 / 768 / 1280px 가로 넘침과 브라우저 페이지 오류 없음. HTML·JS 진단 오류 없음.
+* **수정 파일**: `partials/site-shell.html`, `js/modules/site-shell.js`, `js/modules/auth-status.js`, `js/modules/announcement-ticker.js`, `js/modules/notice-board.js`, `js/modules/products-page.js`, `js/main.js`, `index.html`, `pages/support/notice.html`, `task-history/task.md`
+
+---
+
+## [2026-11-06] 로그인/회원가입 및 공지 관리자 권한
+* **요청 사항**: 커뮤니티 버튼에서 새 로그인 창을 열고 이름·아이디·비밀번호·이메일 회원가입, 로그인 상태 표시 및 관리자 전용 공지 CRUD 제공.
+* **구현 상태**:
+  * Firebase 이메일/비밀번호 인증과 아이디별 이메일 조회를 연결하고, 아이디 중복을 트랜잭션으로 방지.
+  * 인증 페이지는 로그인만 기본 표시하고, 로그인 폼 아래 회원가입 버튼으로 별도 화면 전환. 회원가입 화면에는 로그인 복귀 버튼 제공.
+  * 커뮤니티 버튼은 인증 팝업을 열며, 차단된 환경에서는 현재 창으로 이동. 로그인 상태 상자는 지원센터 페이지에만 표시하고, 홈 헤더에서는 제거.
+  * 지원센터 로그인 상태 상자는 비로그인 시 로그인, 로그인 시 환영 문구와 로그아웃으로 전환.
+  * 게시판 작성·수정·삭제 UI와 라우트는 관리자 계정에만 제공하고, Firestore Rules도 관리자 이메일로 쓰기 권한 제한.
+  * 관리자 전용 Firestore Rules를 Firebase Console의 기본 데이터베이스에 게시 완료.
+  * Email/Password 제공자를 활성화하고 Firebase Console에 관리자 이메일 계정을 등록 완료. 비밀번호는 소스와 문서에 저장하지 않음.
+* **검증 결과**: 인증 화면 375 / 768 / 1280px 가로 넘침 없음. 로그인·회원가입 화면 전환과 로그인 복귀, 홈 인증 상자 제거 및 커뮤니티 버튼 유지, 지원센터 로그인 버튼 표시, 비로그인 작성 버튼 미노출 및 직접 작성 URL 차단 확인. JS/HTML/CSS 진단 통과, Firestore Console 게시 후 미게시 변경사항 없음 확인.
+* **수정 파일**: `index.html`, `pages/auth.html`, `pages/support/notice.html`, `css/components/auth.css`, `css/layout/header.css`, `css/layout/support-shell.css`, `css/main.css`, `css/pages/auth.css`, `js/main.js`, `js/modules/auth-page.js`, `js/modules/auth-status.js`, `js/modules/notice-board-view.js`, `js/modules/notice-board.js`, `js/services/auth-service.js`, `js/services/firebase/postFirebaseService.js`, `firestore.rules`, `task-history/task.md`
+
+---
+
 ## [2026-11-06] 공지사항 Firestore 전환
 * **요청 사항**: 공지사항 Mock DB를 Firebase Firestore로 전환하고, 테스트용으로 관리자 계정 없이 연결.
 * **구현 상태**:

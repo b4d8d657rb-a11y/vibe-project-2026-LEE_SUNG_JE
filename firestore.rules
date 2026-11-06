@@ -6,6 +6,10 @@ service cloud.firestore {
       return request.auth != null;
     }
 
+    function isAdmin() {
+      return signedIn() && request.auth.token.email == 'admin.com@company.co.kr';
+    }
+
     function validAttachment(attachment) {
       return attachment == null || (
         attachment is map &&
@@ -50,27 +54,43 @@ service cloud.firestore {
 
     match /notices/{noticeId} {
       allow read: if true;
-      allow create: if signedIn() && validNotice();
-      allow update: if signedIn() &&
+      allow create: if isAdmin() && validNotice();
+      allow update: if isAdmin() &&
         validNotice() &&
         request.resource.data.number == resource.data.number &&
         request.resource.data.createdAt == resource.data.createdAt &&
-        request.resource.data.isPinned == resource.data.isPinned;
-      allow delete: if signedIn();
+        request.resource.data.isPinned == resource.data.isPinned ||
+        signedIn() &&
+        request.resource.data.diff(resource.data).affectedKeys().hasOnly(['views']) &&
+        request.resource.data.views == resource.data.views + 1;
+      allow delete: if isAdmin();
     }
 
     match /noticeMetadata/{metadataId} {
-      allow get: if signedIn() && metadataId == 'notice-counter';
-      allow create: if signedIn() &&
+      allow get: if isAdmin() && metadataId == 'notice-counter';
+      allow create: if isAdmin() &&
         metadataId == 'notice-counter' &&
         request.resource.data.keys().hasOnly(['lastNumber']) &&
         request.resource.data.lastNumber is int &&
         request.resource.data.lastNumber >= 0;
-      allow update: if signedIn() &&
+      allow update: if isAdmin() &&
         metadataId == 'notice-counter' &&
         request.resource.data.keys().hasOnly(['lastNumber']) &&
         request.resource.data.lastNumber is int &&
         request.resource.data.lastNumber >= resource.data.lastNumber;
+    }
+
+    match /usernames/{username} {
+      allow get: if signedIn();
+      allow list: if false;
+      allow create: if signedIn() &&
+        username != 'admin' &&
+        request.auth.uid == request.resource.data.uid &&
+        request.auth.token.email == request.resource.data.email &&
+        request.resource.data.keys().hasOnly(['uid', 'email']) &&
+        request.resource.data.uid is string &&
+        request.resource.data.email is string;
+      allow update, delete: if false;
     }
   }
 }

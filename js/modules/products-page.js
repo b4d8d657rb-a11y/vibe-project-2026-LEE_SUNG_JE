@@ -1,5 +1,8 @@
 import { productService } from '../services/productService.js';
 import { productDetailPage } from './product-detail-page.js';
+import { siteShellReady } from './site-shell.js';
+
+await siteShellReady;
 
 const main = document.querySelector('#main-content');
 const productView = document.querySelector('[data-products-view]');
