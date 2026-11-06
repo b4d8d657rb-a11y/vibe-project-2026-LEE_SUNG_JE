@@ -190,6 +190,7 @@ const createSpecDock = (product, variants) => {
     makeElement('span', 'product-detail__dock-product', `${product.series || product.name} · ${product.color}`),
     makeElement('span', 'product-detail__dock-indicator', '+'),
   );
+  toggle.querySelector('.product-detail__dock-indicator').setAttribute('aria-hidden', 'true');
 
   const panel = makeElement('div', 'product-detail__spec-panel');
   panel.id = 'product-detail-specs';
