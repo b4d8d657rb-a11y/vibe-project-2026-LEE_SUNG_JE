@@ -4,6 +4,18 @@
 
 ---
 
+## [2026-11-06] 공지사항 Firestore 전환
+* **요청 사항**: 공지사항 Mock DB를 Firebase Firestore로 전환하고, 테스트용으로 관리자 계정 없이 연결.
+* **구현 상태**:
+  * Firebase 웹 SDK 11.10.0 브라우저 모듈, Firestore 및 익명 인증 연결 복구. 별도 로그인 UI나 관리자 계정은 사용하지 않음.
+  * 익명 인증이 허용되면 기존 LocalStorage 게시글·첨부 메타데이터를 문서 ID와 함께 Firestore로 최초 이관하고, 조회수는 원자적으로 증가.
+  * Firebase Console에서 익명 제공자를 활성화하고 전체 공개 임시 Rules를 공지 컬렉션 검증 Rules로 교체.
+  * 익명 인증/Firestore 쓰기가 설정되지 않은 동안에는 기존 LocalStorage Mock으로 fallback.
+* **검증 결과**: 브라우저에서 7건 이관 완료. LocalStorage와 Firestore 문서 ID 및 첨부 메타데이터가 일치하고, 번호 카운터가 7인 것을 확인.
+* **수정 파일**: `js/services/firebase/firebaseConfig.js`, `js/services/firebase/postFirebaseService.js`, `js/services/post-service.js`, `js/modules/notice-board.js`, `firestore.rules`, `task-history/task.md`
+
+---
+
 <<<<<<< HEAD
 ## [2026-11-05] 전체 메뉴 오버레이 반투명 틴트 제거
 * **요청 사항**: 메뉴를 펼쳤을 때 주변 배경의 반투명 효과 제거.
